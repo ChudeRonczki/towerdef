@@ -56,6 +56,8 @@ abstract public class Tower {
 	Sprite sprite;
 	float cooldown, timer, cost; // W cooldown parametr, w timer jego licznik
 	
+	StringBuilder timerText;
+	
 	public Tower() {
 		sprite = new Sprite(basicSprite);
 	}
@@ -65,6 +67,7 @@ abstract public class Tower {
 		this.screen = screen;
 		pos = new Vector2();
 		range = new Circle();
+		timerText = new StringBuilder();
 		range.pos = pos;
 	}
 	
@@ -93,7 +96,7 @@ abstract public class Tower {
 		shapeRenderer.end();
 	}
 	
-	public void debugText(SpriteBatch batch, BitmapFont debugFont,  StringBuilder timerText) {
+	public void debugText(SpriteBatch batch, BitmapFont debugFont) {
 		timerText.length = 0;
 		timerText.append(timer);
 		debugFont.draw(batch, timerText, pos.x + 30f, pos.y - 30f);

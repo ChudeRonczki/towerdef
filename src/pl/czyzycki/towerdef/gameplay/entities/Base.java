@@ -53,4 +53,8 @@ public class Base {
 	public boolean isDestroyed() {
 		return destroyed;
 	}
+
+	public Vector2 getPos() {
+		return pos;
+	}
 }
