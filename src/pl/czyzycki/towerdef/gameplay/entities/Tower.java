@@ -54,7 +54,9 @@ abstract public class Tower {
 	Vector2 pos;
 	Circle range;
 	Sprite sprite;
-	float cooldown, timer, cost; // W cooldown parametr, w timer jego licznik
+	float cooldown, timer; // W cooldown parametr, w timer jego licznik
+
+	public float cost;
 	
 	StringBuilder timerText;
 	
@@ -101,4 +103,6 @@ abstract public class Tower {
 		timerText.append(timer);
 		debugFont.draw(batch, timerText, pos.x + 30f, pos.y - 30f);
 	}
+	
+	abstract public Tower obtainCopy(float x, float y);
 }

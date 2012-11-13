@@ -42,11 +42,17 @@ public class PointTower extends TargetTower {
 		else timer -= dt;
 	}
 
+	public static PointTowerPool pool;
+	
+	public PointTower obtainCopy(float x, float y) {
+		return pool.obtain().set(this, x, y);
+	}
+
 	static public class PointTowerPool extends Pool<PointTower> {
 
 		GameplayScreen screen;
 		
-		public PointTowerPool(GameplayScreen screen, int initialSize) {
+		public PointTowerPool(GameplayScreen screen) {
 			super(15);
 			this.screen = screen;
 		}

@@ -33,9 +33,9 @@ public class Field implements Comparable<Field> {
 		if(lifeTime <= 0.f) {
 			lifeTime = maxLifeTime;
 			active = false;
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public void draw(ShapeRenderer shapeRenderer) {
@@ -53,5 +53,13 @@ public class Field implements Comparable<Field> {
 		if(multiplier > field.multiplier) return -1;
 		else if(multiplier < field.multiplier) return 1;
 		else return 0;
+	}
+
+	public Circle getRange() {
+		return range;
+	}
+
+	public float getMultiplier() {
+		return multiplier;
 	}
 }

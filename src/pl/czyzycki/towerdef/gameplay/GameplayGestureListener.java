@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.OrderedMap;
 
 /**
  * Klasa odpowiedzialna za obs³ugê typowych gestów dotykowych.
@@ -20,11 +22,10 @@ class GameplayGestureListener extends GestureAdapter {
 	GameplayGestureListener(GameplayScreen screen) {
 		super();
 		this.screen = screen;
-		/* Config ?
+		@SuppressWarnings("unchecked")
 		OrderedMap<String, Object> jsonData = (OrderedMap<String, Object>)new JsonReader().parse(Gdx.files.internal("config/camera.json"));
-		json.readField(this, "minZoom", jsonData);
-		json.readField(this, "maxZoom", jsonData);
-		*/
+		minZoom = (Float)jsonData.get("minZoom");
+		maxZoom = (Float)jsonData.get("maxZoom");
 	}
 	
 	@Override

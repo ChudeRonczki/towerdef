@@ -19,6 +19,7 @@ class GameplayDebug {
 	
 	GameplayDebug(GameplayScreen screen) {
 		this.screen = screen;
+		stringBuilder = new StringBuilder();
 	}
 	
 	void render() {

@@ -50,11 +50,17 @@ public class BulletTower extends TargetTower {
 		else timer -= dt;
 	}
 
+	public static BulletTowerPool pool;
+	
+	public BulletTower obtainCopy(float x, float y) {
+		return pool.obtain().set(this, x, y);
+	}
+	
 	static public class BulletTowerPool extends Pool<BulletTower> {
 
 		GameplayScreen screen;
 		
-		public BulletTowerPool(GameplayScreen screen, int initialSize) {
+		public BulletTowerPool(GameplayScreen screen) {
 			super(15);
 			this.screen = screen;
 		}

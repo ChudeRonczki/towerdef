@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 public class Enemy {
 	
-	static Sprite basicSprite;
+	public static Sprite basicSprite;
 	
 	GameplayScreen screen;
 	Base base;
@@ -127,6 +127,10 @@ public class Enemy {
 		hpText.append('/');
 		hpText.append(maxHp);
 		debugFont.draw(batch, hpText, pos.x + 30f, pos.y - 30f);
+	}
+
+	public Circle getHitZone() {
+		return hitZone;
 	}
 }
 

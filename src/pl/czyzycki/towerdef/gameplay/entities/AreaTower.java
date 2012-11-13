@@ -18,7 +18,7 @@ public class AreaTower extends Tower {
 	
 	float damage;
 	Array<Enemy> targetedEnemies, targetedEnemies2;
-	
+		
 	public AreaTower() {
 		super();
 	}
@@ -56,12 +56,17 @@ public class AreaTower extends Tower {
 		} else timer -= dt;
 	}
 
+	public static AreaTowerPool pool;
+	
+	public AreaTower obtainCopy(float x, float y) {
+		return pool.obtain().set(this,x,y);
+	}
 	
 	static public class AreaTowerPool extends Pool<AreaTower> {
 
 		GameplayScreen screen;
 		
-		public AreaTowerPool(GameplayScreen screen, int initialSize) {
+		public AreaTowerPool(GameplayScreen screen) {
 			super(15);
 			this.screen = screen;
 		}

@@ -57,6 +57,13 @@ public class SlowdownTower extends Tower {
 	public void debugDraw(ShapeRenderer shapeRenderer) {
 		super.debugDraw(shapeRenderer);
 	}
+
+
+	public static SlowdownTowerPool pool;
+	
+	public SlowdownTower obtainCopy(float x, float y) {
+		return pool.obtain().set(this, x, y);
+	}
 	
 	static public class SlowdownTowerPool extends Pool<SlowdownTower> {
 		

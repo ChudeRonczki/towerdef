@@ -18,7 +18,7 @@ public class Spawn {
 		LEFT,RIGHT,TOP,BOTTOM
 	}
 	
-	static float waveTimeout;
+	public static float waveTimeout;
 	
 	GameplayScreen screen;
 	

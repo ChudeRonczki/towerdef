@@ -26,13 +26,14 @@ class GameplayLoader {
 	@SuppressWarnings("unchecked")
 	GameplayLoader(GameplayScreen screen) {
 		this.screen = screen;
-		json = new Json();
+		json = screen.json;
 		enemiesDatabase = json.fromJson(OrderedMap.class, Enemy.class, Gdx.files.internal("config/enemies.json"));
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void loadMap(String mapName) {
-		lastMap = mapName;
+		if(mapName == "") mapName = lastMap;
+		else lastMap = mapName;
 		
 		TiledMap map = screen.map = TiledLoader.createMap(Gdx.files.internal("maps/" + mapName + ".tmx"));
 		screen.tileMapRenderer = new TileMapRenderer(map, screen.game.getTileAtlas(), 16, 11);
