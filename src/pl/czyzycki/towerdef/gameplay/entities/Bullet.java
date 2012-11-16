@@ -66,7 +66,7 @@ public class Bullet {
 	 */
 	public boolean update(float dt) {
 		direction.set(target.pos.tmp().sub(pos)).nor();
-		pos.add(direction.tmp().mul(speed));
+		pos.add(direction.tmp().mul(speed*dt));
 		if(!target.alive || Circle.colliding(hitZone, target.hitZone)) {
 			for(Enemy enemy : targetedEnemies) {
 				if(Circle.colliding(blastZone, enemy.hitZone)) enemy.takeHit(damage);
@@ -77,6 +77,7 @@ public class Bullet {
 			return true;
 		}
 		sprite.setPosition(pos.x, pos.y);
+		sprite.setRotation(direction.angle()-90f);
 		return false;
 	}
 	
