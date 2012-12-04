@@ -169,7 +169,7 @@ public class Spawn {
 		}
 		if(enemy.flying) enemy.set(pos.tmp().add(offsetX, offsetY), new Array.ArrayIterator<Vector2>(flyingPath), screen);
 		else enemy.set(pos.tmp().add(offsetX, offsetY), new Array.ArrayIterator<Vector2>(roadPath), screen);
-		spawnList.peekLast().add(enemy);
+		spawnList.getLast().add(enemy);
 	}
 	
 	public void addWave() {
