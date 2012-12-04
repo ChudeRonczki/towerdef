@@ -55,6 +55,9 @@ abstract public class Tower {
 	Circle range;
 	Sprite sprite;
 	float cooldown, timer; // W cooldown parametr, w timer jego licznik
+	
+	public String icon;
+	public String groupIcon;
 
 	public float cost;
 	

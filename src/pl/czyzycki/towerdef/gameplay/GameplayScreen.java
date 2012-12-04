@@ -119,6 +119,7 @@ public class GameplayScreen implements Screen {
 		
 		debug = new GameplayDebug(this);
 		gui = new GameplayGUI(this);
+		gui.loadTowerIcons(texAtlas);
 		loader = new GameplayLoader(this);
 		
 		loadMap((String)jsonData.get("map"));
@@ -316,11 +317,13 @@ public class GameplayScreen implements Screen {
 		return null;
 	}
 	
+
 	public void addEnemy(Enemy enemy, boolean flying) {
 		if(flying) airborneEnemies.add(enemy);
 		else groundEnemies.add(enemy);
 	}
 
+	
 	public void addBullet(Bullet bullet) {
 		bullets.add(bullet);
 	}
