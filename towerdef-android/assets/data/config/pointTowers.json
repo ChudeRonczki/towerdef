@@ -1,0 +1,29 @@
+[
+{
+	damage: 10,
+	range : { radius : 150 },
+	cooldown : 0.5,
+	targeted : "GROUND",
+	cost : 20,
+	icon : "button-point-tower-ground",
+	groupIcon : "button-point-tower"
+},
+{
+	damage: 10,
+	range : { radius : 150 },
+	cooldown : 0.5,
+	targeted : "AIRBORNE",
+	cost : 20,
+	icon : "button-point-tower-airborne",
+	groupIcon : "button-point-tower"
+},
+{
+	damage: 10,
+	range : { radius : 150 },
+	cooldown : 0.5,
+	targeted : "BOTH",
+	cost : 35,
+	icon : "button-point-tower-both",
+	groupIcon : "button-point-tower"
+},
+]

@@ -1,0 +1,87 @@
+{
+	base : {
+		hitZone : { radius : 60 },
+		hp : 20
+	},
+	waves : 3,
+	money : 2800,
+	spawns : [
+		{
+			turns : [
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				}
+			]
+		},
+		{
+			turns : [
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				}
+			]
+		},
+		{
+			turns : [
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				}
+			]
+		}
+	]
+}
+				
+	

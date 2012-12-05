@@ -1,0 +1,117 @@
+
+objects.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button-area-tower-airborne
+  rotate: false
+  xy: 1, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-area-tower-both
+  rotate: false
+  xy: 1, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-area-tower-ground
+  rotate: false
+  xy: 83, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-area-tower
+  rotate: false
+  xy: 1, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower-airborne
+  rotate: false
+  xy: 83, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower-both
+  rotate: false
+  xy: 165, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower-ground
+  rotate: false
+  xy: 83, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower
+  rotate: false
+  xy: 165, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-airborne
+  rotate: false
+  xy: 247, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-both
+  rotate: false
+  xy: 165, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-ground
+  rotate: false
+  xy: 247, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower
+  rotate: false
+  xy: 329, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-slowdown-tower
+  rotate: false
+  xy: 247, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 329, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+tower
+  rotate: false
+  xy: 411, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+bullet
+  rotate: false
+  xy: 329, 61
+  size: 4, 20
+  orig: 4, 20
+  offset: 0, 0
+  index: -1

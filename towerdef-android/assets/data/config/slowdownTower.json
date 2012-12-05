@@ -1,0 +1,11 @@
+{
+	modelField : {
+		multiplier : 0.5,
+		lifeTime : 60
+	},
+	range : { radius : 150 },
+	cooldown : 5,
+	cost : 250,
+	icon : "button-slowdown-tower",
+	groupIcon : null
+}

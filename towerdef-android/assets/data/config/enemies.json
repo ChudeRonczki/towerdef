@@ -1,0 +1,16 @@
+{
+	someDude : {
+		hitZone : { radius : 40 },
+		speed : 70,
+		hp : 10,
+		damage : 2,
+		flying : false
+	},
+	totallyDifferentDude : {
+		hitZone : { radius : 45 },
+		speed : 50,
+		hp : 30,
+		damage : 1,
+		flying : true
+	}
+}

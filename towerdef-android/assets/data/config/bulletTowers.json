@@ -1,0 +1,44 @@
+[
+{
+	bullet : {
+		hitZone : { radius : 10 },
+		blastZone : { radius : 100 },
+		damage : 10,
+		speed : 160
+	},
+	range : { radius : 150 },
+	cooldown : 5,
+	targeted : "GROUND",
+	cost : 100,
+	icon : "button-bullet-tower-ground",
+	groupIcon : "button-bullet-tower"
+},
+{
+	bullet : {
+		hitZone : { radius : 10 },
+		blastZone : { radius : 100 },
+		damage : 10,
+		speed : 160
+	},
+	range : { radius : 150 },
+	cooldown : 5,
+	targeted : "AIRBORNE",
+	cost : 100,
+	icon : "button-bullet-tower-airborne",
+	groupIcon : "button-bullet-tower"
+},
+{
+	bullet : {
+		hitZone : { radius : 10 },
+		blastZone : { radius : 100 },
+		damage : 10,
+		speed : 160
+	},
+	range : { radius : 150 },
+	cooldown : 5,
+	targeted : "BOTH",
+	cost : 150,
+	icon : "button-bullet-tower-both",
+	groupIcon : "button-bullet-tower"
+},
+]

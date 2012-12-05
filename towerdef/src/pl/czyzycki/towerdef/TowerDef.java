@@ -1,66 +1,66 @@
 package pl.czyzycki.towerdef;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
-public class TowerDef implements ApplicationListener {
-	private OrthographicCamera camera;
-	private SpriteBatch batch;
-	private Texture texture;
-	private Sprite sprite;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.tiled.TileAtlas;
+import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
+
+
+/**
+ * Klasa g³ówna gry (nie licz¹c klas startowych backendów).
+ * @author Ciziu
+ *
+ */
+public class TowerDef extends Game {
+
+	static TowerDef game; // Po co siê mêczyæ :P Aktualnie bodaj nieu¿ywane, ale jest :)
+	
+	public BitmapFont debugFont; // Tymczasowa czcionka do wszystkiego
+	
+	AssetManager assetManager; // Manager assetów (grafika, dŸwiêki, czcionki)
+	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
+	GameplayScreen gameplayScreen;
 	
 	@Override
-	public void create() {		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		
-		camera = new OrthographicCamera(1, h/w);
-		batch = new SpriteBatch();
-		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+	public void create() {
+		game = this;
+		debugFont = new BitmapFont();
+		tileAtlas = new TileAtlas(TiledLoader.createMap(Gdx.files.internal("maps/emptyMap.tmx")), Gdx.files.internal("maps"));
+		assetManager = new AssetManager();
+		assetManager.load("images/objects.pack", TextureAtlas.class);
+		assetManager.finishLoading();
+		gameplayScreen = new GameplayScreen(this);
+		setScreen(gameplayScreen);
 	}
 
 	@Override
 	public void dispose() {
-		batch.dispose();
-		texture.dispose();
+		gameplayScreen.dispose();
+		assetManager.dispose();
+		tileAtlas.dispose();
+		debugFont.dispose();
+		super.dispose();
 	}
 
-	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
+	public AssetManager getAssetManager() {
+		return assetManager;
 	}
 
-	@Override
-	public void resize(int width, int height) {
+	public TileAtlas getTileAtlas() {
+		return tileAtlas;
 	}
 
-	@Override
-	public void pause() {
+	public static TowerDef getGame() {
+		return game;
 	}
 
-	@Override
-	public void resume() {
+	public GameplayScreen getGameplayScreen() {
+		return gameplayScreen;
 	}
+
 }
