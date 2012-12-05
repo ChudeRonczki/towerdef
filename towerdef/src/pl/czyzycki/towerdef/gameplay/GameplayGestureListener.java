@@ -29,7 +29,7 @@ class GameplayGestureListener extends GestureAdapter {
 	}
 	
 	@Override
-	public boolean tap (float x, float y, int count, int button) {
+	public boolean tap (int x, int y, int count) {
 		if(screen.gui.tap(x, y)) return true;
 		
 		Vector3 worldCord = new Vector3(x,y,0f);
@@ -39,7 +39,7 @@ class GameplayGestureListener extends GestureAdapter {
 	}
 
 	@Override
-	public boolean pan (float x, float y, float deltaX, float deltaY) {
+	public boolean pan (int x, int y, int deltaX, int deltaY) {
 		float ratio = screen.camera.viewportWidth/Gdx.graphics.getWidth();
 		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 			ratio *= screen.camera.zoom;

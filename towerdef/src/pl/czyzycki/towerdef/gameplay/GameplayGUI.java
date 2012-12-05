@@ -49,7 +49,7 @@ class GameplayGUI {
 						button.setSelected(false);
 					}
 
-					subButtons.first().setSelected(true);
+					subButtons.get(0).setSelected(true);
 				}
 			}
 		}
