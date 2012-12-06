@@ -6,7 +6,8 @@
 	targeted : "GROUND",
 	cost : 20,
 	icon : "button-point-tower-ground",
-	groupIcon : "button-point-tower"
+	groupIcon : "button-point-tower",
+	textureFileName: "button-point-tower-ground"
 },
 {
 	damage: 10,
@@ -15,7 +16,8 @@
 	targeted : "AIRBORNE",
 	cost : 20,
 	icon : "button-point-tower-airborne",
-	groupIcon : "button-point-tower"
+	groupIcon : "button-point-tower",
+	textureFileName: "button-point-tower-airborne"
 },
 {
 	damage: 10,
@@ -24,6 +26,7 @@
 	targeted : "BOTH",
 	cost : 35,
 	icon : "button-point-tower-both",
-	groupIcon : "button-point-tower"
+	groupIcon : "button-point-tower",
+	textureFileName: "button-point-tower-both"
 },
 ]

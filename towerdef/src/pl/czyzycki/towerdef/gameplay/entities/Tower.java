@@ -7,6 +7,7 @@ import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -58,13 +59,15 @@ abstract public class Tower {
 	
 	public String icon;
 	public String groupIcon;
+	
+	public String textureFileName;
 
 	public float cost;
 	
 	StringBuilder timerText;
 	
 	public Tower() {
-		sprite = new Sprite(basicSprite);
+		
 	}
 	
 	// Inicjalizacja pamiêci nowego obiektu dodawanego do puli
@@ -74,6 +77,7 @@ abstract public class Tower {
 		range = new Circle();
 		timerText = new StringBuilder();
 		range.pos = pos;
+		sprite = new Sprite();
 	}
 	
 	// Pseudokonstruktor obiektu wyjêtego z puli
@@ -85,7 +89,12 @@ abstract public class Tower {
 		cooldown = tower.cooldown;
 		timer = 0f;
 		cost = tower.cost;
+		sprite.set(tower.sprite);
 		sprite.setPosition(pos.x-sprite.getWidth()/2f, pos.y-sprite.getHeight()/2f);
+	}
+	
+	public void loadSprite(TextureAtlas texAtlas) {
+		sprite = new Sprite(texAtlas.createSprite(textureFileName));
 	}
 	
 	public void draw(SpriteBatch batch) {

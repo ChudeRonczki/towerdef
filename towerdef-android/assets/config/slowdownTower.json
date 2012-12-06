@@ -7,5 +7,6 @@
 	cooldown : 5,
 	cost : 250,
 	icon : "button-slowdown-tower",
-	groupIcon : null
+	groupIcon : null,
+	textureFileName: "button-slowdown-tower"
 }

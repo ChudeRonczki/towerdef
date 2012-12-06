@@ -1,5 +1,6 @@
 package pl.czyzycki.towerdef.gameplay;
 
+import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.gameplay.entities.AreaTower;
 import pl.czyzycki.towerdef.gameplay.entities.BulletTower;
 import pl.czyzycki.towerdef.gameplay.entities.PointTower;
@@ -50,6 +51,8 @@ class GameplayGUI {
 					}
 
 					subButtons.get(0).setSelected(true);
+				} else {
+					selectedTowerType = tower;
 				}
 			}
 		}
@@ -103,10 +106,8 @@ class GameplayGUI {
 
 						this.expanded = true;
 						this.timer = 0;
-					} else {
-						if(tower != null)
-							selectedTowerType = tower;
 					}
+					
 					return true;
 				}
 			}
@@ -179,7 +180,15 @@ class GameplayGUI {
 				Gdx.files.internal("config/bulletTowers.json")));
 		modelTowers.add(screen.json.fromJson(SlowdownTower.class,
 				Gdx.files.internal("config/slowdownTower.json")));
+		
+		TextureAtlas texAtlas = TowerDef.getGame().getAssetManager().get("images/objects.pack", TextureAtlas.class);
+		
+		for(Tower tower: modelTowers) {
+			tower.loadSprite(texAtlas);
+		}
+		
 		selectedTowerType = modelTowers.get(0);
+		
 		hudCamera = new OrthographicCamera();
 		hudCamera.setToOrtho(false, GameplayScreen.viewportWidth,
 				GameplayScreen.viewportHeight);

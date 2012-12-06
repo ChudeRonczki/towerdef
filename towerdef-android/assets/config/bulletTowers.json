@@ -11,7 +11,8 @@
 	targeted : "GROUND",
 	cost : 100,
 	icon : "button-bullet-tower-ground",
-	groupIcon : "button-bullet-tower"
+	groupIcon : "button-bullet-tower",
+	textureFileName: "button-bullet-tower-ground"
 },
 {
 	bullet : {
@@ -25,7 +26,8 @@
 	targeted : "AIRBORNE",
 	cost : 100,
 	icon : "button-bullet-tower-airborne",
-	groupIcon : "button-bullet-tower"
+	groupIcon : "button-bullet-tower",
+	textureFileName: "button-bullet-tower-airborne"
 },
 {
 	bullet : {
@@ -39,6 +41,7 @@
 	targeted : "BOTH",
 	cost : 150,
 	icon : "button-bullet-tower-both",
-	groupIcon : "button-bullet-tower"
+	groupIcon : "button-bullet-tower",
+	textureFileName: "button-bullet-tower-both"
 },
 ]
