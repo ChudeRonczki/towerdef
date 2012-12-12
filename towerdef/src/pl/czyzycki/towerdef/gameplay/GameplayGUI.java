@@ -11,13 +11,34 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 class GameplayGUI {
-	float selectedAnimTime = 0.0f;
+	
+	class GameplayGUIGestureListener extends GestureAdapter {
 
+		@Override
+		public boolean tap(int x, int y, int count) {
+			Vector3 hudCord = new Vector3(x, y, 1);
+			hudCamera.unproject(hudCord);
+
+			for (TowerButton button : towerButtons) {
+				if (button.tap(hudCord.x, hudCord.y))
+					return true;
+			}
+
+			return false;
+		}
+		
+	}
+	
+	GameplayGUIGestureListener listener;
+	
+	float selectedAnimTime = 0.0f;
+		
 	class TowerButton {
 		Tower tower = null;
 		
@@ -172,6 +193,9 @@ class GameplayGUI {
 	@SuppressWarnings("unchecked")
 	GameplayGUI(GameplayScreen screen) {
 		this.screen = screen;
+		
+		listener = new GameplayGUIGestureListener();
+		
 		modelTowers = screen.json.fromJson(Array.class, AreaTower.class,
 				Gdx.files.internal("config/areaTowers.json"));
 		modelTowers.addAll(screen.json.fromJson(Array.class, PointTower.class,
@@ -234,18 +258,6 @@ class GameplayGUI {
 			width += button.getWidth();
 		}
 		return width;
-	}
-
-	boolean tap(float x, float y) {
-		Vector3 hudCord = new Vector3(x, y, 1);
-		hudCamera.unproject(hudCord);
-
-		for (TowerButton button : towerButtons) {
-			if (button.tap(hudCord.x, hudCord.y))
-				return true;
-		}
-
-		return false;
 	}
 
 	void render(float dt) {

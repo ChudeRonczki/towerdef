@@ -30,8 +30,6 @@ class GameplayGestureListener extends GestureAdapter {
 	
 	@Override
 	public boolean tap (int x, int y, int count) {
-		if(screen.gui.tap(x, y)) return true;
-		
 		Vector3 worldCord = new Vector3(x,y,0f);
 		screen.camera.unproject(worldCord);
 		screen.addTower(worldCord.x, worldCord.y);

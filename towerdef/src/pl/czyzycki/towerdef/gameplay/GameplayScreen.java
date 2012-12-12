@@ -23,6 +23,7 @@ import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import pl.czyzycki.towerdef.gameplay.helpers.MapChecker;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -31,6 +32,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.tiled.TileMapRenderer;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
@@ -77,6 +79,7 @@ public class GameplayScreen implements Screen {
 	float timeAcc;//, sweepAcc;
 	float money;
 	
+	InputMultiplexer inputMultiplexer;
 	GameplayDebug debug;
 	GameplayGUI gui;
 	GameplayLoader loader;
@@ -113,14 +116,13 @@ public class GameplayScreen implements Screen {
 		OrderedMap<String, Object> jsonData = (OrderedMap<String, Object>)new JsonReader().parse(Gdx.files.internal("config/config.json"));
 		Spawn.waveTimeout = (Float)((OrderedMap<String, Object>)jsonData.get("spawns")).get("waveTimeout");
 		
-		Gdx.input.setInputProcessor(new GameplayGestureDetector(this));
-		
 		camera.setToOrtho(false, viewportWidth, viewportHeight);
 		
 		debug = new GameplayDebug(this);
 		gui = new GameplayGUI(this);
 		gui.loadTowerIcons(texAtlas);
 		loader = new GameplayLoader(this);
+		inputMultiplexer = new InputMultiplexer(new GestureDetector(gui.listener), new GameplayGestureDetector(this));
 		
 		loadMap((String)jsonData.get("map"));
 	}
@@ -260,8 +262,7 @@ public class GameplayScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(inputMultiplexer);	
 	}
 
 	@Override
