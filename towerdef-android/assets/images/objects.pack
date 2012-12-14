@@ -108,9 +108,16 @@ tower
   orig: 80, 80
   offset: 0, 0
   index: -1
+remove-tower
+  rotate: false
+  xy: 329, 41
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
 bullet
   rotate: false
-  xy: 329, 61
+  xy: 411, 143
   size: 4, 20
   orig: 4, 20
   offset: 0, 0

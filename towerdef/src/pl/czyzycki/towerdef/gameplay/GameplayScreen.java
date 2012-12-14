@@ -83,6 +83,7 @@ public class GameplayScreen implements Screen {
 	GameplayDebug debug;
 	GameplayGUI gui;
 	GameplayLoader loader;
+	GameplayUpgradeGUI upgradeGui;
 	
 	@SuppressWarnings("unchecked")
 	public GameplayScreen(TowerDef game) {
@@ -122,6 +123,8 @@ public class GameplayScreen implements Screen {
 		gui = new GameplayGUI(this);
 		gui.loadTowerIcons(texAtlas);
 		loader = new GameplayLoader(this);
+		upgradeGui = new GameplayUpgradeGUI(this);
+		upgradeGui.load(texAtlas);
 		inputMultiplexer = new InputMultiplexer(new GestureDetector(gui.listener), new GameplayGestureDetector(this));
 		
 		loadMap((String)jsonData.get("map"));
@@ -156,6 +159,14 @@ public class GameplayScreen implements Screen {
 			buildingChecker.set(x, y, true);
 			return true;
 		} else return false;
+	}
+	
+	Tower getTower(float x, float y) {
+		for(Tower tower: towers) {
+			if(tower.collision(x, y))
+				return tower;
+		}
+		return null;
 	}
 	
 	public void update(float dt) {
@@ -255,6 +266,7 @@ public class GameplayScreen implements Screen {
 		for(Enemy enemy : airborneEnemies) {
 			enemy.draw(batch);
 		}
+		upgradeGui.render(dt);
 		batch.end();
 		debug.render();
 		gui.render(dt);

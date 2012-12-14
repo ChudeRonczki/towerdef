@@ -70,6 +70,10 @@ abstract public class Tower {
 		
 	}
 	
+	public Vector2 getPos() {
+		return pos;
+	}
+	
 	// Inicjalizacja pamiêci nowego obiektu dodawanego do puli
 	protected void _init(GameplayScreen screen) {
 		this.screen = screen;
@@ -99,6 +103,13 @@ abstract public class Tower {
 	
 	public void draw(SpriteBatch batch) {
 		sprite.draw(batch);
+	}
+	
+	public boolean collision(float x, float y) {
+		float radius = sprite.getWidth()/2.0f;
+		float dx = x - pos.x;
+		float dy = y - pos.y;
+		return radius*radius > dx*dx + dy*dy;
 	}
 	
 	abstract public void update(float dt);

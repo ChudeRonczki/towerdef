@@ -1,5 +1,7 @@
 package pl.czyzycki.towerdef.gameplay;
 
+import pl.czyzycki.towerdef.gameplay.entities.Tower;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
@@ -32,7 +34,17 @@ class GameplayGestureListener extends GestureAdapter {
 	public boolean tap (int x, int y, int count) {
 		Vector3 worldCord = new Vector3(x,y,0f);
 		screen.camera.unproject(worldCord);
-		screen.addTower(worldCord.x, worldCord.y);
+		if(screen.upgradeGui.tap(worldCord.x, worldCord.y)) {
+			
+		} else {
+			Tower selectedTower = screen.getTower(worldCord.x, worldCord.y);
+			if(selectedTower != null) {
+				screen.upgradeGui.setSelectedTower(selectedTower);
+			} else {
+				screen.upgradeGui.hide();
+				screen.addTower(worldCord.x, worldCord.y);
+			}
+		}
 		return true;
 	}
 
