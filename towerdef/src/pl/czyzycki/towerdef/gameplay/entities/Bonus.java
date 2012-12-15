@@ -82,4 +82,13 @@ public class Bonus {
 			return new Bonus().init(screen);
 		}
 	}
+
+	public Circle getZone() {
+		return zone;
+	}
+
+	public void onCollected() {
+		// TODO Auto-generated method stub
+		
+	}
 }

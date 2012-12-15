@@ -18,6 +18,10 @@ public class Circle {
 		return (c1.pos.tmp().sub(c2.pos).len() <= c1.radius + c2.radius);
 	}
 	
+	public boolean contains(float x, float y) {
+		return (pos.tmp().sub(x, y).len() <= radius);
+	}
+	
 	public void draw(ShapeRenderer shapeRenderer) {
 		shapeRenderer.filledCircle(pos.x, pos.y, radius);
 	}
