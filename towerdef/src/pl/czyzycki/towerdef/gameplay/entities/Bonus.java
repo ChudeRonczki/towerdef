@@ -88,7 +88,11 @@ public class Bonus {
 	}
 
 	public void onCollected() {
-		// TODO Auto-generated method stub
-		
+		switch(type) {
+			case MONEY:
+			screen.addMoney(value);
+			break;
+			
+		}
 	}
 }

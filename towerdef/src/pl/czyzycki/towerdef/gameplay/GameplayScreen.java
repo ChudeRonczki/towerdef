@@ -501,4 +501,8 @@ public class GameplayScreen implements Screen {
 		return base;
 	}
 
+	public void addMoney(int value) {
+		money += value;
+	}
+
 }

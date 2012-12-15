@@ -15,6 +15,7 @@ import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.StringBuilder;
 
 class GameplayGUI {
 	
@@ -189,6 +190,8 @@ class GameplayGUI {
 	Array<TowerButton> towerButtons = new Array<TowerButton>();
 	Tower selectedTowerType;
 	OrthographicCamera hudCamera;
+	StringBuilder moneyText;
+	float moneyTextValue;
 
 	@SuppressWarnings("unchecked")
 	GameplayGUI(GameplayScreen screen) {
@@ -216,6 +219,11 @@ class GameplayGUI {
 		hudCamera = new OrthographicCamera();
 		hudCamera.setToOrtho(false, GameplayScreen.viewportWidth,
 				GameplayScreen.viewportHeight);
+		
+		moneyText = new StringBuilder(20);
+		moneyText.append("KASA: ");
+		moneyTextValue = screen.money;
+		moneyText.append(moneyTextValue);
 	}
 
 	void loadTowerIcons(TextureAtlas texAtlas) {
@@ -275,8 +283,13 @@ class GameplayGUI {
 			start += button.getWidth();
 		}
 		
+		if(screen.money != moneyTextValue) {
+			moneyText.length = 6;
+			moneyTextValue = screen.money;
+			moneyText.append(moneyTextValue);
+		}
 		screen.game.debugFont.setScale(3);
-		screen.game.debugFont.draw(screen.batch, "KASA: "+screen.money, 5, hudCamera.viewportHeight-5);
+		screen.game.debugFont.draw(screen.batch, moneyText, 5, hudCamera.viewportHeight-5);
 		screen.game.debugFont.setScale(1);
 		
 		screen.batch.end();
