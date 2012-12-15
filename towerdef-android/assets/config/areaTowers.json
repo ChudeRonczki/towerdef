@@ -7,7 +7,45 @@
 	cost : 50,
 	icon : "button-area-tower-ground",
 	groupIcon : "button-area-tower",
-	textureFileName: "button-area-tower-ground"
+	textureFileName: "button-area-tower-ground",
+	
+	"upgrades" :
+	[
+		{
+			"levels" :
+			[
+				{
+					"value" : 1,
+					"cost"  : 200
+				},
+				{
+					"value" : 3,
+					"cost"  : 300
+				}
+			],
+			upgraded : "RANGE"
+		},
+		{
+			"levels" :
+			[
+				{
+					"value" : 1,
+					"cost"  : 200
+				}
+			],
+			upgraded : "COOLDOWN"
+		},
+		{
+			"levels" :
+			[
+				{
+					"value" : 1,
+					"cost"  : 200
+				}
+			],
+			upgraded : "DAMAGE"
+		}	
+	]
 },
 {
 	damage: 10,

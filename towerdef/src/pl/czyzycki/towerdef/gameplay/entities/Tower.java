@@ -27,20 +27,19 @@ abstract public class Tower {
 	protected static Array<Enemy> emptyEnemyList = new Array<Enemy>(false,1);
 	
 	// Enum cech mo¿liwych do upgrade'owania
-	enum Upgradeable {
+	public enum Upgradeable {
 		RANGE,
 		COOLDOWN,
 		MULTIPLIER,
 		DAMAGE
 	}
 	// Pojedynczy upgrade. Szkic klasy :P
-	static class Upgrade {
-		static class Level {
-			float value, cost;
+	static public class Upgrade {
+		static public class Level {
+			public float value, cost;
 		}
-		Level[] levels;
-		int iter = 0;
-		Upgradeable upgraded;
+		public Level[] levels;
+		public Upgradeable upgraded;
 	}
 	//Enum mo¿liwych grup celów wie¿yczki
 	public enum Targeted {
@@ -50,7 +49,8 @@ abstract public class Tower {
 	}
 	
 	GameplayScreen screen;
-	Upgrade[] upgrades; // Tablica ugrade'ów danej wie¿y (wype³niane z JSONa)
+	public Upgrade[] upgrades; // Tablica ugrade'ów danej wie¿y (wype³niane z JSONa)
+	public int[] upgradeLevelIters = new int[16]; // Poziom upgrade dla konkretnej wie¿yczki. 
 	Targeted targeted; // Wybrana grupa celów (ignorowane w SlowdownTower, zgodnie z projektem)
 	Vector2 pos;
 	Circle range;
@@ -87,6 +87,9 @@ abstract public class Tower {
 	// Pseudokonstruktor obiektu wyjêtego z puli
 	protected void _set(Tower tower, float x, float y) {
 		upgrades = tower.upgrades;
+		for(int i=0; i<upgradeLevelIters.length; i++) {
+			upgradeLevelIters[i] = 0;
+		}
 		targeted = tower.targeted;
 		pos.set(x, y);
 		range.radius = tower.range.radius;

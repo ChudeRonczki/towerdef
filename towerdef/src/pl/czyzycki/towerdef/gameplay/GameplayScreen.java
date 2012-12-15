@@ -33,6 +33,7 @@ import com.badlogic.gdx.graphics.g2d.tiled.TileMapRenderer;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
@@ -167,6 +168,13 @@ public class GameplayScreen implements Screen {
 				return tower;
 		}
 		return null;
+	}
+	
+	public void removeTower(Tower tower) {
+		towers.removeValue(tower, true);
+		Vector2 pos = tower.getPos();
+		buildingChecker.set(pos.x, pos.y, false);
+		
 	}
 	
 	public void update(float dt) {
@@ -358,6 +366,5 @@ public class GameplayScreen implements Screen {
 	final public Base getBase() {
 		return base;
 	}
-
 
 }
