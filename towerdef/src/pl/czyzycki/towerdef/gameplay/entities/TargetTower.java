@@ -34,6 +34,7 @@ abstract public class TargetTower extends Tower {
 	}
 	
 	protected boolean checkTarget() {
+		Circle range = getRange();
 		if(target == null || !target.alive || !Circle.colliding(range, target.hitZone)) {
 			return ((target = screen.enemyInRange(range, targeted)) != null);
 		} else return true;

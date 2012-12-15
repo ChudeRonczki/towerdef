@@ -275,6 +275,7 @@ public class GameplayScreen implements Screen {
 			enemy.draw(batch);
 		}
 		upgradeGui.render(dt);
+		
 		batch.end();
 		debug.render();
 		gui.render(dt);

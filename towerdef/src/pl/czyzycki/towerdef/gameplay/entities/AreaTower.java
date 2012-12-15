@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.Pool;
  */
 public class AreaTower extends Tower {
 	
-	float damage;
 	Array<Enemy> targetedEnemies, targetedEnemies2;
 		
 	public AreaTower() {
@@ -44,14 +43,15 @@ public class AreaTower extends Tower {
 	@Override
 	public void update(float dt) {
 		if(dt >= timer) {
+			Circle range = getRange();
 			if(screen.enemyInRange(range, targeted) != null) {
 				for(Enemy enemy : targetedEnemies) {
-					if(Circle.colliding(range, enemy.hitZone)) enemy.takeHit(damage);
+					if(Circle.colliding(range, enemy.hitZone)) enemy.takeHit(getDamage());
 				}
 				for(Enemy enemy : targetedEnemies2) {
-					if(Circle.colliding(range, enemy.hitZone)) enemy.takeHit(damage);
+					if(Circle.colliding(range, enemy.hitZone)) enemy.takeHit(getDamage());
 				}
-				timer += cooldown-dt;
+				timer += getCooldown()-dt;
 			} else timer = 0f;
 		} else timer -= dt;
 	}

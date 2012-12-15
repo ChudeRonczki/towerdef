@@ -39,13 +39,13 @@ public class SlowdownTower extends Tower {
 	public void update(float dt) {
 		if(fieldActivated) {
 			if(!modelField.active) {
-				timer = cooldown;
+				timer = getCooldown();
 				fieldActivated = false;
 			}
 		} else {
 			if(dt >= timer) {
 				timer = 0.f;
-				if(screen.enemyInRange(range, Targeted.BOTH) != null) {
+				if(screen.enemyInRange(getRange(), Targeted.BOTH) != null) {
 					fieldActivated = true;
 					screen.addField(modelField.activate());
 				}

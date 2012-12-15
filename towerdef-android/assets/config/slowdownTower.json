@@ -8,5 +8,36 @@
 	cost : 250,
 	icon : "button-slowdown-tower",
 	groupIcon : null,
-	textureFileName: "button-slowdown-tower"
+	textureFileName: "button-slowdown-tower",
+	
+	"upgrades" :
+	[
+		{
+			"levels" :
+			[
+				{ "value" : 200, "cost"  : 200 },
+				{ "value" : 250, "cost"  : 300 },
+				{ "value" : 300, "cost"  : 500 }
+			],
+			upgraded : "RANGE"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 4, "cost"  : 200 },
+				{ "value" : 3, "cost"  : 300 },
+				{ "value" : 2, "cost"  : 500 }
+			],
+			upgraded : "COOLDOWN"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 0.4, "cost"  : 200 },
+				{ "value" : 0.3, "cost"  : 300 },
+				{ "value" : 0.2, "cost"  : 500 }
+			],
+			upgraded : "MULTIPLIER"
+		}	
+	]
 }

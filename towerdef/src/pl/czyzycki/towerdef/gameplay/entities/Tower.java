@@ -2,6 +2,7 @@ package pl.czyzycki.towerdef.gameplay.entities;
 
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
+import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade.Level;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -53,9 +54,11 @@ abstract public class Tower {
 	public int[] upgradeLevelIters = new int[16]; // Poziom upgrade dla konkretnej wie¿yczki. 
 	Targeted targeted; // Wybrana grupa celów (ignorowane w SlowdownTower, zgodnie z projektem)
 	Vector2 pos;
-	Circle range;
+	Circle range;	// To jest base range, bez upgrade - ¿eby dostaæ prawdziwy range nale¿y wywo³aæ getRange()
+	Circle realRange;
 	Sprite sprite;
 	float cooldown, timer; // W cooldown parametr, w timer jego licznik
+	float damage;
 	
 	public String icon;
 	public String groupIcon;
@@ -70,6 +73,57 @@ abstract public class Tower {
 		
 	}
 	
+	Circle getRange() {
+		Level level = getUpgradeLevel(Upgradeable.RANGE);
+		if(level == null)
+			return range;
+		
+		realRange.pos = range.pos;
+		realRange.radius = level.value;
+		
+		return realRange;
+	}
+	
+	float getCooldown() {
+		Level level = getUpgradeLevel(Upgradeable.COOLDOWN);
+		if(level == null)
+			return cooldown;
+		
+		return level.value;
+	}
+	
+	float getDamage() {
+		Level level = getUpgradeLevel(Upgradeable.DAMAGE);
+		if(level == null)
+			return damage;
+		
+		return level.value;
+	}
+	
+	Level getUpgradeLevel(Upgradeable upgradeable) {
+		Upgrade upgrade = null;
+		int upgradeIndex = 0;
+		
+		// szukaj odpowiedniego upgrade na liscie
+		if(upgrades != null) {
+			for(Upgrade u: upgrades) {
+				if(u.upgraded == upgradeable) {
+					upgrade = u;
+					break;
+				}
+				upgradeIndex++;
+			}
+		}
+		
+		if(upgrade == null) return null;
+		
+		if(upgradeLevelIters[upgradeIndex] == 0) return null;
+		
+		int levelId = upgradeLevelIters[upgradeIndex] - 1;
+		
+		return upgrade.levels[levelId];
+	}
+	
 	public Vector2 getPos() {
 		return pos;
 	}
@@ -79,6 +133,7 @@ abstract public class Tower {
 		this.screen = screen;
 		pos = new Vector2();
 		range = new Circle();
+		realRange = new Circle();
 		timerText = new StringBuilder();
 		range.pos = pos;
 		sprite = new Sprite();
@@ -120,7 +175,7 @@ abstract public class Tower {
 	public void debugDraw(ShapeRenderer shapeRenderer) {
 		shapeRenderer.begin(ShapeType.FilledCircle);
 		shapeRenderer.setColor(0,0,1,0.2f);
-		range.draw(shapeRenderer);
+		getRange().draw(shapeRenderer);
 		shapeRenderer.end();
 	}
 	

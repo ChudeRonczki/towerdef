@@ -12,8 +12,6 @@ import com.badlogic.gdx.utils.Pool;
  *
  */
 public class PointTower extends TargetTower {
-
-	float damage;
 	
 	public PointTower() {
 		super();
@@ -35,8 +33,8 @@ public class PointTower extends TargetTower {
 		if(checkTarget()) {
 			direction.set(target.pos).sub(pos).nor();
 			if(dt >= timer) {
-				timer += cooldown - dt;
-				target.takeHit(damage);
+				timer += getCooldown() - dt;
+				target.takeHit(getDamage());
 			} else timer -= dt;
 		} else if(dt >= timer) timer = 0f;
 		else timer -= dt;

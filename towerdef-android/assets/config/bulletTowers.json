@@ -12,7 +12,38 @@
 	cost : 100,
 	icon : "button-bullet-tower-ground",
 	groupIcon : "button-bullet-tower",
-	textureFileName: "button-bullet-tower-ground"
+	textureFileName: "button-bullet-tower-ground",
+	
+	"upgrades" :
+	[
+		{
+			"levels" :
+			[
+				{ "value" : 200, "cost"  : 200 },
+				{ "value" : 250, "cost"  : 300 },
+				{ "value" : 300, "cost"  : 500 }
+			],
+			upgraded : "RANGE"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 4, "cost"  : 200 },
+				{ "value" : 3, "cost"  : 300 },
+				{ "value" : 2, "cost"  : 500 }
+			],
+			upgraded : "COOLDOWN"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 15, "cost"  : 200 },
+				{ "value" : 25, "cost"  : 300 },
+				{ "value" : 40, "cost"  : 500 }
+			],
+			upgraded : "DAMAGE"
+		}	
+	]
 },
 {
 	bullet : {
@@ -27,7 +58,38 @@
 	cost : 100,
 	icon : "button-bullet-tower-airborne",
 	groupIcon : "button-bullet-tower",
-	textureFileName: "button-bullet-tower-airborne"
+	textureFileName: "button-bullet-tower-airborne",
+	
+	"upgrades" :
+	[
+		{
+			"levels" :
+			[
+				{ "value" : 200, "cost"  : 200 },
+				{ "value" : 250, "cost"  : 300 },
+				{ "value" : 300, "cost"  : 500 }
+			],
+			upgraded : "RANGE"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 4, "cost"  : 200 },
+				{ "value" : 3, "cost"  : 300 },
+				{ "value" : 2, "cost"  : 500 }
+			],
+			upgraded : "COOLDOWN"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 15, "cost"  : 200 },
+				{ "value" : 25, "cost"  : 300 },
+				{ "value" : 40, "cost"  : 500 }
+			],
+			upgraded : "DAMAGE"
+		}	
+	]
 },
 {
 	bullet : {
@@ -42,6 +104,37 @@
 	cost : 150,
 	icon : "button-bullet-tower-both",
 	groupIcon : "button-bullet-tower",
-	textureFileName: "button-bullet-tower-both"
+	textureFileName: "button-bullet-tower-both",
+	
+	"upgrades" :
+	[
+		{
+			"levels" :
+			[
+				{ "value" : 200, "cost"  : 200 },
+				{ "value" : 250, "cost"  : 300 },
+				{ "value" : 300, "cost"  : 500 }
+			],
+			upgraded : "RANGE"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 4, "cost"  : 200 },
+				{ "value" : 3, "cost"  : 300 },
+				{ "value" : 2, "cost"  : 500 }
+			],
+			upgraded : "COOLDOWN"
+		},
+		{
+			"levels" :
+			[
+				{ "value" : 15, "cost"  : 200 },
+				{ "value" : 25, "cost"  : 300 },
+				{ "value" : 40, "cost"  : 500 }
+			],
+			upgraded : "DAMAGE"
+		}	
+	]
 },
 ]

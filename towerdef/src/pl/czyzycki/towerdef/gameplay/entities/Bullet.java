@@ -53,6 +53,7 @@ public class Bullet {
 	
 	public Bullet set(Bullet modelBullet, BulletTower tower) {
 		set(modelBullet);
+		damage = tower.getDamage();
 		pos.set(tower.pos);
 		direction.set(tower.direction);
 		sprite.setPosition(this.pos.x, this.pos.y);

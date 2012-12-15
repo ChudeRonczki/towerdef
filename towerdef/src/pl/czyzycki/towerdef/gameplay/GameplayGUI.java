@@ -274,6 +274,11 @@ class GameplayGUI {
 			button.render(dt);
 			start += button.getWidth();
 		}
+		
+		screen.game.debugFont.setScale(3);
+		screen.game.debugFont.draw(screen.batch, "KASA: "+screen.money, 5, hudCamera.viewportHeight-5);
+		screen.game.debugFont.setScale(1);
+		
 		screen.batch.end();
 
 		screen.batch.setProjectionMatrix(hudCamera.projection);

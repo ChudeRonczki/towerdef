@@ -81,8 +81,11 @@ public class GameplayUpgradeGUI {
 				} else {
 					Upgrade upgrade = selectedTower.upgrades[i-1];
 					
-					if(selectedTower.upgradeLevelIters[i-1]<upgrade.levels.length) { // i ma kase...
-						selectedTower.upgradeLevelIters[i-1]++;
+					if(selectedTower.upgradeLevelIters[i-1]<upgrade.levels.length) {
+						if(upgrade.levels[selectedTower.upgradeLevelIters[i-1]].cost < screen.money) {
+							screen.money -= upgrade.levels[selectedTower.upgradeLevelIters[i-1]].cost;
+							selectedTower.upgradeLevelIters[i-1]++;
+						}
 					}
 				}
 				

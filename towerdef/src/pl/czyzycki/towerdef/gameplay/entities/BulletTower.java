@@ -43,7 +43,7 @@ public class BulletTower extends TargetTower {
 		if(checkTarget()) {
 			direction.set(target.pos).sub(pos).nor();
 			if(dt >= timer) {
-				timer += cooldown - dt;
+				timer += getCooldown() - dt;
 				screen.addBullet(screen.getBulletPool().obtain().set(bullet, this));
 			} else timer -= dt;
 		} else if(dt >= timer) timer = 0f;
