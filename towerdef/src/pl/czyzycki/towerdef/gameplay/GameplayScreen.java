@@ -321,9 +321,62 @@ public class GameplayScreen implements Screen {
 		}
 	}
 
+	public void adjustCamera() {
+		float mapHeight = tileMapRenderer.getMapHeightUnits();
+		float mapWidth  = tileMapRenderer.getMapWidthUnits();
+		
+		float widthAspect  = mapWidth/camera.viewportWidth;
+		float heightAspect = mapHeight/camera.viewportHeight;
+		
+		float minAspect = widthAspect < heightAspect ? widthAspect : heightAspect;
+		
+		float maxZoom = minAspect;
+		
+		float minZoom = Gdx.graphics.getHeight() / camera.viewportHeight;
+		
+		float zoom = camera.zoom;
+	
+		if(maxZoom < zoom) {
+			zoom = maxZoom;
+			camera.zoom = zoom;
+		}
+		
+		if(minZoom < maxZoom) {
+			if(minZoom > zoom) {
+				zoom = minZoom;
+				camera.zoom = zoom;
+			}
+		} else {
+			// jeœli jest na odwrót (maxZoom < minZoom) to mamy bardzo du¿y wyœwietlacz i
+			// nie da siê zrobiæ tak ¿eby piksel w œwiecie gry do piksela na wyœwietlaczu by³ w proporcji 1:1
+			// poniewa¿ widaæ by by³o obszar za plansz¹
+			
+			// ustawiamy taki zoom, zeby by³o widaæ ca³¹ planszê
+			zoom = maxZoom;
+			camera.zoom = zoom;
+		}
+		
+		if(camera.position.x/zoom < camera.viewportWidth/2.0f)
+			camera.position.x = camera.viewportWidth/2.0f*zoom;
+		if(camera.position.y/zoom < camera.viewportHeight/2.0f)
+			camera.position.y = camera.viewportHeight/2.0f*zoom;
+		
+		float maxX = mapWidth - camera.viewportWidth/2.0f*zoom;
+		if(camera.position.x > maxX)
+			camera.position.x = maxX;
+		float maxY = mapHeight - camera.viewportHeight/2.0f*zoom;
+		if(camera.position.y > maxY)
+			camera.position.y = maxY;
+		
+		camera.update();
+	}
+	
 	@Override
 	public void render(float dt) {
 		update(dt);
+		
+		// zapewnia ¿e kamera nie wyjdzie poza ekran
+		adjustCamera();
 		
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);

@@ -6,8 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.OrderedMap;
 
 /**
  * Klasa odpowiedzialna za obs³ugê typowych gestów dotykowych.
@@ -18,16 +16,11 @@ class GameplayGestureListener extends GestureAdapter {
 	
 	final GameplayScreen screen;
 	
-	float minZoom, maxZoom;
 	float zoomStartDistance, zoomStartValue;
 	
 	GameplayGestureListener(GameplayScreen screen) {
 		super();
 		this.screen = screen;
-		@SuppressWarnings("unchecked")
-		OrderedMap<String, Object> jsonData = (OrderedMap<String, Object>)new JsonReader().parse(Gdx.files.internal("config/camera.json"));
-		minZoom = (Float)jsonData.get("minZoom");
-		maxZoom = (Float)jsonData.get("maxZoom");
 	}
 	
 	@Override
@@ -57,8 +50,6 @@ class GameplayGestureListener extends GestureAdapter {
 			screen.camera.position.y += deltaY*ratio;
 		} else if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
 			screen.camera.zoom += deltaY*ratio*0.001f;
-			if(screen.camera.zoom < maxZoom) screen.camera.zoom = maxZoom;
-			else if(screen.camera.zoom > minZoom) screen.camera.zoom = minZoom;
 		}
 		screen.camera.update();
 		return true;
@@ -71,8 +62,6 @@ class GameplayGestureListener extends GestureAdapter {
 			zoomStartValue = screen.camera.zoom;
 		}
 		screen.camera.zoom = zoomStartValue*(zoomStartDistance/currentDistance);
-		if(screen.camera.zoom < maxZoom) screen.camera.zoom = maxZoom;
-		else if(screen.camera.zoom > minZoom) screen.camera.zoom = minZoom;
 		screen.camera.update();
 		return true;
 	}
