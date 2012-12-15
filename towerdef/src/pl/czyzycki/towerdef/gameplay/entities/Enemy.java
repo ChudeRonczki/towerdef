@@ -132,5 +132,9 @@ public class Enemy {
 	public Circle getHitZone() {
 		return hitZone;
 	}
+
+	public Vector2 getPos() {
+		return pos;
+	}
 }
 
