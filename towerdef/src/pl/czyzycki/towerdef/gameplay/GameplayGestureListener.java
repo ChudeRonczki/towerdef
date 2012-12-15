@@ -1,5 +1,8 @@
 package pl.czyzycki.towerdef.gameplay;
 
+import java.util.Iterator;
+
+import pl.czyzycki.towerdef.gameplay.entities.Bonus;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 
 import com.badlogic.gdx.Gdx;
@@ -32,7 +35,18 @@ class GameplayGestureListener extends GestureAdapter {
 			screen.upgradeGui.setSelectedTower(selectedTower);
 		} else {
 			screen.upgradeGui.hide();
-			screen.addTower(worldCord.x, worldCord.y);
+			boolean bonusTapped = false;
+			Iterator<Bonus> bonusIter = screen.bonuses.iterator();
+			while(bonusIter.hasNext()) {
+				Bonus bonus = bonusIter.next();
+				if(bonus.getZone().contains(worldCord.x, worldCord.y)) {
+					bonusTapped = true;
+					bonus.onCollected();
+					bonusIter.remove();
+					break;
+				}
+			}
+			if(!bonusTapped) screen.addTower(worldCord.x, worldCord.y);
 		}
 		return true;
 	}

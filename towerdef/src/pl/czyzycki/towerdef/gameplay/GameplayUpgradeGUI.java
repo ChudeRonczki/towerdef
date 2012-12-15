@@ -188,12 +188,14 @@ public class GameplayUpgradeGUI {
 			{
 				int upgradeLevel = selectedTower.upgradeLevelIters[i-1];
 				
+				screen.game.debugFont.setScale(2);
 				screen.game.debugFont.draw(screen.batch, upgradeLevel+"/"+upgrade.levels.length, iconX, iconY);
-				float ydiff = 15;
+				float ydiff = 30;
 				if(upgradeLevel == upgrade.levels.length)
 					screen.game.debugFont.draw(screen.batch, "MAX", iconX, iconY-ydiff);
 				else
 					screen.game.debugFont.draw(screen.batch, "cost: "+(upgrade.levels[upgradeLevel].cost), iconX, iconY-ydiff);
+				screen.game.debugFont.setScale(1);
 			}
 		}
 	}
