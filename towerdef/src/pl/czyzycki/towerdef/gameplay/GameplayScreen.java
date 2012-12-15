@@ -6,6 +6,9 @@ import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.gameplay.entities.AreaTower;
 import pl.czyzycki.towerdef.gameplay.entities.AreaTower.AreaTowerPool;
 import pl.czyzycki.towerdef.gameplay.entities.Base;
+import pl.czyzycki.towerdef.gameplay.entities.Bonus;
+import pl.czyzycki.towerdef.gameplay.entities.Bonus.BonusPool;
+import pl.czyzycki.towerdef.gameplay.entities.Bonus.BonusType;
 import pl.czyzycki.towerdef.gameplay.entities.Bullet;
 import pl.czyzycki.towerdef.gameplay.entities.Bullet.BulletPool;
 import pl.czyzycki.towerdef.gameplay.entities.BulletTower;
@@ -33,6 +36,7 @@ import com.badlogic.gdx.graphics.g2d.tiled.TileMapRenderer;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
@@ -63,13 +67,27 @@ public class GameplayScreen implements Screen {
 	SpriteBatch batch;
 	ShapeRenderer shapeRenderer;
 	
+	/*
+	 * Informacje zwi¹zane ze spawnowaniem bonusów, nie z samymi bonusami
+	 */
+	static class BonusData {
+		int odds;
+		float cooldown, timer;
+	}
+	
+	BonusData bonusesData[];
+	
+	Bonus modelBonuses[];
+	
 	Array<Spawn> spawns;
 	Array<Enemy> groundEnemies, airborneEnemies;
 	Array<Tower> towers;
 	Array<Bullet> bullets;
 	Array<Field> fields;
+	Array<Bonus> bonuses;
 	
 	BulletPool bulletPool;
+	BonusPool bonusPool;
 	
 	TileMapRenderer tileMapRenderer;
 	TiledMap map;
@@ -102,8 +120,10 @@ public class GameplayScreen implements Screen {
 		towers = new Array<Tower>(false,60);
 		bullets = new Array<Bullet>(false,200);
 		fields = new Array<Field>(true,20);
+		bonuses = new Array<Bonus>(false,5);
 		
 		bulletPool = new BulletPool();
+		bonusPool = new BonusPool(this);
 		
 		AreaTower.pool = new AreaTowerPool(this);
 		BulletTower.pool = new BulletTowerPool(this);
@@ -127,6 +147,18 @@ public class GameplayScreen implements Screen {
 		upgradeGui = new GameplayUpgradeGUI(this);
 		upgradeGui.load(texAtlas);
 		inputMultiplexer = new InputMultiplexer(new GestureDetector(gui.listener), new GameplayGestureDetector(this));
+	
+		modelBonuses = new Bonus[3];
+		modelBonuses[BonusType.MONEY.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/moneyBonus.json"));
+		modelBonuses[BonusType.MONEY.ordinal()].setType(BonusType.MONEY);
+		modelBonuses[BonusType.MONEY.ordinal()].setSprite(texAtlas.createSprite("moneyBonus"));
+		modelBonuses[BonusType.BOMB.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/bomb.json"));
+		modelBonuses[BonusType.BOMB.ordinal()].setType(BonusType.BOMB);
+		modelBonuses[BonusType.BOMB.ordinal()].setSprite(texAtlas.createSprite("bomb"));
+		modelBonuses[BonusType.UPGRADE.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/maxUpgrade.json"));
+		modelBonuses[BonusType.UPGRADE.ordinal()].setType(BonusType.UPGRADE);
+		modelBonuses[BonusType.UPGRADE.ordinal()].setSprite(texAtlas.createSprite("maxUpgrade"));
+		
 		
 		loadMap((String)jsonData.get("map"));
 	}
@@ -185,7 +217,12 @@ public class GameplayScreen implements Screen {
 		//sweepAcc += dt;
 		dt = 0.01f;
 		
-		for(; timeAcc >= 0.01f; timeAcc -= 0.01f) {
+		for(; timeAcc >= dt; timeAcc -= dt) {
+			for(BonusData bonusData : bonusesData) {
+				if(dt >= bonusData.timer) bonusData.timer = 0f;
+				else bonusData.timer -= dt;
+			}
+			
 			for(Spawn spawn : spawns) spawn.update(dt);
 			for(Tower tower : towers) tower.update(dt);
 			
@@ -200,18 +237,30 @@ public class GameplayScreen implements Screen {
 			Iterator<Enemy> enemyIter = groundEnemies.iterator();
 			while(enemyIter.hasNext()) {
 				Enemy enemy = enemyIter.next();
-				if(enemy.update(dt)) enemyIter.remove();
+				if(enemy.update(dt)) {
+					enemyIter.remove();
+					rollForBonus(enemy);
+				}
 			}
 			enemyIter = airborneEnemies.iterator();
 			while(enemyIter.hasNext()) {
 				Enemy enemy = enemyIter.next();
-				if(enemy.update(dt)) enemyIter.remove();
+				if(enemy.update(dt)) {
+					enemyIter.remove();
+					rollForBonus(enemy);
+				}
 			}
 			
 			Iterator<Bullet> bulletIter = bullets.iterator();
 			while(bulletIter.hasNext()) {
 				Bullet bullet = bulletIter.next();
 				if(bullet.update(dt)) bulletIter.remove();
+			}
+			
+			Iterator<Bonus> bonusIter = bonuses.iterator();
+			while(bonusIter.hasNext()) {
+				Bonus bonus = bonusIter.next();
+				if(bonus.update(dt)) bonusIter.remove();
 			}
 			
 			// Testowanie warunków koñcowych
@@ -252,6 +301,26 @@ public class GameplayScreen implements Screen {
 		*/
 	}
 	
+	private void rollForBonus(Enemy enemy) {
+		int roll = MathUtils.random(99);
+		if(roll < bonusesData[BonusType.MONEY.ordinal()].odds) {
+			if(bonusesData[BonusType.MONEY.ordinal()].timer <= 0f) {
+				bonuses.add(bonusPool.obtain().set(modelBonuses[BonusType.MONEY.ordinal()], enemy.getPos()));
+				bonusesData[BonusType.MONEY.ordinal()].timer = bonusesData[BonusType.MONEY.ordinal()].cooldown;
+			}
+		} else if(roll < bonusesData[BonusType.BOMB.ordinal()].odds) {
+			if(bonusesData[BonusType.BOMB.ordinal()].timer <= 0f) {
+				bonuses.add(bonusPool.obtain().set(modelBonuses[BonusType.BOMB.ordinal()], enemy.getPos()));
+				bonusesData[BonusType.BOMB.ordinal()].timer = bonusesData[BonusType.BOMB.ordinal()].cooldown;
+			}
+		} else if(roll < bonusesData[BonusType.UPGRADE.ordinal()].odds) {
+			if(bonusesData[BonusType.UPGRADE.ordinal()].timer <= 0f) {
+				bonuses.add(bonusPool.obtain().set(modelBonuses[BonusType.UPGRADE.ordinal()], enemy.getPos()));
+				bonusesData[BonusType.UPGRADE.ordinal()].timer = bonusesData[BonusType.UPGRADE.ordinal()].cooldown;
+			} 
+		}
+	}
+
 	@Override
 	public void render(float dt) {
 		update(dt);
@@ -273,6 +342,9 @@ public class GameplayScreen implements Screen {
 		}
 		for(Enemy enemy : airborneEnemies) {
 			enemy.draw(batch);
+		}
+		for(Bonus bonus : bonuses) {
+			bonus.draw(batch);
 		}
 		upgradeGui.render(dt);
 		
