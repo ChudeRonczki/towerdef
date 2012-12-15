@@ -185,5 +185,9 @@ abstract public class Tower {
 		debugFont.draw(batch, timerText, pos.x + 30f, pos.y - 30f);
 	}
 	
+	public void whenSelling() {
+		// tutaj mo¿e jakieœ liczenie kasy do zwrócenia za upgrady?
+	}
+	
 	abstract public Tower obtainCopy(float x, float y);
 }

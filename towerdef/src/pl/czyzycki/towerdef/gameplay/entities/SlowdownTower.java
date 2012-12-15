@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
+import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade.Level;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Pool;
@@ -16,6 +17,7 @@ public class SlowdownTower extends Tower {
 	
 	Field modelField;
 	boolean fieldActivated;
+	float multiplier;
 	
 	public SlowdownTower() {
 		super();
@@ -31,8 +33,16 @@ public class SlowdownTower extends Tower {
 	
 	public SlowdownTower set(SlowdownTower tower, float x, float y) {
 		super._set(tower,x,y);
-		modelField.set(tower.modelField);
+		modelField.set(tower.modelField, this);
+		multiplier = tower.multiplier;
 		return this;
+	}
+	
+	public void whenSelling() {
+		super.whenSelling();
+		
+		modelField.deactivate();
+		screen.removeField(modelField);
 	}
 	
 	@Override
@@ -79,5 +89,13 @@ public class SlowdownTower extends Tower {
 			return new SlowdownTower().init(screen);
 		}
 		
+	}
+
+	public float getMultiplier() {
+		Level level = getUpgradeLevel(Upgradeable.MULTIPLIER);
+		if(level == null)
+			return multiplier;
+		
+		return level.value;
 	}
 }

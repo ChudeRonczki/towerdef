@@ -1,8 +1,8 @@
 {
 	modelField : {
-		multiplier : 0.5,
 		lifeTime : 60
 	},
+	multiplier : 0.5,
 	range : { radius : 150 },
 	cooldown : 5,
 	cost : 250,

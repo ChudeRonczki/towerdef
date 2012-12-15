@@ -72,9 +72,9 @@ public class Enemy {
 		
 		// Sekcja update'owania aktualnie dzia³aj¹cego pola spowalniaj¹cego
 		if((slowdownField != null) && (!slowdownField.active || !Circle.colliding(hitZone, slowdownField.range))) slowdownField = null;
-		Field strongerField = screen.fieldInRange(hitZone, (slowdownField != null) ? slowdownField.multiplier : 1.f);
+		Field strongerField = screen.fieldInRange(hitZone, (slowdownField != null) ? slowdownField.tower.getMultiplier() : 1.f);
 		if(strongerField != null) slowdownField = strongerField;
-		if(slowdownField != null) speed = maxSpeed*slowdownField.multiplier;
+		if(slowdownField != null) speed = maxSpeed*slowdownField.tower.getMultiplier();
 		else speed = maxSpeed;
 		
 		

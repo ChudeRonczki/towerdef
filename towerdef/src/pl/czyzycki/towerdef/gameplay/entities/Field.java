@@ -17,15 +17,16 @@ public class Field implements Comparable<Field> {
 	
 	Circle range;
 	Vector2 pos;
-	float multiplier, lifeTime, maxLifeTime;
+	float lifeTime, maxLifeTime;
 	boolean active;
+	SlowdownTower tower;
 	
 	public Field() {}
 	
-	public void set(Field modelField) {
-		multiplier = modelField.multiplier;
+	public void set(Field modelField, SlowdownTower slowdownTower) {
 		lifeTime = modelField.lifeTime;
 		maxLifeTime = modelField.lifeTime;
+		tower = slowdownTower;
 	}
 	
 	public boolean update(float dt) {
@@ -47,11 +48,15 @@ public class Field implements Comparable<Field> {
 		active = true;
 		return this;
 	}
+	
+	public void deactivate() {
+		active = false;
+	}
 
 	@Override
 	public int compareTo(Field field) {
-		if(multiplier > field.multiplier) return -1;
-		else if(multiplier < field.multiplier) return 1;
+		if(getMultiplier() > field.getMultiplier()) return -1;
+		else if(getMultiplier() < field.getMultiplier()) return 1;
 		else return 0;
 	}
 
@@ -60,6 +65,6 @@ public class Field implements Comparable<Field> {
 	}
 
 	public float getMultiplier() {
-		return multiplier;
+		return tower.getMultiplier();
 	}
 }

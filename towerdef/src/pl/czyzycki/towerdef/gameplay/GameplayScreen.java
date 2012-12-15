@@ -170,11 +170,11 @@ public class GameplayScreen implements Screen {
 		return null;
 	}
 	
-	public void removeTower(Tower tower) {
+	public void sellTower(Tower tower) {
 		towers.removeValue(tower, true);
+		tower.whenSelling();
 		Vector2 pos = tower.getPos();
 		buildingChecker.set(pos.x, pos.y, false);
-		
 	}
 	
 	public void update(float dt) {
@@ -353,6 +353,10 @@ public class GameplayScreen implements Screen {
 	public void addField(Field field) {
 		fields.add(field);
 		fields.sort();
+	}
+	
+	public void removeField(Field field) {
+		fields.removeValue(field, true);
 	}
 	
 	public BulletPool getBulletPool() {

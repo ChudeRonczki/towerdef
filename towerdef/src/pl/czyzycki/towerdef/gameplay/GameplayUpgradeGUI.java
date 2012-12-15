@@ -75,8 +75,8 @@ public class GameplayUpgradeGUI {
 			if(radius*radius > pos.x*pos.x + pos.y*pos.y) {
 				// tap on upgrade
 				
-				if(i == 0) { // remove tower
-					screen.removeTower(selectedTower);
+				if(i == 0) { // sell tower
+					screen.sellTower(selectedTower);
 					this.hide();
 				} else {
 					Upgrade upgrade = selectedTower.upgrades[i-1];
