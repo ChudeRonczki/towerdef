@@ -2,7 +2,12 @@ package pl.czyzycki.towerdef.gameplay;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
+import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+
+import pl.czyzycki.towerdef.gameplay.GameplayGUI.TowerButton;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgradeable;
@@ -13,15 +18,29 @@ import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgradeable;
 
 public class GameplayUpgradeGUI {
 	
+	class GameplayUpgradeGUIGestureListener extends GestureAdapter {
+
+		@Override
+		public boolean tap(int x, int y, int count) {
+			Vector3 hudCord = new Vector3(x, y, 1);
+			screen.gui.hudCamera.unproject(hudCord);
+			
+			return onTap(hudCord.x, hudCord.y);
+		}
+		
+	}
+	
 	private GameplayScreen screen;
 	private Tower selectedTower = null;
 	private Vector2 upgradePos = new Vector2();
+	private Vector3 towerPos = new Vector3();
 	
 	Sprite removeTowerSprite;
 	Sprite rangeSprite;
 	Sprite cooldownSprite;
 	Sprite multiplierSprite;
 	Sprite damageSprite;
+	public GameplayUpgradeGUIGestureListener listener;
 	
 	private int getUpgradesCount() {
 		if(selectedTower == null) return 0;
@@ -31,6 +50,7 @@ public class GameplayUpgradeGUI {
 	
 	GameplayUpgradeGUI(GameplayScreen screen) {
 		this.screen = screen;
+		listener = new GameplayUpgradeGUIGestureListener();
 	}
 	
 	void load(TextureAtlas texAtlas) {
@@ -58,11 +78,32 @@ public class GameplayUpgradeGUI {
 		selectedTower = null;
 	}
 	
-	boolean tap(float x, float y) {
+	void calcTowerPos() {
+		// wzór na przekszta³cenie z przestrzeni world do hud:
+		
+		// towerPos * worldMatrix
+		// towerPos * hudMatrix^-1
+		
+		towerPos.x = selectedTower.getPos().x;
+		towerPos.y = selectedTower.getPos().y;
+		towerPos.z = 0;
+		
+		towerPos.mul(screen.camera.combined);
+		
+		// nie chcê liczyæ macierzy odwrotnej, dlatego robiê przekszta³cenia "rêcznie"
+		towerPos.x += 1;
+		towerPos.y += 1;
+		towerPos.x /= 2.0f;
+		towerPos.y /= 2.0f;
+		towerPos.x *= screen.gui.hudCamera.viewportWidth;
+		towerPos.y *= screen.gui.hudCamera.viewportHeight;
+	}
+	
+	boolean onTap(float x, float y) {
 		if(isShowed() == false) return false;
 		
 		float radius = removeTowerSprite.getWidth()/2.0f;
-		Vector2 towerPos = selectedTower.getPos();
+		calcTowerPos();
 		int upgradesCount = getUpgradesCount();
 		int buttonsCount = 1+upgradesCount; // bo jeszcze dodatkowo przycisk "remove tower"
 		for(int i=0; i<buttonsCount; i++) {
@@ -96,7 +137,7 @@ public class GameplayUpgradeGUI {
 	}
 	
 	Vector2 getUpgradeIconPos(int i, int count) {
-		float radius = removeTowerSprite.getWidth()*1.5f;
+		float radius = 40/screen.camera.zoom + removeTowerSprite.getWidth()/2.0f;
 		
 		float sn = (float) Math.sin(Math.PI*2.0f*i/count);
 		float cs = (float) Math.cos(Math.PI*2.0f*i/count);
@@ -109,7 +150,8 @@ public class GameplayUpgradeGUI {
 	void render(float dt) {
 		if(selectedTower == null) return;
 		
-		Vector2 towerPos = selectedTower.getPos();
+		calcTowerPos();
+		
 		Vector2 pos;
 		int upgradesCount = getUpgradesCount();
 		int buttonsCount = 1+upgradesCount; // bo jeszcze dodatkowo przycisk "remove tower"

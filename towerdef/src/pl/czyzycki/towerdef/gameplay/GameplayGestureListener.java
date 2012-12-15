@@ -27,16 +27,12 @@ class GameplayGestureListener extends GestureAdapter {
 	public boolean tap (int x, int y, int count) {
 		Vector3 worldCord = new Vector3(x,y,0f);
 		screen.camera.unproject(worldCord);
-		if(screen.upgradeGui.tap(worldCord.x, worldCord.y)) {
-			
+		Tower selectedTower = screen.getTower(worldCord.x, worldCord.y);
+		if(selectedTower != null) {
+			screen.upgradeGui.setSelectedTower(selectedTower);
 		} else {
-			Tower selectedTower = screen.getTower(worldCord.x, worldCord.y);
-			if(selectedTower != null) {
-				screen.upgradeGui.setSelectedTower(selectedTower);
-			} else {
-				screen.upgradeGui.hide();
-				screen.addTower(worldCord.x, worldCord.y);
-			}
+			screen.upgradeGui.hide();
+			screen.addTower(worldCord.x, worldCord.y);
 		}
 		return true;
 	}

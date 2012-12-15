@@ -146,7 +146,7 @@ public class GameplayScreen implements Screen {
 		loader = new GameplayLoader(this);
 		upgradeGui = new GameplayUpgradeGUI(this);
 		upgradeGui.load(texAtlas);
-		inputMultiplexer = new InputMultiplexer(new GestureDetector(gui.listener), new GameplayGestureDetector(this));
+		inputMultiplexer = new InputMultiplexer(new GestureDetector(gui.listener), new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
 	
 		modelBonuses = new Bonus[3];
 		modelBonuses[BonusType.MONEY.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/moneyBonus.json"));
@@ -399,10 +399,14 @@ public class GameplayScreen implements Screen {
 		for(Bonus bonus : bonuses) {
 			bonus.draw(batch);
 		}
-		upgradeGui.render(dt);
 		
 		batch.end();
 		debug.render();
+		
+		batch.setProjectionMatrix(gui.hudCamera.combined);
+		batch.begin();
+		upgradeGui.render(dt);
+		batch.end();
 		gui.render(dt);
 	}
 
