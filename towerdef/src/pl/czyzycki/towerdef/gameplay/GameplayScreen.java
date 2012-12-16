@@ -74,10 +74,9 @@ public class GameplayScreen implements Screen {
 		int odds;
 		float cooldown, timer;
 	}
-	
 	BonusData bonusesData[];
-	
 	Bonus modelBonuses[];
+	float bombDamage;
 	
 	Array<Spawn> spawns;
 	Array<Enemy> groundEnemies, airborneEnemies;
@@ -146,13 +145,19 @@ public class GameplayScreen implements Screen {
 		loader = new GameplayLoader(this);
 		upgradeGui = new GameplayUpgradeGUI(this);
 		upgradeGui.load(texAtlas);
-		inputMultiplexer = new InputMultiplexer(new GestureDetector(gui.listener), new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
+		inputMultiplexer = new InputMultiplexer(gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
 	
 		modelBonuses = new Bonus[3];
 		modelBonuses[BonusType.MONEY.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/moneyBonus.json"));
 		modelBonuses[BonusType.MONEY.ordinal()].setType(BonusType.MONEY);
 		modelBonuses[BonusType.MONEY.ordinal()].setSprite(texAtlas.createSprite("moneyBonus"));
-		modelBonuses[BonusType.BOMB.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/bomb.json"));
+		
+		OrderedMap<String, Object> bombData = (OrderedMap<String, Object>)new JsonReader().parse(Gdx.files.internal("config/bomb.json"));
+		gui.bombBlastZone = new Circle();
+		gui.bombBlastZone.pos = new Vector2();
+		gui.bombBlastZone.radius = (Float)bombData.remove("range");
+		bombDamage = (Float)bombData.remove("damage");
+		modelBonuses[BonusType.BOMB.ordinal()] = json.readValue(Bonus.class, bombData);
 		modelBonuses[BonusType.BOMB.ordinal()].setType(BonusType.BOMB);
 		modelBonuses[BonusType.BOMB.ordinal()].setSprite(texAtlas.createSprite("bomb"));
 		modelBonuses[BonusType.UPGRADE.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/maxUpgrade.json"));
@@ -511,6 +516,15 @@ public class GameplayScreen implements Screen {
 
 	public void addMaxUpgrade() {
 		gui.upgradeSlot.increment();
+	}
+
+	public void detonateBomb(Circle bombBlastZone) {
+		for(Enemy enemy : groundEnemies) {
+			if(Circle.colliding(bombBlastZone, enemy.getHitZone())) enemy.takeHit(bombDamage);
+		}
+		for(Enemy enemy : airborneEnemies) {
+			if(Circle.colliding(bombBlastZone, enemy.getHitZone())) enemy.takeHit(bombDamage);
+		}
 	}
 
 }

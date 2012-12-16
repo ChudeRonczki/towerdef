@@ -22,8 +22,8 @@ public class Bonus {
 	Sprite sprite;
 	BonusType type;
 	
-	float lifetime, range, duration;
-	int value, damage;
+	float lifetime,  duration;
+	int value;
 
 	Bonus init(GameplayScreen screen) {
 		this.screen = screen;
@@ -38,10 +38,8 @@ public class Bonus {
 	public Bonus set(Bonus bonus, Vector2 pos) {
 		type = bonus.type;
 		lifetime = bonus.lifetime;
-		range = bonus.range;
 		duration = bonus.duration;
 		value = bonus.value;
-		damage = bonus.damage;
 		
 		sprite.set(bonus.sprite);
 		this.pos.set(pos);

@@ -6,12 +6,16 @@ import pl.czyzycki.towerdef.gameplay.entities.BulletTower;
 import pl.czyzycki.towerdef.gameplay.entities.PointTower;
 import pl.czyzycki.towerdef.gameplay.entities.SlowdownTower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
+import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -20,9 +24,14 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 class GameplayGUI {
 	
+	Circle bombBlastZone;
+	public boolean bombDragged;
+	public boolean wasPanning;
+
 	class GameplayGUIGestureListener extends GestureAdapter {
 
 		Vector3 hudCord = new Vector3();
+		private boolean bombSelected;
 		
 		@Override
 		public boolean tap(int x, int y, int count) {
@@ -34,7 +43,10 @@ class GameplayGUI {
 					return true;
 			}
 
-			if(bombSlot.tap(hudCord.x, hudCord.y)) return true; // Tapniêcie na bombê ignorujemy
+			if(bombSlot.tap(hudCord.x, hudCord.y)) {
+				bombDragged = false;  // Tapniêcie na bombê ignorujemy
+				return true;
+			}
 			if(upgradeSlot.tap(hudCord.x, hudCord.y)) {
 				if(upgradeSlot.count > 0) {
 					// Tu obs³uga bonusa maks upgrade'u
@@ -45,9 +57,42 @@ class GameplayGUI {
 			
 			return false;
 		}
+
+		@Override
+		public boolean pan(int x, int y, int deltaX, int deltaY) {
+			hudCord.set(x, y, 1);
+			hudCamera.unproject(hudCord);
+			if(!wasPanning) {
+				wasPanning = true;
+				if(bombSelected) {
+					if(bombSlot.count > 0) {
+						bombDragged = true;
+						bombBlastZone.pos.set(hudCord.x, hudCord.y);
+					}
+					return true;
+				}
+				return false;
+			} else if(bombDragged) {
+				bombBlastZone.pos.set(hudCord.x, hudCord.y);
+				return true;
+			}
+			return false;
+		}
 		
+		@Override
+		public boolean touchDown(int x, int y, int pointer) {
+			hudCord.set(x, y, 1);
+			hudCamera.unproject(hudCord);
+			if(bombSlot.tap(hudCord.x, hudCord.y)) {
+				bombSelected = true;
+				return true;
+			}
+			else bombSelected = false;
+			return false;
+		}
 	}
 	
+	GestureDetector detector;
 	GameplayGUIGestureListener listener;
 	
 	float selectedAnimTime = 0.0f;
@@ -250,6 +295,7 @@ class GameplayGUI {
 		this.screen = screen;
 		
 		listener = new GameplayGUIGestureListener();
+		detector = new GestureDetector(listener);
 		
 		modelTowers = screen.json.fromJson(Array.class, AreaTower.class,
 				Gdx.files.internal("config/areaTowers.json"));
@@ -328,6 +374,17 @@ class GameplayGUI {
 	}
 
 	void render(float dt) {
+		if(wasPanning && !detector.isPanning()) wasPanning = false;
+		if(bombDragged && !wasPanning) {
+			listener.hudCord.set(Gdx.input.getX(), Gdx.input.getY(), 1);
+			hudCamera.unproject(listener.hudCord);
+			if(!bombSlot.tap(listener.hudCord.x, listener.hudCord.y)) {
+				screen.detonateBomb(bombBlastZone);
+				bombSlot.decrement();
+			}
+			bombDragged = false;
+		}
+		
 		screen.batch.setProjectionMatrix(hudCamera.combined);
 		screen.shapeRenderer.setProjectionMatrix(hudCamera.combined);
 
@@ -353,8 +410,17 @@ class GameplayGUI {
 		screen.game.debugFont.setScale(3);
 		screen.game.debugFont.draw(screen.batch, moneyText, 5, hudCamera.viewportHeight-5);
 		screen.game.debugFont.setScale(1);
-		
 		screen.batch.end();
+		
+		if(bombDragged) {
+			Gdx.gl.glEnable(GL10.GL_BLEND);
+			Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+			screen.shapeRenderer.begin(ShapeType.FilledCircle);
+			screen.shapeRenderer.setColor(0f, 1f, 1f, 0.4f);
+			bombBlastZone.draw(screen.shapeRenderer);
+			screen.shapeRenderer.end();
+			Gdx.gl.glDisable(GL10.GL_BLEND);
+		}
 
 		screen.batch.setProjectionMatrix(hudCamera.projection);
 		screen.shapeRenderer.setProjectionMatrix(hudCamera.projection);

@@ -109,5 +109,6 @@ class GameplayLoader {
 		
 		screen.gui.bombSlot.reset();
 		screen.gui.upgradeSlot.reset();
+		screen.bonusPool.free(screen.bonuses);
 	}
 }
