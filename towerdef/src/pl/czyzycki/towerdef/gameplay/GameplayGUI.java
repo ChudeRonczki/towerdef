@@ -10,6 +10,7 @@ import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Rectangle;
@@ -21,9 +22,11 @@ class GameplayGUI {
 	
 	class GameplayGUIGestureListener extends GestureAdapter {
 
+		Vector3 hudCord = new Vector3();
+		
 		@Override
 		public boolean tap(int x, int y, int count) {
-			Vector3 hudCord = new Vector3(x, y, 1);
+			hudCord.set(x, y, 1);
 			hudCamera.unproject(hudCord);
 
 			for (TowerButton button : towerButtons) {
@@ -31,6 +34,15 @@ class GameplayGUI {
 					return true;
 			}
 
+			if(bombSlot.tap(hudCord.x, hudCord.y)) return true; // Tapniêcie na bombê ignorujemy
+			if(upgradeSlot.tap(hudCord.x, hudCord.y)) {
+				if(upgradeSlot.count > 0) {
+					// Tu obs³uga bonusa maks upgrade'u
+					upgradeSlot.decrement();
+				}
+				return true;
+			}
+			
 			return false;
 		}
 		
@@ -184,15 +196,55 @@ class GameplayGUI {
 		}
 	}
 
+	class BonusSlot {
+		StringBuilder counterString;
+		int count;
+		Sprite sprite;
+		
+		public BonusSlot(Sprite sprite) {
+			this.sprite = sprite;
+			counterString = new StringBuilder(5);
+			counterString.append(count);
+		}
+		
+		public void increment() {
+			counterString.length = 0;
+			counterString.append(++count);
+		}
+		
+		public void decrement() {
+			counterString.length = 0;
+			counterString.append(--count);
+		}
+		
+		public void reset() {
+			counterString.length = 0;
+			counterString.append(count = 0);
+		}
+		
+		public void draw(SpriteBatch batch) {
+			sprite.draw(batch);
+			screen.game.debugFont.draw(batch, counterString, sprite.getX() + 70f, sprite.getY() + 25f);
+		}
+		
+		boolean tap(float x, float y) {
+			if((x >= sprite.getX()) && (y >= sprite.getY()) && (x <= sprite.getX() + sprite.getWidth())
+					&& (y <= sprite.getY() + sprite.getHeight())) return true;
+			else return false;
+		}
+	}
+	
 	final GameplayScreen screen;
 
 	Array<Tower> modelTowers;
 	Array<TowerButton> towerButtons = new Array<TowerButton>();
+	BonusSlot upgradeSlot;
+	BonusSlot bombSlot;
 	Tower selectedTowerType;
 	OrthographicCamera hudCamera;
 	StringBuilder moneyText;
 	float moneyTextValue;
-
+	
 	@SuppressWarnings("unchecked")
 	GameplayGUI(GameplayScreen screen) {
 		this.screen = screen;
@@ -213,6 +265,13 @@ class GameplayGUI {
 		for(Tower tower: modelTowers) {
 			tower.loadSprite(texAtlas);
 		}
+		
+		Sprite buttonSprite = texAtlas.createSprite("bombButton");
+		buttonSprite.setPosition(20f, 140f);
+		bombSlot = new BonusSlot(buttonSprite);
+		buttonSprite = texAtlas.createSprite("maxUpgradeButton");
+		buttonSprite.setPosition(20f, 20f);
+		upgradeSlot = new BonusSlot(buttonSprite);
 		
 		selectedTowerType = modelTowers.get(0);
 		
@@ -282,6 +341,9 @@ class GameplayGUI {
 			button.render(dt);
 			start += button.getWidth();
 		}
+		
+		bombSlot.draw(screen.batch);
+		upgradeSlot.draw(screen.batch);
 		
 		if(screen.money != moneyTextValue) {
 			moneyText.length = 6;

@@ -505,4 +505,12 @@ public class GameplayScreen implements Screen {
 		money += value;
 	}
 
+	public void addBomb() {
+		gui.bombSlot.increment();
+	}
+
+	public void addMaxUpgrade() {
+		gui.upgradeSlot.increment();
+	}
+
 }

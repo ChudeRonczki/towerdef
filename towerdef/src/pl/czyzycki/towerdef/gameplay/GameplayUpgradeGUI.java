@@ -1,16 +1,14 @@
 package pl.czyzycki.towerdef.gameplay;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
-import com.badlogic.gdx.input.GestureDetector.GestureListener;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-
-import pl.czyzycki.towerdef.gameplay.GameplayGUI.TowerButton;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgradeable;
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 // nowa nazwa tej klasy:
 // towerPropsgui?

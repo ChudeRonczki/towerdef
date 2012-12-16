@@ -105,5 +105,9 @@ class GameplayLoader {
 			}
 			spawn.startWave();
 		}
+		
+		
+		screen.gui.bombSlot.reset();
+		screen.gui.upgradeSlot.reset();
 	}
 }

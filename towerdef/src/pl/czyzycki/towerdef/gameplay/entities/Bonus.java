@@ -92,7 +92,12 @@ public class Bonus {
 			case MONEY:
 			screen.addMoney(value);
 			break;
-			
+			case BOMB:
+			screen.addBomb();
+			break;
+			case UPGRADE:
+			screen.addMaxUpgrade();
+			break;
 		}
 	}
 }

@@ -20,6 +20,7 @@ class GameplayGestureListener extends GestureAdapter {
 	final GameplayScreen screen;
 	
 	float zoomStartDistance, zoomStartValue;
+	Vector3 worldCord = new Vector3();
 	
 	GameplayGestureListener(GameplayScreen screen) {
 		super();
@@ -28,7 +29,7 @@ class GameplayGestureListener extends GestureAdapter {
 	
 	@Override
 	public boolean tap (int x, int y, int count) {
-		Vector3 worldCord = new Vector3(x,y,0f);
+		worldCord.set(x,y,0f);
 		screen.camera.unproject(worldCord);
 		Tower selectedTower = screen.getTower(worldCord.x, worldCord.y);
 		if(selectedTower != null) {
