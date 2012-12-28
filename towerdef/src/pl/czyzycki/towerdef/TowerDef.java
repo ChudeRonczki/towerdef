@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef;
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
+import pl.czyzycki.towerdef.menus.MainMenu;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -24,7 +25,9 @@ public class TowerDef extends Game {
 	
 	AssetManager assetManager; // Manager assetów (grafika, dŸwiêki, czcionki)
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
+	
 	GameplayScreen gameplayScreen;
+	MainMenu mainMenu;
 	
 	@Override
 	public void create() {
@@ -35,7 +38,8 @@ public class TowerDef extends Game {
 		assetManager.load("images/objects.pack", TextureAtlas.class);
 		assetManager.finishLoading();
 		gameplayScreen = new GameplayScreen(this);
-		setScreen(gameplayScreen);
+		mainMenu = new MainMenu();
+		setScreen(mainMenu);
 	}
 
 	@Override

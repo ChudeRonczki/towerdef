@@ -1,0 +1,8 @@
+* spacing:5
+[startButton] width:300 height:60
+---
+[instructionsButton] width:300 height:60
+---
+[optionsButton] width:300 height:60
+---
+[exitButton] width:300 height:60
