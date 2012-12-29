@@ -1,5 +1,9 @@
 {
         resources: {
+         		com.badlogic.gdx.graphics.g2d.TextureRegion: {
+         			    check-on: { x: 32, y: 0, width: 32, height: 32 },
+                        check-off: { x: 0, y: 0, width: 32, height: 32 }
+         		},
                 com.badlogic.gdx.graphics.g2d.NinePatch: {
                         knob: [
                         { "x": 0, "y": 0, "width": 4, "height": 4 },
@@ -28,6 +32,15 @@
                                 font: default-font, downFontColor: downFontColor,
                                 fontColor: white, up: knob
                         }
+                },
+                com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+                	     default: {
+                                checkboxOn: check-on, checkboxOff: check-off,
+                                font: default-font, fontColor: white
+                        }
+                },
+                com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+                	default: { font: default-font, fontColor: white }
                 }
         }
  }

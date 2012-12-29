@@ -1,0 +1,12 @@
+debug
+* spacing:10 padding:0 align:left
+'Wibracje'
+[vibratorCheckBox] width:60 height:60 
+---
+'Dzwieki'
+[musicCheckBox] width:60 height:60
+---
+'Efekty czasteczkowe'
+[particleCheckBox] width:60 height:60
+---
+[backButton] width:400 height:60 spacingTop:100 align:center colspan:2
