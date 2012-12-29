@@ -4,31 +4,31 @@ debug
 ---
 [scrollPane] height: 400 (
 {
-'To mo¿na scrollowac!'
+'To moÅ¼na scrollowac!'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'ZA¯Ó£Æ GÊŒL¥ JAÑ'
+'ZAÅ»Ã“ÅÄ† GÄ˜ÅšLÄ„ JAÅ¹Åƒ'
 ---
-'za¿ó³æ gêœl¹ jaŸñ'
+'zaÅ¼Ã³Å‚Ä‡ gÄ™Å›lÄ… jaÅºÅ„'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu bêd¹ instrukcje'
+'Tu bÄ™dÄ… instrukcje'
 ---
-'Tu te¿. Koniec instrukcji'
+'Tu teÅ¼. Koniec instrukcji'
 }
 )
 ---

@@ -50,7 +50,7 @@ public class OptionsScreen extends MenuBaseScreen {
         } );
 		layout.register("backButton", backButton);
 		
-		layout.parse(Gdx.files.internal( "layouts/options.txt" ).readString());
+		layout.parse(Gdx.files.internal( "layouts/options.txt" ).readString("UTF-8"));
 	}
 
 	@Override

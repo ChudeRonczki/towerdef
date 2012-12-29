@@ -44,7 +44,7 @@ public class InstructionsScreen extends MenuBaseScreen {
         } );
 		layout.register("backButton", backButton);
 		
-		layout.parse(Gdx.files.internal( "layouts/instructions.txt" ).readString());
+		layout.parse(Gdx.files.internal( "layouts/instructions.txt" ).readString("UTF-8"));
 	}
 
 	@Override

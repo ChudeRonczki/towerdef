@@ -5,10 +5,10 @@ debug
 'Wibracje'
 [vibratorCheckBox] width:60 height:60 
 ---
-'DŸwiêki'
+'DÅºwiÄ™ki'
 [musicCheckBox] width:60 height:60
 ---
-'Efekty cz¹steczkowe'
+'Efekty czÄ…steczkowe'
 [particleCheckBox] width:60 height:60
 ---
 [backButton] width:400 height:60 spacingTop:100 align:center colspan:2

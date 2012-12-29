@@ -59,7 +59,7 @@ public class MainMenuScreen extends MenuBaseScreen {
         } );
 		layout.register("optionsButton", optionsButton );
 		
-		TextButton exitButton = new TextButton("Wyjscie", skin);
+		TextButton exitButton = new TextButton("Wyjœcie", skin);
 		exitButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -69,7 +69,7 @@ public class MainMenuScreen extends MenuBaseScreen {
         } );
 		layout.register("exitButton", exitButton);
 		
-		layout.parse(Gdx.files.internal( "layouts/main-menu.txt" ).readString());
+		layout.parse(Gdx.files.internal( "layouts/main-menu.txt" ).readString("UTF-8"));
 	}
 
 	@Override
