@@ -2,6 +2,7 @@ package pl.czyzycki.towerdef.menus;
 
 // Klasa bazowa dla wszystkich ekranów menu
 
+import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.Gdx;
@@ -10,15 +11,17 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class MenuBase implements Screen {
+public class MenuBaseScreen implements Screen {
 
 	static Skin buttonsSkin = new Skin(	Gdx.files.internal("layouts/buttons.json"),
 										Gdx.files.internal("layouts/menuskin.png"));;
 	
 	Stage stage;
+	TowerDef game;
 	
-	public MenuBase() {
+	public MenuBaseScreen(TowerDef game) {
 		stage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
+		this.game = game;
 	}
 	
 	@Override

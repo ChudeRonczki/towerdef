@@ -1,7 +1,9 @@
 package pl.czyzycki.towerdef;
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
-import pl.czyzycki.towerdef.menus.MainMenu;
+import pl.czyzycki.towerdef.menus.InstructionsScreen;
+import pl.czyzycki.towerdef.menus.MainMenuScreen;
+import pl.czyzycki.towerdef.menus.OptionsScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -27,7 +29,9 @@ public class TowerDef extends Game {
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
 	
 	GameplayScreen gameplayScreen;
-	MainMenu mainMenu;
+	MainMenuScreen mainMenuScreen;
+	OptionsScreen optionsScreen;
+	InstructionsScreen instructionsScreen;
 	
 	@Override
 	public void create() {
@@ -37,9 +41,13 @@ public class TowerDef extends Game {
 		assetManager = new AssetManager();
 		assetManager.load("images/objects.pack", TextureAtlas.class);
 		assetManager.finishLoading();
+		
 		gameplayScreen = new GameplayScreen(this);
-		mainMenu = new MainMenu();
-		setScreen(mainMenu);
+		mainMenuScreen = new MainMenuScreen(this);
+		optionsScreen = new OptionsScreen(this);
+		instructionsScreen = new InstructionsScreen(this);
+		
+		setScreen(mainMenuScreen);
 	}
 
 	@Override
@@ -65,6 +73,18 @@ public class TowerDef extends Game {
 
 	public GameplayScreen getGameplayScreen() {
 		return gameplayScreen;
+	}
+	
+	public InstructionsScreen getInstructionsScreen() {
+		return instructionsScreen;
+	}
+
+	public OptionsScreen getOptionsButton() {
+		return optionsScreen;
+	}
+	
+	public MainMenuScreen getMainMenuScreen() {
+		return mainMenuScreen;
 	}
 
 }

@@ -9,9 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
-public class MainMenu extends MenuBase {
+public class MainMenuScreen extends MenuBaseScreen {
 	
-	public MainMenu() {
+	public MainMenuScreen(TowerDef game) {
+		super(game);
 	}
 	
 	@Override
@@ -33,16 +34,29 @@ public class MainMenu extends MenuBase {
             @Override
             public void click(Actor actor, float x, float y )
             {
-            	// todo: poprawic to ponizej
-            	TowerDef.getGame().setScreen(TowerDef.getGame().getGameplayScreen());
+            	game.setScreen(game.getGameplayScreen());
             }
         } );
 		layout.register("startButton", startButton);
 		
 		TextButton instructionsButton = new TextButton("Instrukcje", buttonsSkin);
+		instructionsButton.setClickListener( new ClickListener() {
+            @Override
+            public void click(Actor actor, float x, float y )
+            {
+            	game.setScreen(game.getInstructionsScreen());
+            }
+        } );
 		layout.register("instructionsButton", instructionsButton);
 		
 		TextButton optionsButton = new TextButton("Opcje", buttonsSkin);
+		optionsButton.setClickListener( new ClickListener() {
+            @Override
+            public void click(Actor actor, float x, float y )
+            {
+            	game.setScreen(game.getOptionsButton());
+            }
+        } );
 		layout.register("optionsButton", optionsButton );
 		
 		TextButton exitButton = new TextButton("Wyjscie", buttonsSkin);
