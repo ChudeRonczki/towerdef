@@ -21,7 +21,7 @@ public class MainMenuScreen extends MenuBaseScreen {
 		
 		Skin skin = getSkin();
 		
-		Table table = new Table();
+		Table table = new Table(skin);
 		table.width = stage.width();
 		table.height = stage.height();
 		

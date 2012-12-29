@@ -1,14 +1,14 @@
 debug
 * spacing:10 padding:0 align:left
-'Konfiguracja' align:center spacingBottom:100
+'Konfiguracja' align:center spacingBottom:100 colspan:2
 ---
 'Wibracje'
 [vibratorCheckBox] width:60 height:60 
 ---
-'Dzwieki'
+'DŸwiêki'
 [musicCheckBox] width:60 height:60
 ---
-'Efekty czasteczkowe'
+'Efekty cz¹steczkowe'
 [particleCheckBox] width:60 height:60
 ---
 [backButton] width:400 height:60 spacingTop:100 align:center colspan:2

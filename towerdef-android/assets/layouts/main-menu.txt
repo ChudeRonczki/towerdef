@@ -1,4 +1,6 @@
 * spacing:5
+'Menu g³ówne' align:center spacingBottom:100 colspan:2
+---
 [startButton] width:300 height:60
 ---
 [instructionsButton] width:300 height:60
