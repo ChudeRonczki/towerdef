@@ -19,7 +19,7 @@ public class MainMenuScreen extends MenuBaseScreen {
 	public void resize(int width, int height) {
 		super.resize(width, height);
 		
-		Skin buttonsSkin = getButtonsSkin();
+		Skin skin = getSkin();
 		
 		Table table = new Table();
 		table.width = stage.width();
@@ -29,7 +29,7 @@ public class MainMenuScreen extends MenuBaseScreen {
 		
 		TableLayout layout = table.getTableLayout();
 		
-		TextButton startButton = new TextButton("Graj", buttonsSkin);
+		TextButton startButton = new TextButton("Graj", skin);
 		startButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -39,7 +39,7 @@ public class MainMenuScreen extends MenuBaseScreen {
         } );
 		layout.register("startButton", startButton);
 		
-		TextButton instructionsButton = new TextButton("Instrukcje", buttonsSkin);
+		TextButton instructionsButton = new TextButton("Instrukcje", skin);
 		instructionsButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -49,7 +49,7 @@ public class MainMenuScreen extends MenuBaseScreen {
         } );
 		layout.register("instructionsButton", instructionsButton);
 		
-		TextButton optionsButton = new TextButton("Opcje", buttonsSkin);
+		TextButton optionsButton = new TextButton("Opcje", skin);
 		optionsButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -59,7 +59,7 @@ public class MainMenuScreen extends MenuBaseScreen {
         } );
 		layout.register("optionsButton", optionsButton );
 		
-		TextButton exitButton = new TextButton("Wyjscie", buttonsSkin);
+		TextButton exitButton = new TextButton("Wyjscie", skin);
 		exitButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -70,5 +70,10 @@ public class MainMenuScreen extends MenuBaseScreen {
 		layout.register("exitButton", exitButton);
 		
 		layout.parse(Gdx.files.internal( "layouts/main-menu.txt" ).readString());
+	}
+
+	@Override
+	public void backDown() {
+		Gdx.app.exit();
 	}
 }

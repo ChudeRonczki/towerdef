@@ -21,9 +21,9 @@ public class InstructionsScreen extends MenuBaseScreen {
 	public void resize(int width, int height) {
 		super.resize(width, height);
 		
-		Skin buttonsSkin = getButtonsSkin();
+		Skin skin = getSkin();
 		
-		Table table = new Table(buttonsSkin);
+		Table table = new Table(skin);
 		table.width = stage.width();
 		table.height = stage.height();
 		
@@ -34,7 +34,7 @@ public class InstructionsScreen extends MenuBaseScreen {
 		FlickScrollPane pane = new FlickScrollPane();
 		layout.register("scrollPane", pane);
 		
-		TextButton backButton = new TextButton("OK", buttonsSkin);
+		TextButton backButton = new TextButton("OK", skin);
 		backButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -45,5 +45,10 @@ public class InstructionsScreen extends MenuBaseScreen {
 		layout.register("backButton", backButton);
 		
 		layout.parse(Gdx.files.internal( "layouts/instructions.txt" ).readString());
+	}
+
+	@Override
+	public void backDown() {
+		game.setScreen(game.getMainMenuScreen());
 	}
 }

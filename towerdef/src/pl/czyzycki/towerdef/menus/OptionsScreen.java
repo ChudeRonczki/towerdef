@@ -21,9 +21,9 @@ public class OptionsScreen extends MenuBaseScreen {
 	public void resize(int width, int height) {
 		super.resize(width, height);
 		
-		Skin buttonsSkin = getButtonsSkin();
+		Skin skin = getSkin();
 		
-		Table table = new Table(buttonsSkin);
+		Table table = new Table(skin);
 		table.width = stage.width();
 		table.height = stage.height();
 		
@@ -31,16 +31,16 @@ public class OptionsScreen extends MenuBaseScreen {
 		
 		TableLayout layout = table.getTableLayout();
 		
-		CheckBox vibratorButton = new CheckBox(buttonsSkin);
+		CheckBox vibratorButton = new CheckBox(skin);
 		layout.register("vibratorCheckBox", vibratorButton);
 		
-		CheckBox musicButton = new CheckBox(buttonsSkin);
+		CheckBox musicButton = new CheckBox(skin);
 		layout.register("musicCheckBox", musicButton);
 		
-		CheckBox particleButton = new CheckBox(buttonsSkin);
+		CheckBox particleButton = new CheckBox(skin);
 		layout.register("particleCheckBox", particleButton );
 		
-		TextButton backButton = new TextButton("OK", buttonsSkin);
+		TextButton backButton = new TextButton("OK", skin);
 		backButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -51,5 +51,10 @@ public class OptionsScreen extends MenuBaseScreen {
 		layout.register("backButton", backButton);
 		
 		layout.parse(Gdx.files.internal( "layouts/options.txt" ).readString());
+	}
+
+	@Override
+	public void backDown() {
+		game.setScreen(game.getMainMenuScreen());
 	}
 }

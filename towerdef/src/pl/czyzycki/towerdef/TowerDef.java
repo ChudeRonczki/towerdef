@@ -8,6 +8,7 @@ import pl.czyzycki.towerdef.menus.OptionsScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.tiled.TileAtlas;
@@ -40,7 +41,11 @@ public class TowerDef extends Game {
 		tileAtlas = new TileAtlas(TiledLoader.createMap(Gdx.files.internal("maps/emptyMap.tmx")), Gdx.files.internal("maps"));
 		assetManager = new AssetManager();
 		assetManager.load("images/objects.pack", TextureAtlas.class);
+		assetManager.load("layouts/menuskin.png", Texture.class);
 		assetManager.finishLoading();
+		
+		// Inaczej back key bedzie pauzowal apke:
+		Gdx.input.setCatchBackKey(true);
 		
 		gameplayScreen = new GameplayScreen(this);
 		mainMenuScreen = new MainMenuScreen(this);
