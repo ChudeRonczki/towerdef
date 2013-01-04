@@ -117,7 +117,7 @@ public class GameplayUpgradeGUI {
 				if(i == 0) { // sell tower
 					screen.sellTower(selectedTower);
 					this.hide();
-				} else {
+				} else if(screen.maxUpgradeIsWorking() == false){
 					Upgrade upgrade = selectedTower.upgrades[i-1];
 					
 					if(selectedTower.upgradeLevelIters[i-1]<upgrade.levels.length) {
@@ -187,9 +187,12 @@ public class GameplayUpgradeGUI {
 				int upgradeLevel = selectedTower.upgradeLevelIters[i-1];
 				
 				screen.game.debugFont.setScale(2);
-				screen.game.debugFont.draw(screen.batch, upgradeLevel+"/"+upgrade.levels.length, iconX, iconY);
 				float ydiff = 30;
-				if(upgradeLevel == upgrade.levels.length)
+				if(screen.maxUpgradeIsWorking())
+					ydiff = 0;
+				else
+					screen.game.debugFont.draw(screen.batch, upgradeLevel+"/"+upgrade.levels.length, iconX, iconY);
+				if(upgradeLevel == upgrade.levels.length || screen.maxUpgradeIsWorking())
 					screen.game.debugFont.draw(screen.batch, "MAX", iconX, iconY-ydiff);
 				else
 					screen.game.debugFont.draw(screen.batch, "cost: "+(upgrade.levels[upgradeLevel].cost), iconX, iconY-ydiff);

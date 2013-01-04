@@ -96,6 +96,7 @@ public class GameplayScreen implements Screen {
 	int wavesLeft;
 	float timeAcc;//, sweepAcc;
 	float money;
+	float maxUpgradeTimer = -5;
 	
 	InputMultiplexer inputMultiplexer;
 	GameplayDebug debug;
@@ -223,6 +224,8 @@ public class GameplayScreen implements Screen {
 		dt = 0.01f;
 		
 		for(; timeAcc >= dt; timeAcc -= dt) {
+			maxUpgradeTimer -= dt;
+			
 			for(BonusData bonusData : bonusesData) {
 				if(dt >= bonusData.timer) bonusData.timer = 0f;
 				else bonusData.timer -= dt;
@@ -421,9 +424,7 @@ public class GameplayScreen implements Screen {
 	}
 
 	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
+	public void hide() {		
 	}
 
 	@Override
@@ -525,6 +526,15 @@ public class GameplayScreen implements Screen {
 		for(Enemy enemy : airborneEnemies) {
 			if(Circle.colliding(bombBlastZone, enemy.getHitZone())) enemy.takeHit(bombDamage);
 		}
+	}
+	
+	public boolean maxUpgradeIsWorking() {
+		return maxUpgradeTimer > 0;
+	}
+	
+	public void performMaxUpgrade() {
+		// TODO wczytywanie poni¿szej wartoœci z jsona
+		maxUpgradeTimer = 10;
 	}
 
 }

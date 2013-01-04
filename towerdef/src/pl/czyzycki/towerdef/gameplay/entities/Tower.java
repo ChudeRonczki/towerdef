@@ -119,9 +119,13 @@ abstract public class Tower {
 		
 		if(upgradeLevelIters[upgradeIndex] == 0) return null;
 		
-		int levelId = upgradeLevelIters[upgradeIndex] - 1;
+		if(screen.maxUpgradeIsWorking()) {
+			return upgrade.levels[upgrade.levels.length-1];
+		} else {
+			int levelId = upgradeLevelIters[upgradeIndex] - 1;
 		
-		return upgrade.levels[levelId];
+			return upgrade.levels[levelId];
+		}
 	}
 	
 	public Vector2 getPos() {

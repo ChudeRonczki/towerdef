@@ -49,7 +49,7 @@ class GameplayGUI {
 			}
 			if(upgradeSlot.tap(hudCord.x, hudCord.y)) {
 				if(upgradeSlot.count > 0) {
-					// Tu obs³uga bonusa maks upgrade'u
+					screen.performMaxUpgrade();
 					upgradeSlot.decrement();
 				}
 				return true;
