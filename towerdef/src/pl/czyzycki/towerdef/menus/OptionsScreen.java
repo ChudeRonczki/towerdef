@@ -3,6 +3,7 @@ package pl.czyzycki.towerdef.menus;
 import pl.czyzycki.towerdef.TowerDef;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
@@ -12,6 +13,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
 public class OptionsScreen extends MenuBaseScreen {
+	private static boolean vibration	= true;
+	private static boolean music		= true;
+	private static boolean particle	= true;
+	
+	public static boolean vibrationEnabled() {
+		return vibration;
+	}
+	
+	public static boolean musicEnabled() {
+		return music;
+	}
+	
+	public static boolean particleEnabled() {
+		return particle;
+	}
 	
 	public OptionsScreen(TowerDef game) {
 		super(game);
@@ -20,6 +36,11 @@ public class OptionsScreen extends MenuBaseScreen {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
+		
+		Preferences prefs = Gdx.app.getPreferences("options");
+		vibration	= prefs.getBoolean("vibration", true);
+		music		= prefs.getBoolean("music", 	true);
+		particle	= prefs.getBoolean("particle", 	true);
 		
 		Skin skin = getSkin();
 		
@@ -31,20 +52,29 @@ public class OptionsScreen extends MenuBaseScreen {
 		
 		TableLayout layout = table.getTableLayout();
 		
-		CheckBox vibratorButton = new CheckBox(skin);
+		final CheckBox vibratorButton = new CheckBox(skin);
 		layout.register("vibratorCheckBox", vibratorButton);
+		vibratorButton.setChecked(vibration);
 		
-		CheckBox musicButton = new CheckBox(skin);
+		final CheckBox musicButton = new CheckBox(skin);
 		layout.register("musicCheckBox", musicButton);
+		musicButton.setChecked(music);
 		
-		CheckBox particleButton = new CheckBox(skin);
+		final CheckBox particleButton = new CheckBox(skin);
 		layout.register("particleCheckBox", particleButton );
+		particleButton.setChecked(particle);
 		
 		TextButton backButton = new TextButton("OK", skin);
 		backButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
             {
+        		Preferences prefs = Gdx.app.getPreferences("options");
+        		prefs.putBoolean("vibration",	vibration	=vibratorButton.isChecked());
+        		prefs.putBoolean("music",		music		=musicButton.isChecked());
+        		prefs.putBoolean("particle",	particle	=particleButton.isChecked());
+        		prefs.flush();
+        		
                 game.setScreen(game.getMainMenuScreen());
             }
         } );
