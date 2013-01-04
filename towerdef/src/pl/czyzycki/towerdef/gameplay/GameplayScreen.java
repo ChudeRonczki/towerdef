@@ -103,6 +103,8 @@ public class GameplayScreen implements Screen {
 	GameplayGUI gui;
 	GameplayLoader loader;
 	GameplayUpgradeGUI upgradeGui;
+
+	float maxUpgradeTime;
 	
 	@SuppressWarnings("unchecked")
 	public GameplayScreen(TowerDef game) {
@@ -161,7 +163,9 @@ public class GameplayScreen implements Screen {
 		modelBonuses[BonusType.BOMB.ordinal()] = json.readValue(Bonus.class, bombData);
 		modelBonuses[BonusType.BOMB.ordinal()].setType(BonusType.BOMB);
 		modelBonuses[BonusType.BOMB.ordinal()].setSprite(texAtlas.createSprite("bomb"));
-		modelBonuses[BonusType.UPGRADE.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/maxUpgrade.json"));
+		OrderedMap<String, Object> maxUpData = (OrderedMap<String, Object>)new JsonReader().parse(Gdx.files.internal("config/maxUpgrade.json"));
+		maxUpgradeTime = (Float)maxUpData.remove("duration");
+		modelBonuses[BonusType.UPGRADE.ordinal()] = json.readValue(Bonus.class, maxUpData);
 		modelBonuses[BonusType.UPGRADE.ordinal()].setType(BonusType.UPGRADE);
 		modelBonuses[BonusType.UPGRADE.ordinal()].setSprite(texAtlas.createSprite("maxUpgrade"));
 		
@@ -533,8 +537,7 @@ public class GameplayScreen implements Screen {
 	}
 	
 	public void performMaxUpgrade() {
-		// TODO wczytywanie poni¿szej wartoœci z jsona
-		maxUpgradeTimer = 10;
+		maxUpgradeTimer = maxUpgradeTime;
 	}
 
 }

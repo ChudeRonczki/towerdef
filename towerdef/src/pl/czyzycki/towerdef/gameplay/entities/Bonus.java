@@ -22,7 +22,7 @@ public class Bonus {
 	Sprite sprite;
 	BonusType type;
 	
-	float lifetime,  duration;
+	float lifetime;
 	int value;
 
 	Bonus init(GameplayScreen screen) {
@@ -38,7 +38,6 @@ public class Bonus {
 	public Bonus set(Bonus bonus, Vector2 pos) {
 		type = bonus.type;
 		lifetime = bonus.lifetime;
-		duration = bonus.duration;
 		value = bonus.value;
 		
 		sprite.set(bonus.sprite);
