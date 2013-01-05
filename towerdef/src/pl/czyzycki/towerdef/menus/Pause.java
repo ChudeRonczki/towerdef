@@ -20,13 +20,25 @@ public class Pause implements InputProcessor {
 	TowerDef game;
 	GameplayScreen screen;
 	Stage stage;
+	Stage areYouSureStage;
 	Skin skin;
 	boolean showed = false;
+	boolean areYouSureShowed = false;
+	boolean areYouSureRestarting = false; // czy to areYouSure zosta³o wyœwietlone przez klikniêcie restart czy go to menu? 
 	
 	public Pause(TowerDef game, GameplayScreen screen) {
 		this.game = game;
 		this.screen = screen;
 		stage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
+		areYouSureStage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
+	}
+	
+	private Stage currentStage() {
+		if(areYouSureShowed) {
+			return areYouSureStage;
+		} else {
+			return stage;
+		}
 	}
 	
 	// Rafal: ta sama funkcja jest w MenuBaseScreen, ale nie chce tego na razie wiazac ze soba
@@ -53,8 +65,8 @@ public class Pause implements InputProcessor {
 			screen.shapeRenderer.end();
 			Gdx.gl.glDisable(GL10.GL_BLEND);
 			
-			stage.act(Gdx.graphics.getDeltaTime());
-			stage.draw();
+			currentStage().act(Gdx.graphics.getDeltaTime());
+			currentStage().draw();
 		}
 	}
 	
@@ -63,107 +75,156 @@ public class Pause implements InputProcessor {
 		float adjustedWidth = GameplayScreen.viewportHeight*aspect;
 		float adjustedHeight = GameplayScreen.viewportHeight;
 		
-		stage.setViewport(adjustedWidth, adjustedHeight, true);
-		stage.clear();
+		// G³ówny stage menu pauzy.
+		{
+			stage.setViewport(adjustedWidth, adjustedHeight, true);
+			stage.clear();
 		
-		Skin skin = getSkin();
+			Skin skin = getSkin();
 		
-		Table table = new Table(skin);
-		table.width = stage.width();
-		table.height = stage.height();
+			Table table = new Table(skin);
+			table.width = stage.width();
+			table.height = stage.height();
 		
-		stage.addActor(table);
+			stage.addActor(table);
 		
-		TableLayout layout = table.getTableLayout();
+			TableLayout layout = table.getTableLayout();
 		
-		TextButton resumeButton = new TextButton("Wróæ do gry", skin);
-		resumeButton.setClickListener( new ClickListener() {
-            @Override
-            public void click(Actor actor, float x, float y )
-            {
-            	showed = false;
-            }
-        } );
-		layout.register("resumeButton", resumeButton);
+			TextButton resumeButton = new TextButton("Wróæ do gry", skin);
+			resumeButton.setClickListener( new ClickListener() {
+				@Override
+				public void click(Actor actor, float x, float y )
+				{
+					showed = false;
+				}
+			} );
+			layout.register("resumeButton", resumeButton);
 		
-		TextButton restartButton = new TextButton("Restart poziomu", skin);
-		restartButton.setClickListener( new ClickListener() {
-            @Override
-            public void click(Actor actor, float x, float y )
-            {
-            	screen.restartMap();
-            	showed = false;
-            }
-        } );
-		layout.register("restartButton", restartButton);
+			TextButton restartButton = new TextButton("Restart poziomu", skin);
+			restartButton.setClickListener( new ClickListener() {
+				@Override
+				public void click(Actor actor, float x, float y )
+				{
+					areYouSureRestarting = true;
+					areYouSureShowed = true;
+				}
+			} );
+			layout.register("restartButton", restartButton);
 		
-		TextButton exitButton = new TextButton("Wyjœcie do menu", skin);
-		exitButton.setClickListener( new ClickListener() {
-            @Override
-            public void click(Actor actor, float x, float y )
-            {
-            	game.setScreen(game.getMainMenuScreen());
-            }
-        } );
-		layout.register("exitButton", exitButton);
+			TextButton exitButton = new TextButton("Wyjœcie do menu", skin);
+			exitButton.setClickListener( new ClickListener() {
+				@Override
+				public void click(Actor actor, float x, float y )
+				{
+					areYouSureRestarting = false;
+					areYouSureShowed = true;
+				}
+			} );
+			layout.register("exitButton", exitButton);
 		
-		layout.parse(Gdx.files.internal( "layouts/pause-menu.txt" ).readString("UTF-8"));
+			layout.parse(Gdx.files.internal( "layouts/pause-menu.txt" ).readString("UTF-8"));
+		}
+		
+		// "Are you sure" stage.
+		{
+			areYouSureStage.setViewport(adjustedWidth, adjustedHeight, true);
+			areYouSureStage.clear();
+		
+			Skin skin = getSkin();
+		
+			Table table = new Table(skin);
+			table.width = areYouSureStage.width();
+			table.height = areYouSureStage.height();
+		
+			areYouSureStage.addActor(table);
+		
+			TableLayout layout = table.getTableLayout();
+		
+			TextButton noButton = new TextButton("Nie", skin);
+			noButton.setClickListener( new ClickListener() {
+				@Override
+				public void click(Actor actor, float x, float y )
+				{
+					areYouSureShowed = false;
+				}
+			} );
+			layout.register("noButton", noButton);
+		
+			TextButton yesButton = new TextButton("Tak", skin);
+			yesButton.setClickListener( new ClickListener() {
+				@Override
+				public void click(Actor actor, float x, float y )
+				{
+					areYouSureShowed = false;
+					if(areYouSureRestarting) {
+						screen.restartMap();
+						showed = false;
+					} else
+						game.setScreen(game.getMainMenuScreen());
+				}
+			} );
+			layout.register("yesButton", yesButton);
+		
+			layout.parse(Gdx.files.internal( "layouts/sure-pause-menu.txt" ).readString("UTF-8"));
+		}
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
 		if(!showed) return false;
-		return stage.keyDown(keycode) || showed;
+		return currentStage().keyDown(keycode) || showed;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
 		if(!showed) return false;
-		return stage.keyUp(keycode) || showed;
+		return currentStage().keyUp(keycode) || showed;
 	}
 
 	@Override
 	public boolean keyTyped(char character) {
 		if(!showed) return false;
-		return stage.keyTyped(character) || showed;
+		return currentStage().keyTyped(character) || showed;
 	}
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
 		if(!showed) return false;
-		return stage.touchDown(x, y, pointer, button) || showed;
+		return currentStage().touchDown(x, y, pointer, button) || showed;
 	}
 
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
 		if(!showed) return false;
-		return stage.touchUp(x, y, pointer, button) || showed;
+		return currentStage().touchUp(x, y, pointer, button) || showed;
 	}
 
 	@Override
 	public boolean touchDragged(int x, int y, int pointer) {
 		if(!showed) return false;
-		return stage.touchDragged(x, y, pointer) || showed;
+		return currentStage().touchDragged(x, y, pointer) || showed;
 	}
 
 	@Override
 	public boolean touchMoved(int x, int y) {
 		if(!showed) return false;
-		return stage.touchMoved(x, y)  || showed;
+		return currentStage().touchMoved(x, y)  || showed;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
 		if(!showed) return false;
-		return stage.scrolled(amount) || showed;
+		return currentStage().scrolled(amount) || showed;
 	}
 
 	public void show() {
 		showed = true;
+		areYouSureShowed = false;
 	}
 	
 	public void hide() {
 		showed = false;
+		areYouSureShowed = false;
 	}
 	
 	public boolean isShowed() {
