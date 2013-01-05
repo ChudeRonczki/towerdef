@@ -5,182 +5,189 @@ filter: MipMapLinearNearest,MipMapLinearNearest
 repeat: none
 bombButton
   rotate: false
-  xy: 1, 411
+  xy: 1, 719
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 maxUpgradeButton
   rotate: false
-  xy: 1, 309
+  xy: 1, 617
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 bomb
   rotate: false
-  xy: 103, 431
+  xy: 103, 739
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-airborne
   rotate: false
-  xy: 1, 227
+  xy: 1, 535
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-both
   rotate: false
-  xy: 103, 349
+  xy: 103, 657
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-ground
   rotate: false
-  xy: 185, 431
+  xy: 185, 739
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower
   rotate: false
-  xy: 1, 145
+  xy: 1, 453
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-bullet-tower-airborne
   rotate: false
-  xy: 185, 349
+  xy: 185, 657
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-bullet-tower-both
   rotate: false
-  xy: 267, 431
+  xy: 267, 739
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-bullet-tower-ground
   rotate: false
-  xy: 1, 63
+  xy: 1, 371
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-remove-tower
-  rotate: false
-  xy: 1, 1
-  size: 60, 60
-  orig: 60, 60
-  offset: 0, 0
-  index: -1
 button-bullet-tower
   rotate: false
-  xy: 267, 349
+  xy: 267, 657
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-point-tower-airborne
   rotate: false
-  xy: 349, 431
+  xy: 349, 739
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-point-tower-both
   rotate: false
-  xy: 431, 431
+  xy: 1, 289
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-point-tower-ground
   rotate: false
-  xy: 349, 349
+  xy: 349, 657
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-point-tower
   rotate: false
-  xy: 431, 349
+  xy: 431, 739
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-upgrade-cooldown
-  rotate: false
-  xy: 63, 1
-  size: 60, 60
-  orig: 60, 60
-  offset: 0, 0
-  index: -1
 button-slowdown-tower
   rotate: false
-  xy: 103, 267
+  xy: 1, 207
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 enemy
   rotate: false
-  xy: 185, 267
+  xy: 431, 657
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 maxUpgrade
   rotate: false
-  xy: 267, 267
+  xy: 513, 739
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 moneyBonus
   rotate: false
-  xy: 349, 267
+  xy: 1, 125
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 tower
   rotate: false
-  xy: 431, 267
+  xy: 513, 657
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
+pause
+  rotate: false
+  xy: 595, 755
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+remove-tower
+  rotate: false
+  xy: 1, 63
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+upgrade-cooldown
+  rotate: false
+  xy: 595, 693
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
 upgrade-damage
   rotate: false
-  xy: 83, 205
+  xy: 661, 759
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-multiplier
   rotate: false
-  xy: 83, 143
+  xy: 1, 1
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-range
   rotate: false
-  xy: 145, 205
+  xy: 723, 759
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 83, 287
+  xy: 83, 595
   size: 4, 20
   orig: 4, 20
   offset: 0, 0

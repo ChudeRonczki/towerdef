@@ -28,7 +28,10 @@ class GameplayGUI {
 	Circle bombBlastZone;
 	public boolean bombDragged;
 	public boolean wasPanning;
-
+	
+	Sprite pauseSprite;
+	Rectangle pauseArea = new Rectangle();
+	
 	class GameplayGUIGestureListener extends GestureAdapter {
 
 		Vector3 hudCord = new Vector3();
@@ -39,6 +42,11 @@ class GameplayGUI {
 			hudCord.set(x, y, 1);
 			hudCamera.unproject(hudCord);
 
+			if(pauseArea.contains(hudCord.x, hudCord.y)) {
+				// TODO okienko pause
+				return true;
+			}
+			
 			for (TowerButton button : towerButtons) {
 				if (button.tap(hudCord.x, hudCord.y))
 					return true;
@@ -320,6 +328,8 @@ class GameplayGUI {
 		buttonSprite.setPosition(20f, 20f);
 		upgradeSlot = new BonusSlot(buttonSprite);
 		
+		pauseSprite = texAtlas.createSprite("pause");
+		
 		selectedTowerType = modelTowers.get(0);
 		
 		hudCamera = new OrthographicCamera();
@@ -414,6 +424,11 @@ class GameplayGUI {
 		bombSlot.draw(screen.batch);
 		upgradeSlot.draw(screen.batch);
 		
+		pauseArea.set(hudCamera.viewportWidth-64, hudCamera.viewportHeight-64, 
+						pauseSprite.getWidth(), pauseSprite.getHeight());
+		pauseSprite.setPosition(pauseArea.x, pauseArea.y);
+		pauseSprite.draw(screen.batch);
+		
 		if(screen.money != moneyTextValue) {
 			moneyText.length = 6;
 			moneyTextValue = screen.money;
@@ -441,7 +456,9 @@ class GameplayGUI {
 		screen.game.debugFont.drawMultiLine(screen.batch, waveText, 0, screen.game.debugFont.getLineHeight(),
 				hudCamera.viewportWidth - 10, HAlignment.RIGHT);
 		screen.game.debugFont.setScale(1);
+		
 		screen.batch.end();
+		
 		
 		if(bombDragged) {
 			Gdx.gl.glEnable(GL10.GL_BLEND);
