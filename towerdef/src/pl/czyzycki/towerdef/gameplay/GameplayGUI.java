@@ -29,8 +29,9 @@ class GameplayGUI {
 	public boolean bombDragged;
 	public boolean wasPanning;
 	
-	Sprite pauseSprite;
-	Rectangle pauseArea = new Rectangle();
+	Sprite pauseSprite, fasterSprite, fasterOnSprite;
+	Rectangle pauseArea = new Rectangle(),
+			fasterArea = new Rectangle();
 	
 	class GameplayGUIGestureListener extends GestureAdapter {
 
@@ -44,6 +45,11 @@ class GameplayGUI {
 
 			if(pauseArea.contains(hudCord.x, hudCord.y)) {
 				screen.pauseMenu.show();
+				return true;
+			}
+			
+			if(fasterArea.contains(hudCord.x, hudCord.y)) {
+				screen.faster = !screen.faster;
 				return true;
 			}
 			
@@ -329,6 +335,9 @@ class GameplayGUI {
 		upgradeSlot = new BonusSlot(buttonSprite);
 		
 		pauseSprite = texAtlas.createSprite("pause");
+		fasterSprite = texAtlas.createSprite("faster");
+		fasterOnSprite = texAtlas.createSprite("fasteron");
+		
 		
 		selectedTowerType = modelTowers.get(0);
 		
@@ -428,6 +437,13 @@ class GameplayGUI {
 						pauseSprite.getWidth(), pauseSprite.getHeight());
 		pauseSprite.setPosition(pauseArea.x, pauseArea.y);
 		pauseSprite.draw(screen.batch);
+		
+		fasterArea.set(hudCamera.viewportWidth-pauseSprite.getWidth()-74, hudCamera.viewportHeight-64, 
+						fasterSprite.getWidth(), fasterSprite.getHeight());
+		fasterSprite.setPosition(fasterArea.x, fasterArea.y);
+		fasterOnSprite.setPosition(fasterArea.x, fasterArea.y);
+		if(screen.faster) fasterOnSprite.draw(screen.batch);
+		else fasterSprite.draw(screen.batch);
 		
 		if(screen.money != moneyTextValue) {
 			moneyText.length = 6;

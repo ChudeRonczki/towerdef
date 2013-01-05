@@ -5,189 +5,203 @@ filter: MipMapLinearNearest,MipMapLinearNearest
 repeat: none
 bombButton
   rotate: false
-  xy: 1, 719
+  xy: 1, 411
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 maxUpgradeButton
   rotate: false
-  xy: 1, 617
+  xy: 1, 309
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 bomb
   rotate: false
-  xy: 103, 739
+  xy: 103, 431
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-airborne
   rotate: false
-  xy: 1, 535
+  xy: 1, 227
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-both
   rotate: false
-  xy: 103, 657
+  xy: 103, 349
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-ground
   rotate: false
-  xy: 185, 739
+  xy: 185, 431
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower
   rotate: false
-  xy: 1, 453
+  xy: 1, 145
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-bullet-tower-airborne
   rotate: false
-  xy: 185, 657
+  xy: 185, 349
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-bullet-tower-both
   rotate: false
-  xy: 267, 739
+  xy: 267, 431
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-bullet-tower-ground
   rotate: false
-  xy: 1, 371
+  xy: 1, 63
   size: 80, 80
   orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-bullet-tower
-  rotate: false
-  xy: 267, 657
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower-airborne
-  rotate: false
-  xy: 349, 739
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower-both
-  rotate: false
-  xy: 1, 289
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower-ground
-  rotate: false
-  xy: 349, 657
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower
-  rotate: false
-  xy: 431, 739
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-slowdown-tower
-  rotate: false
-  xy: 1, 207
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-enemy
-  rotate: false
-  xy: 431, 657
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-maxUpgrade
-  rotate: false
-  xy: 513, 739
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-moneyBonus
-  rotate: false
-  xy: 1, 125
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-tower
-  rotate: false
-  xy: 513, 657
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-pause
-  rotate: false
-  xy: 595, 755
-  size: 64, 64
-  orig: 64, 64
   offset: 0, 0
   index: -1
 remove-tower
-  rotate: false
-  xy: 1, 63
-  size: 60, 60
-  orig: 60, 60
-  offset: 0, 0
-  index: -1
-upgrade-cooldown
-  rotate: false
-  xy: 595, 693
-  size: 60, 60
-  orig: 60, 60
-  offset: 0, 0
-  index: -1
-upgrade-damage
-  rotate: false
-  xy: 661, 759
-  size: 60, 60
-  orig: 60, 60
-  offset: 0, 0
-  index: -1
-upgrade-multiplier
   rotate: false
   xy: 1, 1
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
+button-bullet-tower
+  rotate: false
+  xy: 267, 349
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-airborne
+  rotate: false
+  xy: 349, 431
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-both
+  rotate: false
+  xy: 431, 431
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-ground
+  rotate: false
+  xy: 349, 349
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower
+  rotate: false
+  xy: 431, 349
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+upgrade-cooldown
+  rotate: false
+  xy: 63, 1
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+button-slowdown-tower
+  rotate: false
+  xy: 103, 267
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 185, 267
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+maxUpgrade
+  rotate: false
+  xy: 267, 267
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+moneyBonus
+  rotate: false
+  xy: 349, 267
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+tower
+  rotate: false
+  xy: 431, 267
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+faster
+  rotate: false
+  xy: 83, 201
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+fasteron
+  rotate: false
+  xy: 83, 135
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 149, 201
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+upgrade-damage
+  rotate: false
+  xy: 83, 73
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+upgrade-multiplier
+  rotate: false
+  xy: 149, 139
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
 upgrade-range
   rotate: false
-  xy: 723, 759
+  xy: 215, 205
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 83, 595
+  xy: 83, 287
   size: 4, 20
   orig: 4, 20
   offset: 0, 0

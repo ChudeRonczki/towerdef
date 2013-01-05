@@ -100,6 +100,7 @@ public class GameplayScreen implements Screen {
 	float timeAcc;//, sweepAcc;
 	int money, points;
 	float maxUpgradeTimer = -5;
+	boolean faster;
 	
 	InputMultiplexer inputMultiplexer;
 	GameplayDebug debug;
@@ -229,8 +230,11 @@ public class GameplayScreen implements Screen {
 			return;
 		
 		if(dt > 1f) return; // Odpauzowanie
-		
-		timeAcc += dt;
+		float realDt = 0.01f;
+		if(faster) {
+			timeAcc += dt*2f;
+			realDt = 0.005f;
+		} else timeAcc += dt;
 		//sweepAcc += dt;
 		dt = 0.01f;
 		
@@ -287,7 +291,7 @@ public class GameplayScreen implements Screen {
 			Iterator<Bonus> bonusIter = bonuses.iterator();
 			while(bonusIter.hasNext()) {
 				Bonus bonus = bonusIter.next();
-				if(bonus.update(dt)) bonusIter.remove();
+				if(bonus.update(realDt)) bonusIter.remove();
 			}
 			
 			// Testowanie warunków koñcowych
