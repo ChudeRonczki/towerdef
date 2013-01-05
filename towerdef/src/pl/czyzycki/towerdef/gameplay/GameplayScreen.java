@@ -26,6 +26,7 @@ import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import pl.czyzycki.towerdef.gameplay.helpers.MapChecker;
 import pl.czyzycki.towerdef.menus.Lose;
 import pl.czyzycki.towerdef.menus.Pause;
+import pl.czyzycki.towerdef.menus.Win;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -71,6 +72,7 @@ public class GameplayScreen implements Screen {
 	
 	Pause pauseMenu;
 	Lose loseMenu;
+	Win winMenu;
 	
 	/*
 	 * Informacje zwi¹zane ze spawnowaniem bonusów, nie z samymi bonusami
@@ -156,7 +158,8 @@ public class GameplayScreen implements Screen {
 		upgradeGui.load(texAtlas);
 		pauseMenu = new Pause(game, this);
 		loseMenu = new Lose(game, this);
-		inputMultiplexer = new InputMultiplexer(loseMenu, pauseMenu, gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
+		winMenu = new Win(game, this);
+		inputMultiplexer = new InputMultiplexer(winMenu, loseMenu, pauseMenu, gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
 	
 		modelBonuses = new Bonus[3];
 		modelBonuses[BonusType.MONEY.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/moneyBonus.json"));
@@ -198,6 +201,7 @@ public class GameplayScreen implements Screen {
 	public void dispose() {
 		pauseMenu.dispose();
 		loseMenu.dispose();
+		winMenu.dispose();
 		tileMapRenderer.dispose();
 		shapeRenderer.dispose();
 		batch.dispose();
@@ -231,7 +235,7 @@ public class GameplayScreen implements Screen {
 	
 	public void update(float dt) {
 		
-		if(pauseMenu.isShowed() || loseMenu.isShowed())
+		if(pauseMenu.isShowed() || loseMenu.isShowed() || winMenu.isShowed())
 			return;
 		
 		if(dt > 1f) return; // Odpauzowanie
@@ -319,7 +323,7 @@ public class GameplayScreen implements Screen {
 						}
 					} else {
 						points += base.getHpBonus()*base.getHp();
-						loadMap("");
+						winMenu.show(points, getStars());
 						return;
 					}
 				}
@@ -337,7 +341,7 @@ public class GameplayScreen implements Screen {
 		}
 		*/
 	}
-	
+
 	public void restartMap() {
 		// TODO napisaæ to
 		upgradeGui.setSelectedTower(null);
@@ -453,6 +457,7 @@ public class GameplayScreen implements Screen {
 		gui.render(dt);
 		pauseMenu.render();
 		loseMenu.render();
+		winMenu.render();
 	}
 
 	@Override
@@ -460,6 +465,7 @@ public class GameplayScreen implements Screen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		pauseMenu.hide();
 		loseMenu.hide();
+		winMenu.hide();
 		restartMap();
 	}
 
@@ -471,6 +477,7 @@ public class GameplayScreen implements Screen {
 	public void resize(int w, int h) {
 		pauseMenu.resize(w, h);
 		loseMenu.resize(w, h);
+		winMenu.resize(w, h);
 		
 		float ratio = (float)w/(float)h;
 		switch(viewportConstraint) {
@@ -579,4 +586,8 @@ public class GameplayScreen implements Screen {
 		maxUpgradeTimer = maxUpgradeTime;
 	}
 
+	private int getStars() {
+		// TODO liczenie ilosci gwiazdek na podstawie liczby punktów
+		return 2;
+	}
 }
