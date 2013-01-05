@@ -66,7 +66,7 @@ public class GameplayScreen implements Screen {
 	
 	OrthographicCamera camera;
 	SpriteBatch batch;
-	ShapeRenderer shapeRenderer;
+	public ShapeRenderer shapeRenderer;
 	
 	Pause pauseMenu;
 	
@@ -151,7 +151,7 @@ public class GameplayScreen implements Screen {
 		loader = new GameplayLoader(this);
 		upgradeGui = new GameplayUpgradeGUI(this);
 		upgradeGui.load(texAtlas);
-		pauseMenu = new Pause(game);
+		pauseMenu = new Pause(game, this);
 		inputMultiplexer = new InputMultiplexer(pauseMenu, gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
 	
 		modelBonuses = new Bonus[3];
@@ -327,6 +327,12 @@ public class GameplayScreen implements Screen {
 			}
 		}
 		*/
+	}
+	
+	public void restartMap() {
+		// TODO napisaæ to
+		upgradeGui.setSelectedTower(null);
+		loadMap("");
 	}
 	
 	private void rollForBonus(Enemy enemy) {

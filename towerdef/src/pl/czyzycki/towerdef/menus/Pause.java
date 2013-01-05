@@ -5,8 +5,9 @@ import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
@@ -17,13 +18,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
 public class Pause implements InputProcessor {
 	TowerDef game;
+	GameplayScreen screen;
 	Stage stage;
 	Skin skin;
-	Vector2 stageCoordinates = new Vector2();
 	boolean showed = false;
 	
-	public Pause(TowerDef game) {
+	public Pause(TowerDef game, GameplayScreen screen) {
 		this.game = game;
+		this.screen = screen;
 		stage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
 	}
 	
@@ -43,6 +45,14 @@ public class Pause implements InputProcessor {
 	
 	public void render() {
 		if(showed) {
+			Gdx.gl.glEnable(GL10.GL_BLEND);
+			Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+			screen.shapeRenderer.begin(ShapeType.FilledRectangle);
+			screen.shapeRenderer.setColor(0f, 0f, 0f, 0.8f);
+			screen.shapeRenderer.filledRect(-1000, -1000, 2000, 2000);
+			screen.shapeRenderer.end();
+			Gdx.gl.glDisable(GL10.GL_BLEND);
+			
 			stage.act(Gdx.graphics.getDeltaTime());
 			stage.draw();
 		}
@@ -66,7 +76,7 @@ public class Pause implements InputProcessor {
 		
 		TableLayout layout = table.getTableLayout();
 		
-		TextButton resumeButton = new TextButton("Wróc do gry", skin);
+		TextButton resumeButton = new TextButton("Wróæ do gry", skin);
 		resumeButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -81,7 +91,8 @@ public class Pause implements InputProcessor {
             @Override
             public void click(Actor actor, float x, float y )
             {
-            	System.out.println("restart");
+            	screen.restartMap();
+            	showed = false;
             }
         } );
 		layout.register("restartButton", restartButton);
