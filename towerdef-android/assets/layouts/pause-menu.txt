@@ -1,0 +1,8 @@
+* spacing:5
+'Gra wstrzymana' align:center spacingBottom:100 colspan:2
+---
+[resumeButton] width:300 height:60
+---
+[restartButton] width:300 height:60
+---
+[exitButton] width:300 height:60

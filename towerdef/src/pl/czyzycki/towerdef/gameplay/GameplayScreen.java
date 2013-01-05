@@ -24,6 +24,7 @@ import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Targeted;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import pl.czyzycki.towerdef.gameplay.helpers.MapChecker;
+import pl.czyzycki.towerdef.menus.Pause;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -66,6 +67,8 @@ public class GameplayScreen implements Screen {
 	OrthographicCamera camera;
 	SpriteBatch batch;
 	ShapeRenderer shapeRenderer;
+	
+	Pause pauseMenu;
 	
 	/*
 	 * Informacje zwi¹zane ze spawnowaniem bonusów, nie z samymi bonusami
@@ -148,7 +151,8 @@ public class GameplayScreen implements Screen {
 		loader = new GameplayLoader(this);
 		upgradeGui = new GameplayUpgradeGUI(this);
 		upgradeGui.load(texAtlas);
-		inputMultiplexer = new InputMultiplexer(gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
+		pauseMenu = new Pause(game);
+		inputMultiplexer = new InputMultiplexer(pauseMenu, gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
 	
 		modelBonuses = new Bonus[3];
 		modelBonuses[BonusType.MONEY.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/moneyBonus.json"));
@@ -220,6 +224,9 @@ public class GameplayScreen implements Screen {
 	}
 	
 	public void update(float dt) {
+		
+		if(pauseMenu.isShowed())
+			return;
 		
 		if(dt > 1f) return; // Odpauzowanie
 		
@@ -429,11 +436,13 @@ public class GameplayScreen implements Screen {
 		upgradeGui.render(dt);
 		batch.end();
 		gui.render(dt);
+		pauseMenu.render();
 	}
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(inputMultiplexer);	
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		pauseMenu.hide();
 	}
 
 	@Override
@@ -442,6 +451,8 @@ public class GameplayScreen implements Screen {
 
 	@Override
 	public void resize(int w, int h) {
+		pauseMenu.resize(w, h);
+		
 		float ratio = (float)w/(float)h;
 		switch(viewportConstraint) {
 			case HEIGHT:

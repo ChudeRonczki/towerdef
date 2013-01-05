@@ -43,7 +43,7 @@ class GameplayGUI {
 			hudCamera.unproject(hudCord);
 
 			if(pauseArea.contains(hudCord.x, hudCord.y)) {
-				// TODO okienko pause
+				screen.pauseMenu.show();
 				return true;
 			}
 			
