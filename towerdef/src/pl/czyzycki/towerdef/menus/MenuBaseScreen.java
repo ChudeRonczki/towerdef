@@ -11,18 +11,15 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public abstract class MenuBaseScreen implements Screen, InputProcessor {
-
-	private Skin skin = null;
+public abstract class MenuBaseScreen extends Skinable implements Screen, InputProcessor {
 	
 	Stage stage;
 	TowerDef game;
 	
 	public MenuBaseScreen(TowerDef game) {
+		super(game.getAssetManager());
 		stage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
 		this.game = game;
 	}
@@ -69,20 +66,7 @@ public abstract class MenuBaseScreen implements Screen, InputProcessor {
 	@Override
 	public void dispose() {
 		stage.dispose();
-		skin.dispose();
-	}
-	
-	public Skin getSkin() {
-		// HACK: Teraz skin jest tworzony dla kazdego ekranu osobno.
-		// Gdy probuje zrobic z tego zmienna statyczna to wtedy tekstury
-		// OpenGLowe sie nie chca przeladowac.
-		// Zostawiam takie, poniewaz nie wnosi to duzego narzutu.
-		// (jest ladowany tylko jeden plik tekstowy)
-		if(skin == null) {
-			Texture skinTexture = game.getAssetManager().get("layouts/menuskin.png", Texture.class);
-			skin = new Skin(Gdx.files.internal("layouts/menuskin.json"), skinTexture);
-		}
-		return skin;
+		super.dispose();
 	}
 
 	@Override

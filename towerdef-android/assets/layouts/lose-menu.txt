@@ -1,0 +1,8 @@
+* spacing:5
+'Baza zniszczona!' align:center colspan:2
+---
+'Przegrałeś - nie załamuj się!' align:center spacingBottom:40 colspan: 2
+---
+[restartButton] width:300 height:60
+---
+[exitButton] width:300 height:60

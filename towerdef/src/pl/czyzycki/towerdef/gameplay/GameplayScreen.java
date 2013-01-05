@@ -24,6 +24,7 @@ import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Targeted;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import pl.czyzycki.towerdef.gameplay.helpers.MapChecker;
+import pl.czyzycki.towerdef.menus.Lose;
 import pl.czyzycki.towerdef.menus.Pause;
 
 import com.badlogic.gdx.Gdx;
@@ -69,6 +70,7 @@ public class GameplayScreen implements Screen {
 	public ShapeRenderer shapeRenderer;
 	
 	Pause pauseMenu;
+	Lose loseMenu;
 	
 	/*
 	 * Informacje zwi¹zane ze spawnowaniem bonusów, nie z samymi bonusami
@@ -153,7 +155,8 @@ public class GameplayScreen implements Screen {
 		upgradeGui = new GameplayUpgradeGUI(this);
 		upgradeGui.load(texAtlas);
 		pauseMenu = new Pause(game, this);
-		inputMultiplexer = new InputMultiplexer(pauseMenu, gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
+		loseMenu = new Lose(game, this);
+		inputMultiplexer = new InputMultiplexer(loseMenu, pauseMenu, gui.detector, new GestureDetector(upgradeGui.listener), new GameplayGestureDetector(this));
 	
 		modelBonuses = new Bonus[3];
 		modelBonuses[BonusType.MONEY.ordinal()] = json.fromJson(Bonus.class, Gdx.files.internal("config/moneyBonus.json"));
@@ -193,6 +196,8 @@ public class GameplayScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		pauseMenu.dispose();
+		loseMenu.dispose();
 		tileMapRenderer.dispose();
 		shapeRenderer.dispose();
 		batch.dispose();
@@ -226,7 +231,7 @@ public class GameplayScreen implements Screen {
 	
 	public void update(float dt) {
 		
-		if(pauseMenu.isShowed())
+		if(pauseMenu.isShowed() || loseMenu.isShowed())
 			return;
 		
 		if(dt > 1f) return; // Odpauzowanie
@@ -296,7 +301,7 @@ public class GameplayScreen implements Screen {
 			
 			// Testowanie warunków koñcowych
 			if(base.isDestroyed()) {
-				loadMap("");
+				loseMenu.show();
 				return;
 			} else if(groundEnemies.size == 0 && airborneEnemies.size == 0) {
 				boolean reallyFinished = true;
@@ -447,12 +452,15 @@ public class GameplayScreen implements Screen {
 		batch.end();
 		gui.render(dt);
 		pauseMenu.render();
+		loseMenu.render();
 	}
 
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		pauseMenu.hide();
+		loseMenu.hide();
+		restartMap();
 	}
 
 	@Override
@@ -462,6 +470,7 @@ public class GameplayScreen implements Screen {
 	@Override
 	public void resize(int w, int h) {
 		pauseMenu.resize(w, h);
+		loseMenu.resize(w, h);
 		
 		float ratio = (float)w/(float)h;
 		switch(viewportConstraint) {
