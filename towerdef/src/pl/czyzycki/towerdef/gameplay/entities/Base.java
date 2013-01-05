@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 public class Base {
 	Vector2 pos;
 	Circle hitZone;
-	int hp, maxHp;
+	int hp, maxHp, hpBonus;
 	boolean destroyed;
 	
 	StringBuilder hpText;
@@ -56,5 +56,17 @@ public class Base {
 
 	public Vector2 getPos() {
 		return pos;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public int getHpBonus() {
+		return hpBonus;
+	}
+
+	public int getMaxHp() {
+		return maxHp;
 	}
 }

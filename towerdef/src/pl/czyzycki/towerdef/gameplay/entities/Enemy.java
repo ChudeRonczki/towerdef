@@ -25,8 +25,8 @@ public class Enemy {
 	Vector2 pos, direction, currentWaypoint;
 	Sprite sprite;
 	float speed, maxSpeed, hp, maxHp, timer;
-	int damage;
-	boolean flying, alive;
+	int damage, points, money;
+	boolean flying, alive, hitBase;
 	
 	StringBuilder hpText;
 	
@@ -47,6 +47,8 @@ public class Enemy {
 		hp = enemy.hp;
 		maxHp = hp;
 		damage = enemy.damage;
+		points = enemy.points;
+		money = enemy.money;
 		flying = enemy.flying;
 		alive = true;
 		this.timer = timer;
@@ -97,6 +99,7 @@ public class Enemy {
 		if(Circle.colliding(hitZone, base.hitZone)) {
 			alive = false;
 			base.takeHit(damage);
+			hitBase = true;
 			return true;
 		}
 		
@@ -135,6 +138,18 @@ public class Enemy {
 
 	public Vector2 getPos() {
 		return pos;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public boolean hitTheBase() {
+		return hitBase;
 	}
 }
 

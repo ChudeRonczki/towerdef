@@ -1,7 +1,8 @@
 {
 	base : {
 		hitZone : { radius : 60 },
-		hp : 20
+		hp : 20,
+		hpBonus : 1000
 	},
 	waves : 3,
 	money : 2800,

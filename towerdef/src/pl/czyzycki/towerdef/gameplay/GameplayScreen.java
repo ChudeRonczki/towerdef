@@ -95,7 +95,7 @@ public class GameplayScreen implements Screen {
 	Base base;
 	int wavesLeft;
 	float timeAcc;//, sweepAcc;
-	float money;
+	int money, points;
 	float maxUpgradeTimer = -5;
 	
 	InputMultiplexer inputMultiplexer;
@@ -251,7 +251,11 @@ public class GameplayScreen implements Screen {
 				Enemy enemy = enemyIter.next();
 				if(enemy.update(dt)) {
 					enemyIter.remove();
-					rollForBonus(enemy);
+					if(!enemy.hitTheBase()) {
+						rollForBonus(enemy);
+						money += enemy.getMoney();
+						points += enemy.getPoints();
+					}
 				}
 			}
 			enemyIter = airborneEnemies.iterator();
@@ -259,7 +263,11 @@ public class GameplayScreen implements Screen {
 				Enemy enemy = enemyIter.next();
 				if(enemy.update(dt)) {
 					enemyIter.remove();
-					rollForBonus(enemy);
+					if(!enemy.hitTheBase()) {
+						rollForBonus(enemy);
+						money += enemy.getMoney();
+						points += enemy.getPoints();
+					}
 				}
 			}
 			
@@ -294,6 +302,7 @@ public class GameplayScreen implements Screen {
 							spawn.startWave();
 						}
 					} else {
+						points += base.getHpBonus()*base.getHp();
 						loadMap("");
 						return;
 					}

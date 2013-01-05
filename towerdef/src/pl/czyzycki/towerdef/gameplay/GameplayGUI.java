@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
@@ -287,8 +288,8 @@ class GameplayGUI {
 	BonusSlot bombSlot;
 	Tower selectedTowerType;
 	OrthographicCamera hudCamera;
-	StringBuilder moneyText;
-	float moneyTextValue;
+	StringBuilder moneyText, baseHpText, waveText;
+	int moneyTextValue, baseHpTextValue, waveTextValue;
 	
 	@SuppressWarnings("unchecked")
 	GameplayGUI(GameplayScreen screen) {
@@ -329,6 +330,17 @@ class GameplayGUI {
 		moneyText.append("KASA: ");
 		moneyTextValue = screen.money;
 		moneyText.append(moneyTextValue);
+		
+		waveText = new StringBuilder(15);
+		waveText.append("FAL: ");
+		waveTextValue = screen.wavesLeft;
+		waveText.append(waveTextValue);
+		
+		baseHpText = new StringBuilder(20);
+		baseHpText.append("BAZA: ");
+		baseHpText.append(baseHpTextValue);
+		baseHpText.append('/');
+		baseHpText.append(0);
 	}
 
 	void loadTowerIcons(TextureAtlas texAtlas) {
@@ -407,8 +419,27 @@ class GameplayGUI {
 			moneyTextValue = screen.money;
 			moneyText.append(moneyTextValue);
 		}
+		
+		if(screen.wavesLeft != waveTextValue) {
+			waveText.length = 5;
+			waveTextValue = screen.wavesLeft;
+			waveText.append(waveTextValue);
+		}
+		
+		if(screen.base.getHp() != baseHpTextValue) {
+			baseHpText.length = 6;
+			baseHpTextValue = screen.base.getHp();
+			baseHpText.append(baseHpTextValue);
+			baseHpText.append('/');
+			baseHpText.append(screen.base.getMaxHp());
+		}
+		
 		screen.game.debugFont.setScale(3);
 		screen.game.debugFont.draw(screen.batch, moneyText, 5, hudCamera.viewportHeight-5);
+		screen.game.debugFont.drawMultiLine(screen.batch, baseHpText, 0, hudCamera.viewportHeight-5,
+				hudCamera.viewportWidth, HAlignment.CENTER);
+		screen.game.debugFont.drawMultiLine(screen.batch, waveText, 0, screen.game.debugFont.getLineHeight(),
+				hudCamera.viewportWidth - 10, HAlignment.RIGHT);
 		screen.game.debugFont.setScale(1);
 		screen.batch.end();
 		
