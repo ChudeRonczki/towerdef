@@ -4,9 +4,11 @@ import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.menus.InstructionsScreen;
 import pl.czyzycki.towerdef.menus.MainMenuScreen;
 import pl.czyzycki.towerdef.menus.OptionsScreen;
+import pl.czyzycki.towerdef.menus.SelectLevelScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -33,6 +35,7 @@ public class TowerDef extends Game {
 	MainMenuScreen mainMenuScreen;
 	OptionsScreen optionsScreen;
 	InstructionsScreen instructionsScreen;
+	SelectLevelScreen selectLevelScreen;
 	
 	@Override
 	public void create() {
@@ -51,6 +54,7 @@ public class TowerDef extends Game {
 		mainMenuScreen = new MainMenuScreen(this);
 		optionsScreen = new OptionsScreen(this);
 		instructionsScreen = new InstructionsScreen(this);
+		selectLevelScreen = new SelectLevelScreen(this);
 		
 		setScreen(mainMenuScreen);
 	}
@@ -90,6 +94,10 @@ public class TowerDef extends Game {
 	
 	public MainMenuScreen getMainMenuScreen() {
 		return mainMenuScreen;
+	}
+
+	public Screen getSelectLevelScreen() {
+		return selectLevelScreen;
 	}
 
 }

@@ -34,7 +34,7 @@ public class MainMenuScreen extends MenuBaseScreen {
             @Override
             public void click(Actor actor, float x, float y )
             {
-            	game.setScreen(game.getGameplayScreen());
+            	game.setScreen(game.getSelectLevelScreen());
             }
         } );
 		layout.register("startButton", startButton);

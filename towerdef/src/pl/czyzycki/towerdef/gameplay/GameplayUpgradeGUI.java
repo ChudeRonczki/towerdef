@@ -131,7 +131,9 @@ public class GameplayUpgradeGUI {
 				return true;
 			}
 		}
-		return false;
+		
+		this.hide();
+		return true;
 	}
 	
 	Vector2 getUpgradeIconPos(int i, int count) {
