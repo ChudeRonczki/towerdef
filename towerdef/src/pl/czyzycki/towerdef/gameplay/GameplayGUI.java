@@ -290,7 +290,7 @@ class GameplayGUI {
 		
 		public void draw(SpriteBatch batch) {
 			sprite.draw(batch);
-			screen.game.debugFont.draw(batch, counterString, sprite.getX() + 70f, sprite.getY() + 25f);
+			screen.game.debugFont.draw(batch, counterString, sprite.getX() + 60f, sprite.getY() + 50.0f);
 		}
 		
 		boolean tap(float x, float y) {
@@ -472,13 +472,11 @@ class GameplayGUI {
 			baseHpText.append(screen.base.getMaxHp());
 		}
 		
-		screen.game.debugFont.setScale(3);
 		screen.game.debugFont.draw(screen.batch, moneyText, 5, hudCamera.viewportHeight-5);
 		screen.game.debugFont.drawMultiLine(screen.batch, baseHpText, 0, hudCamera.viewportHeight-5,
 				hudCamera.viewportWidth, HAlignment.CENTER);
 		screen.game.debugFont.drawMultiLine(screen.batch, waveText, 0, screen.game.debugFont.getLineHeight(),
 				hudCamera.viewportWidth - 10, HAlignment.RIGHT);
-		screen.game.debugFont.setScale(1);
 		
 		screen.batch.end();
 		

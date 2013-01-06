@@ -42,7 +42,9 @@ public class TowerDef extends Game {
 	@Override
 	public void create() {
 		game = this;
-		debugFont = new BitmapFont();
+		debugFont = new BitmapFont(Gdx.files.internal("fonts/hud.fnt"), false);
+		// TODO skala ma byæ inna, ale ta jest dostosowana do rozdzia³ki 480
+		debugFont.setScale(800.0f/480.0f);
 		tileAtlas = new TileAtlas(TiledLoader.createMap(Gdx.files.internal("maps/emptyMap.tmx")), Gdx.files.internal("maps"));
 		assetManager = new AssetManager();
 		assetManager.load("images/objects.pack", TextureAtlas.class);
