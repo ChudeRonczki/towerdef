@@ -8,7 +8,7 @@
 	cost : 250,
 	icon : "button-slowdown-tower",
 	groupIcon : null,
-	textureFileName: "button-slowdown-tower",
+	textureFileName: "slowdown-tower",
 	
 	"upgrades" :
 	[

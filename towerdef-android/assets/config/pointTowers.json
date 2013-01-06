@@ -7,7 +7,7 @@
 	cost : 20,
 	icon : "button-point-tower-ground",
 	groupIcon : "button-point-tower",
-	textureFileName: "button-point-tower-ground",
+	textureFileName: "point-tower-ground",
 	
 	"upgrades" :
 	[
@@ -48,7 +48,7 @@
 	cost : 20,
 	icon : "button-point-tower-airborne",
 	groupIcon : "button-point-tower",
-	textureFileName: "button-point-tower-airborne",
+	textureFileName: "point-tower-airborne",
 	
 	"upgrades" :
 	[
@@ -89,7 +89,7 @@
 	cost : 35,
 	icon : "button-point-tower-both",
 	groupIcon : "button-point-tower",
-	textureFileName: "button-point-tower-both",
+	textureFileName: "point-tower-both",
 	
 	"upgrades" :
 	[
