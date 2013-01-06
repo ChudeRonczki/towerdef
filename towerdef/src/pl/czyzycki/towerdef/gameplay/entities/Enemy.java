@@ -26,6 +26,10 @@ public class Enemy {
 	public static Animation rightWalkingAnimation;
 	public static Animation downWalkingAnimation;
 	public static Animation upWalkingAnimation;
+	public static Animation leftFlyingAnimation;
+	public static Animation rightFlyingAnimation;
+	public static Animation downFlyingAnimation;
+	public static Animation upFlyingAnimation;
 	
 	int sideWalking = 0; // 0=left, 1=right, 2=down else up
 	
@@ -84,6 +88,22 @@ public class Enemy {
 		downWalkFrames[3] = tmp[3][2];
 		
 		downWalkingAnimation = new Animation(animSpeed, downWalkFrames);
+		
+		TextureRegion[] upFlyFrames = new TextureRegion[1];
+		upFlyFrames[0] = tmp[0][3];
+		upFlyingAnimation = new Animation(animSpeed, upFlyFrames);
+		
+		TextureRegion[] leftFlyFrames = new TextureRegion[1];
+		leftFlyFrames[0] = tmp[1][3];
+		leftFlyingAnimation = new Animation(animSpeed, leftFlyFrames);
+		
+		TextureRegion[] rightFlyFrames = new TextureRegion[1];
+		rightFlyFrames[0] = tmp[2][3];
+		rightFlyingAnimation = new Animation(animSpeed, rightFlyFrames);
+		
+		TextureRegion[] downFlyFrames = new TextureRegion[1];
+		downFlyFrames[0] = tmp[3][3];
+		downFlyingAnimation = new Animation(animSpeed, downFlyFrames);
 	}
 	
 	public Enemy(Enemy enemy, float timer) {
@@ -171,10 +191,10 @@ public class Enemy {
 	}
 	
 	public void draw(SpriteBatch batch) {
-		Animation anim = upWalkingAnimation;
-		if(sideWalking == 0) anim = leftWalkingAnimation;
-		else if(sideWalking == 1) anim = rightWalkingAnimation;
-		else if(sideWalking == 2) anim = downWalkingAnimation;
+		Animation anim = flying ? upFlyingAnimation : upWalkingAnimation;
+		if(sideWalking == 0) anim = flying ? leftFlyingAnimation : leftWalkingAnimation;
+		else if(sideWalking == 1) anim = flying ? rightFlyingAnimation : rightWalkingAnimation;
+		else if(sideWalking == 2) anim = flying ? downFlyingAnimation : downWalkingAnimation;
 		
 		TextureRegion currentFrame = anim.getKeyFrame(time, true);
 		batch.draw(currentFrame, pos.x-currentFrame.getRegionWidth()/2.0f, pos.y-currentFrame.getRegionHeight()/2.0f);
