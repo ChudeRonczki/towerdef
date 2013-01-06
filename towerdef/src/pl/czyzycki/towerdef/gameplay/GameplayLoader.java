@@ -44,6 +44,7 @@ class GameplayLoader {
 		json.readField(screen, "base", mapData);
 		json.readField(screen, "wavesLeft", "waves", mapData);
 		json.readField(screen, "money", "money", mapData);
+		json.readField(screen, "starGoals", "stars", mapData);
 		screen.points = 0;
 		
 		screen.bonusesData = new BonusData[3];

@@ -86,6 +86,8 @@ public class GameplayScreen implements Screen {
 	Bonus modelBonuses[];
 	float bombDamage;
 	
+	int starGoals[];
+	
 	Array<Spawn> spawns;
 	Array<Enemy> groundEnemies, airborneEnemies;
 	Array<Tower> towers;
@@ -589,7 +591,11 @@ public class GameplayScreen implements Screen {
 	}
 
 	private int getStars() {
-		// TODO liczenie ilosci gwiazdek na podstawie liczby punktów
-		return 2;
+		int stars = 0;
+		for(int i=0; i<3; ++i) {
+			if(points >= starGoals[i]) stars = i+1;
+			else break;
+		}
+		return stars;
 	}
 }

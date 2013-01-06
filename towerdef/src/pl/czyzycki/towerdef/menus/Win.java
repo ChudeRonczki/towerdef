@@ -3,6 +3,8 @@ package pl.czyzycki.towerdef.menus;
 import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -41,6 +43,10 @@ public class Win extends MiniMenu {
 		super.show();
 		this.points = points;
 		this.stars = stars;
+		Preferences prefs = Gdx.app.getPreferences("stars");
+		String key = "level-"+((SelectLevelScreen)game.getSelectLevelScreen()).getSelectedLevel();
+		if(stars > prefs.getInteger(key,0)) prefs.putInteger(key, stars);
+		prefs.flush();
 		buildScreen();
 	}
 	
