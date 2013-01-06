@@ -47,9 +47,12 @@ public class Lose extends MiniMenu {
 		
 		TableLayout layout = table.getTableLayout();
 		
-		Label caption = new Label("Przegra³eœ - nie za³amuj siê!", skin);
-		LabelStyle st = skin.getStyle("default", LabelStyle.class);
-		caption.setStyle(st);
+		LabelStyle whiteLabelStyle = skin.getStyle("white", LabelStyle.class);
+		
+		Label title = new Label("Baza zniszczona!", whiteLabelStyle);
+		layout.register("titleCaption", title);
+		
+		Label caption = new Label("Przegra³eœ - nie za³amuj siê!", whiteLabelStyle);
 		layout.register("windowCaption", caption);
 		
 		TextButton restartButton = new TextButton("Restart poziomu", skin);

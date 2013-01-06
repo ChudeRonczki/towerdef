@@ -1,8 +1,8 @@
 {
         resources: {
          		com.badlogic.gdx.graphics.g2d.TextureRegion: {
-         			    check-on: { x: 40, y: 2, width: 115, height: 48 },
-                        check-off: { x: 40, y: 59, width: 115, height: 48 }
+         			    check-off: { x: 40, y: 2, width: 115, height: 48 },
+                        check-on: { x: 40, y: 59, width: 115, height: 48 }
          		},
                 com.badlogic.gdx.graphics.g2d.NinePatch: {
                         knob: [
@@ -19,8 +19,8 @@
 
                 },
                 com.badlogic.gdx.graphics.Color: {
-                        white: { r: 0.12941, g: 0.12941, b: 0.12941, a: 1 },
-						white2: { r: 1, g: 1, b: 1, a: 1 },
+                        black: { r: 0.12941, g: 0.12941, b: 0.12941, a: 1 },
+						white: { r: 1, g: 1, b: 1, a: 1 },
                         downFontColor: { r: 1, g: 0.1, b: 0.2, a: 1 }
                 },
                 com.badlogic.gdx.graphics.g2d.BitmapFont: {
@@ -31,18 +31,18 @@
                 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
                         default: {
                                 font: default-font, downFontColor: downFontColor,
-                                fontColor: white, up: knob
+                                fontColor: black, up: knob
                         }
                 },
                 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
                 	     default: {
                                 checkboxOn: check-on, checkboxOff: check-off,
-                                font: default-font, fontColor: white
+                                font: default-font, fontColor: black
                         }
                 },
                 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-                	default: { font: default-font, fontColor: white },
-					alternative: { font: default-font, fontColor: white2 }
+                	default: { font: default-font, fontColor: black },
+					white: { font: default-font, fontColor: white }
                 }
         }
  }

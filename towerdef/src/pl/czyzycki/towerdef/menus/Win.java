@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 import com.esotericsoftware.tablelayout.Cell;
@@ -58,15 +59,16 @@ public class Win extends MiniMenu {
 		TableLayout layout = table.getTableLayout();
 		layout.parse("* spacing:5");
 		
+		LabelStyle whiteLabelStyle = skin.getStyle("white", LabelStyle.class);
 		
-		Label caption = new Label("Gratulacje, wygra³eœ!", skin);
+		Label caption = new Label("Gratulacje, wygra³eœ!", whiteLabelStyle);
 
 		Cell<Actor> captionCell = layout.add(caption);
 		captionCell.align("center");
 		
 		layout.row();
 
-		Label earnedPoints = new Label("Zdoby³eœ "+points+" punktów.", skin);
+		Label earnedPoints = new Label("Zdoby³eœ "+points+" punktów.", whiteLabelStyle);
 
 		Cell<Actor> pointsCell = layout.add(earnedPoints);
 		pointsCell.align("center");
