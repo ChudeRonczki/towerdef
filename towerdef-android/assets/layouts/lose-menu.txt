@@ -1,5 +1,5 @@
 * spacing:5
-'Baza zniszczona!' align:center colspan:2
+[titleCaption] align:center colspan:2
 ---
 [windowCaption] align:center spacingBottom:40 colspan: 2
 ---

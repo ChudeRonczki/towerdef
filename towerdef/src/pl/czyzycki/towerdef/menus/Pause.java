@@ -7,8 +7,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
@@ -57,6 +59,10 @@ public class Pause extends MiniMenu {
 		
 			TableLayout layout = table.getTableLayout();
 		
+			LabelStyle st = skin.getStyle("white", LabelStyle.class);
+			Label caption = new Label("Gra wstrzymana", st);
+			layout.register("windowCaption", caption);
+			
 			TextButton resumeButton = new TextButton("Wróæ do gry", skin);
 			resumeButton.setClickListener( new ClickListener() {
 				@Override
@@ -107,6 +113,10 @@ public class Pause extends MiniMenu {
 		
 			TableLayout layout = table.getTableLayout();
 		
+			LabelStyle st = skin.getStyle("white", LabelStyle.class);
+			Label caption = new Label("Czy jesteœ pewny?", st);
+			layout.register("windowCaption", caption);
+			
 			TextButton noButton = new TextButton("Nie", skin);
 			noButton.setClickListener( new ClickListener() {
 				@Override

@@ -1,5 +1,5 @@
 * spacing:5
-'Gra wstrzymana' align:center spacingBottom:100 colspan:2
+[windowCaption] align:center spacingBottom:100 colspan:2
 ---
 [resumeButton] width:300 height:60
 ---
