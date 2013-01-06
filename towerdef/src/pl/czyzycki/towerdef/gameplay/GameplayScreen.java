@@ -441,12 +441,47 @@ public class GameplayScreen implements Screen {
 		for(Bullet bullet : bullets) {
 			bullet.draw(batch);
 		}
-		for(Enemy enemy : groundEnemies) {
-			enemy.draw(batch);
+		
+		// Poni¿szy blok odpowiada za sortowanie po Y przeciwników - z³o¿onoœæ to co prawda n^2, ale who cares?
+		// I tak to nie naprawi problemu przechodzenia przez siebie jednostek :(.
+		{
+			int drawedEnemies = 0;
+			float maxY = -1000;
+			float prevMaxY = 1000;
+			
+			while(drawedEnemies != groundEnemies.size + airborneEnemies.size) {
+				
+				for(Enemy enemy : groundEnemies) {
+					float posY = enemy.getPos().y;
+					if(posY < prevMaxY && posY > maxY)
+						maxY = posY;
+				}
+				
+				for(Enemy enemy : airborneEnemies) {
+					float posY = enemy.getPos().y;
+					if(posY < prevMaxY && posY > maxY)
+						maxY = posY;
+				}
+				
+				for(Enemy enemy : groundEnemies) {
+					if(enemy.getPos().y == maxY) {
+						enemy.draw(batch);
+						drawedEnemies++;
+					}
+				}
+				
+				for(Enemy enemy : airborneEnemies) {
+					if(enemy.getPos().y == maxY) {
+						enemy.draw(batch);
+						drawedEnemies++;
+					}
+				}
+				
+				prevMaxY = maxY;
+				maxY = -1000;
+			}
 		}
-		for(Enemy enemy : airborneEnemies) {
-			enemy.draw(batch);
-		}
+		
 		for(Bonus bonus : bonuses) {
 			bonus.draw(batch);
 		}
