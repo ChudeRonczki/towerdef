@@ -3,6 +3,7 @@ package pl.czyzycki.towerdef.gameplay;
 import java.util.Iterator;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.entities.AreaTower;
 import pl.czyzycki.towerdef.gameplay.entities.AreaTower.AreaTowerPool;
 import pl.czyzycki.towerdef.gameplay.entities.Base;
@@ -63,7 +64,7 @@ public class GameplayScreen implements Screen {
 	
 	final static ViewportConstraint viewportConstraint = ViewportConstraint.HEIGHT;
 	
-	TowerDef game;
+	public TowerDef game;
 	
 	Json json;
 	
@@ -275,6 +276,7 @@ public class GameplayScreen implements Screen {
 				Enemy enemy = enemyIter.next();
 				if(enemy.update(dt)) {
 					enemyIter.remove();
+					game.playSound(GameSound.DESTROYED);
 					if(!enemy.hitTheBase()) {
 						rollForBonus(enemy);
 						money += enemy.getMoney();
@@ -287,6 +289,7 @@ public class GameplayScreen implements Screen {
 				Enemy enemy = enemyIter.next();
 				if(enemy.update(dt)) {
 					enemyIter.remove();
+					game.playSound(GameSound.DESTROYED);
 					if(!enemy.hitTheBase()) {
 						rollForBonus(enemy);
 						money += enemy.getMoney();

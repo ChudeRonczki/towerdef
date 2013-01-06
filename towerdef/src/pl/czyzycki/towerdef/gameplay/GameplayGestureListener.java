@@ -2,6 +2,7 @@ package pl.czyzycki.towerdef.gameplay;
 
 import java.util.Iterator;
 
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.entities.Bonus;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.menus.OptionsScreen;
@@ -46,6 +47,7 @@ class GameplayGestureListener extends GestureAdapter {
 					bonus.onCollected();
 					bonusIter.remove();
 					if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
+					screen.game.playSound(GameSound.BONUS);
 					break;
 				}
 			}

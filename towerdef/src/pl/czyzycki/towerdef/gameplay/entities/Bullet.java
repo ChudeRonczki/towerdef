@@ -1,6 +1,8 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
 
+import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -69,6 +71,7 @@ public class Bullet {
 		direction.set(target.pos.tmp().sub(pos)).nor();
 		pos.add(direction.tmp().mul(speed*dt));
 		if(!target.alive || Circle.colliding(hitZone, target.hitZone)) {
+			TowerDef.getGame().playSound(GameSound.BULLET_HIT);
 			for(Enemy enemy : targetedEnemies) {
 				if(Circle.colliding(blastZone, enemy.hitZone)) enemy.takeHit(damage);
 			}

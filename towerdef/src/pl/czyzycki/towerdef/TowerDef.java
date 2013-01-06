@@ -27,7 +27,17 @@ import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
  */
 public class TowerDef extends Game {
 	public enum GameSound {
-		CLICK
+		CLICK,
+		DESTROYED,
+		BOMB,
+		MAXUP,
+		BONUS,
+		AREA,
+		BULLET_HIT,
+		BULLET_START,
+		POINT,
+		SLOW_ON,
+		SLOW_OFF
 	}
 	
 	static TowerDef game; // Po co siê mêczyæ :P Aktualnie bodaj nieu¿ywane, ale jest :)
@@ -37,7 +47,7 @@ public class TowerDef extends Game {
 	AssetManager assetManager; // Manager assetów (grafika, dŸwiêki, czcionki)
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
 	public Music theme;
-	Sound sounds[] = new Sound[10];
+	Sound sounds[] = new Sound[20];
 	
 	GameplayScreen gameplayScreen;
 	MainMenuScreen mainMenuScreen;
@@ -65,6 +75,16 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/font.png", Texture.class);
 		assetManager.load("images/enemy-anim.png", Texture.class);
 		assetManager.load("sounds/click.wav", Sound.class);
+		assetManager.load("sounds/destroyed.wav", Sound.class);
+		assetManager.load("sounds/bomb.mp3", Sound.class);
+		assetManager.load("sounds/maxup.mp3", Sound.class);
+		assetManager.load("sounds/bonus.wav", Sound.class);
+		assetManager.load("sounds/area.wav", Sound.class);
+		assetManager.load("sounds/bullethit.ogg", Sound.class);
+		assetManager.load("sounds/bulletstart.wav", Sound.class);
+		assetManager.load("sounds/point.wav", Sound.class);
+		assetManager.load("sounds/slowon.wav", Sound.class);
+		assetManager.load("sounds/slowoff.wav", Sound.class);
 		assetManager.finishLoading();
 		
 		Enemy.loadAnimations(assetManager);
@@ -73,6 +93,16 @@ public class TowerDef extends Game {
 		theme.setLooping(true);
 		
 		sounds[0] = assetManager.get("sounds/click.wav", Sound.class);
+		sounds[1] = assetManager.get("sounds/destroyed.wav", Sound.class);
+		sounds[2] = assetManager.get("sounds/bomb.mp3", Sound.class);
+		sounds[3] = assetManager.get("sounds/maxup.mp3", Sound.class);
+		sounds[4] = assetManager.get("sounds/bonus.wav", Sound.class);
+		sounds[5] = assetManager.get("sounds/area.wav", Sound.class);
+		sounds[6] = assetManager.get("sounds/bullethit.ogg", Sound.class);
+		sounds[7] = assetManager.get("sounds/bulletstart.wav", Sound.class);
+		sounds[8] = assetManager.get("sounds/point.wav", Sound.class);
+		sounds[9] = assetManager.get("sounds/slowon.wav", Sound.class);
+		sounds[10] = assetManager.get("sounds/slowoff.wav", Sound.class);
 		
 		// Inaczej back key bedzie pauzowal apke:
 		Gdx.input.setCatchBackKey(true);

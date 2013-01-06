@@ -1,5 +1,6 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.utils.Pool;
@@ -35,6 +36,7 @@ public class PointTower extends TargetTower {
 			if(dt >= timer) {
 				timer += getCooldown() - dt;
 				target.takeHit(getDamage());
+				screen.game.playSound(GameSound.POINT);
 			} else timer -= dt;
 		} else if(dt >= timer) timer = 0f;
 		else timer -= dt;

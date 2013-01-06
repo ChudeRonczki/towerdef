@@ -75,6 +75,7 @@ class GameplayGUI {
 					screen.performMaxUpgrade();
 					upgradeSlot.decrement();
 					if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
+					screen.game.playSound(GameSound.MAXUP);
 				}
 				return true;
 			}
@@ -424,6 +425,7 @@ class GameplayGUI {
 				screen.detonateBomb(bombBlastZone);
 				bombSlot.decrement();
 				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(bombPattern, -1);
+				screen.game.playSound(GameSound.BOMB);
 			}
 			bombDragged = false;
 		}

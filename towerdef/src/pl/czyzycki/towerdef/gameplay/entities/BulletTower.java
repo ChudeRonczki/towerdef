@@ -1,5 +1,6 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.utils.Pool;
@@ -45,6 +46,7 @@ public class BulletTower extends TargetTower {
 			if(dt >= timer) {
 				timer += getCooldown() - dt;
 				screen.addBullet(screen.getBulletPool().obtain().set(bullet, this));
+				screen.game.playSound(GameSound.BULLET_START);
 			} else timer -= dt;
 		} else if(dt >= timer) timer = 0f;
 		else timer -= dt;
