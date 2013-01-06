@@ -12,6 +12,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -25,7 +26,10 @@ import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
  *
  */
 public class TowerDef extends Game {
-
+	public enum GameSound {
+		CLICK
+	}
+	
 	static TowerDef game; // Po co siê mêczyæ :P Aktualnie bodaj nieu¿ywane, ale jest :)
 	
 	public BitmapFont debugFont; // Tymczasowa czcionka do wszystkiego
@@ -33,6 +37,7 @@ public class TowerDef extends Game {
 	AssetManager assetManager; // Manager assetów (grafika, dŸwiêki, czcionki)
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
 	public Music theme;
+	Sound sounds[] = new Sound[10];
 	
 	GameplayScreen gameplayScreen;
 	MainMenuScreen mainMenuScreen;
@@ -59,12 +64,15 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/menu-bg2.png", Texture.class);
 		assetManager.load("layouts/font.png", Texture.class);
 		assetManager.load("images/enemy-anim.png", Texture.class);
+		assetManager.load("sounds/click.wav", Sound.class);
 		assetManager.finishLoading();
 		
 		Enemy.loadAnimations(assetManager);
 		
 		theme = assetManager.get("music/theme.ogg", Music.class);
 		theme.setLooping(true);
+		
+		sounds[0] = assetManager.get("sounds/click.wav", Sound.class);
 		
 		// Inaczej back key bedzie pauzowal apke:
 		Gdx.input.setCatchBackKey(true);
@@ -121,4 +129,7 @@ public class TowerDef extends Game {
 		return selectLevelScreen;
 	}
 
+	public void playSound(GameSound sound) {
+		if(OptionsScreen.musicEnabled()) sounds[sound.ordinal()].play(); 
+	}
 }

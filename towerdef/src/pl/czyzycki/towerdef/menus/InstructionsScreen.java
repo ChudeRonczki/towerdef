@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef.menus;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -39,6 +40,7 @@ public class InstructionsScreen extends MenuBaseScreen {
             @Override
             public void click(Actor actor, float x, float y )
             {
+            	game.playSound(GameSound.CLICK);
                 game.setScreen(game.getMainMenuScreen());
             }
         } );

@@ -1,5 +1,6 @@
 package pl.czyzycki.towerdef.gameplay;
 
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgradeable;
@@ -129,11 +130,11 @@ public class GameplayUpgradeGUI {
 						}
 					}
 				}
-				
+				screen.game.playSound(GameSound.CLICK);
 				return true;
 			}
 		}
-		
+
 		this.hide();
 		return true;
 	}
