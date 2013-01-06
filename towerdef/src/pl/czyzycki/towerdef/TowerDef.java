@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef;
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
+import pl.czyzycki.towerdef.gameplay.entities.Enemy;
 import pl.czyzycki.towerdef.menus.InstructionsScreen;
 import pl.czyzycki.towerdef.menus.MainMenuScreen;
 import pl.czyzycki.towerdef.menus.OptionsScreen;
@@ -57,7 +58,10 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/menu-bg.png", Texture.class);
 		assetManager.load("layouts/menu-bg2.png", Texture.class);
 		assetManager.load("layouts/font.png", Texture.class);
+		assetManager.load("images/enemy-anim.png", Texture.class);
 		assetManager.finishLoading();
+		
+		Enemy.loadAnimations(assetManager);
 		
 		theme = assetManager.get("music/theme.ogg", Music.class);
 		theme.setLooping(true);
