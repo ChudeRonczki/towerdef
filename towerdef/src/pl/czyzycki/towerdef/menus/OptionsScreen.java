@@ -31,6 +31,11 @@ public class OptionsScreen extends MenuBaseScreen {
 	
 	public OptionsScreen(TowerDef game) {
 		super(game);
+		
+		Preferences prefs = Gdx.app.getPreferences("options");
+		vibration	= prefs.getBoolean("vibration", true);
+		music		= prefs.getBoolean("music", 	true);
+		particle	= prefs.getBoolean("particle", 	true);
 	}
 
 	@Override
@@ -59,6 +64,15 @@ public class OptionsScreen extends MenuBaseScreen {
 		final CheckBox musicButton = new CheckBox(skin);
 		layout.register("musicCheckBox", musicButton);
 		musicButton.setChecked(music);
+		musicButton.setClickListener( new ClickListener() {
+
+			@Override
+			public void click(Actor actor, float x, float y) {
+				if(((CheckBox)actor).isChecked()) game.theme.play();
+				else game.theme.stop();
+			}
+			
+		});
 		
 		final CheckBox particleButton = new CheckBox(skin);
 		layout.register("particleCheckBox", particleButton );

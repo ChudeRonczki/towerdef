@@ -10,6 +10,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -30,6 +31,7 @@ public class TowerDef extends Game {
 	
 	AssetManager assetManager; // Manager assetów (grafika, dŸwiêki, czcionki)
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
+	public Music theme;
 	
 	GameplayScreen gameplayScreen;
 	MainMenuScreen mainMenuScreen;
@@ -49,7 +51,11 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/starslot.png", Texture.class);
 		assetManager.load("layouts/star-big.png", Texture.class);
 		assetManager.load("layouts/starslot-big.png", Texture.class);
+		assetManager.load("music/theme.ogg", Music.class);
 		assetManager.finishLoading();
+		
+		theme = assetManager.get("music/theme.ogg", Music.class);
+		theme.setLooping(true);
 		
 		// Inaczej back key bedzie pauzowal apke:
 		Gdx.input.setCatchBackKey(true);
@@ -59,6 +65,8 @@ public class TowerDef extends Game {
 		optionsScreen = new OptionsScreen(this);
 		instructionsScreen = new InstructionsScreen(this);
 		selectLevelScreen = new SelectLevelScreen(this);
+		
+		if(OptionsScreen.musicEnabled()) theme.play();
 		
 		setScreen(mainMenuScreen);
 	}
