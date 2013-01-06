@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
@@ -55,7 +56,9 @@ public class Lose extends MiniMenu {
 		Label caption = new Label("Przegra³eœ - nie za³amuj siê!", whiteLabelStyle);
 		layout.register("windowCaption", caption);
 		
-		TextButton restartButton = new TextButton("Restart poziomu", skin);
+		TextButtonStyle whiteButton = skin.getStyle("white", TextButtonStyle.class);
+		
+		TextButton restartButton = new TextButton("Restart poziomu", whiteButton);
 		restartButton.setClickListener( new ClickListener() {
 			@Override
 			public void click(Actor actor, float x, float y )
@@ -66,7 +69,7 @@ public class Lose extends MiniMenu {
 		} );
 		layout.register("restartButton", restartButton);
 		
-		TextButton exitButton = new TextButton("Wyjœcie do menu", skin);
+		TextButton exitButton = new TextButton("Wyjœcie do menu", whiteButton);
 		exitButton.setClickListener( new ClickListener() {
 			@Override
 			public void click(Actor actor, float x, float y )

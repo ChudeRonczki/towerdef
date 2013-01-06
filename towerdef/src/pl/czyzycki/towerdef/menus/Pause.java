@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
@@ -63,7 +64,9 @@ public class Pause extends MiniMenu {
 			Label caption = new Label("Gra wstrzymana", st);
 			layout.register("windowCaption", caption);
 			
-			TextButton resumeButton = new TextButton("Wróæ do gry", skin);
+			TextButtonStyle whiteButton = skin.getStyle("white", TextButtonStyle.class);
+			
+			TextButton resumeButton = new TextButton("Wróæ do gry", whiteButton);
 			resumeButton.setClickListener( new ClickListener() {
 				@Override
 				public void click(Actor actor, float x, float y )
@@ -73,7 +76,7 @@ public class Pause extends MiniMenu {
 			} );
 			layout.register("resumeButton", resumeButton);
 		
-			TextButton restartButton = new TextButton("Restart poziomu", skin);
+			TextButton restartButton = new TextButton("Restart poziomu", whiteButton);
 			restartButton.setClickListener( new ClickListener() {
 				@Override
 				public void click(Actor actor, float x, float y )
@@ -84,7 +87,7 @@ public class Pause extends MiniMenu {
 			} );
 			layout.register("restartButton", restartButton);
 		
-			TextButton exitButton = new TextButton("Wyjœcie do menu", skin);
+			TextButton exitButton = new TextButton("Wyjœcie do menu", whiteButton);
 			exitButton.setClickListener( new ClickListener() {
 				@Override
 				public void click(Actor actor, float x, float y )
@@ -117,7 +120,9 @@ public class Pause extends MiniMenu {
 			Label caption = new Label("Czy jesteœ pewny?", st);
 			layout.register("windowCaption", caption);
 			
-			TextButton noButton = new TextButton("Nie", skin);
+			TextButtonStyle whiteButton = skin.getStyle("white", TextButtonStyle.class);
+			
+			TextButton noButton = new TextButton("Nie", whiteButton);
 			noButton.setClickListener( new ClickListener() {
 				@Override
 				public void click(Actor actor, float x, float y )
@@ -127,7 +132,7 @@ public class Pause extends MiniMenu {
 			} );
 			layout.register("noButton", noButton);
 		
-			TextButton yesButton = new TextButton("Tak", skin);
+			TextButton yesButton = new TextButton("Tak", whiteButton);
 			yesButton.setClickListener( new ClickListener() {
 				@Override
 				public void click(Actor actor, float x, float y )

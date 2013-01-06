@@ -23,7 +23,7 @@ public class SelectLevelScreen extends MenuBaseScreen {
 	private int selectedLevel = 0;
 	
 	public SelectLevelScreen(TowerDef game) {
-		super(game);
+		super(game, false);
 	}
 	
 	void setLevelInfos() {

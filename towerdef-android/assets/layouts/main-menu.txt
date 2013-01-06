@@ -1,10 +1,8 @@
 * spacing:5
-'Menu główne' align:center spacingBottom:100 colspan:2
+[startButton] width:200 height:60
 ---
-[startButton] width:300 height:60
+[instructionsButton] width:200 height:60
 ---
-[instructionsButton] width:300 height:60
+[optionsButton] width:200 height:60
 ---
-[optionsButton] width:300 height:60
----
-[exitButton] width:300 height:60
+[exitButton] width:200 height:60

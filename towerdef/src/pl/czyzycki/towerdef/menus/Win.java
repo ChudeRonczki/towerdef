@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 import com.esotericsoftware.tablelayout.Cell;
@@ -107,7 +108,9 @@ public class Win extends MiniMenu {
 		TableLayout buttonsLayout = buttonsTable.getTableLayout();
 		buttonsLayout.parse("* spacing:5");
 		
-		TextButton exitButton = new TextButton("Menu", skin);
+		TextButtonStyle whiteButton = skin.getStyle("white", TextButtonStyle.class);
+		
+		TextButton exitButton = new TextButton("Menu", whiteButton);
 		exitButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -118,7 +121,7 @@ public class Win extends MiniMenu {
 		exitButton.width(200);
 		buttonsLayout.add(exitButton);
 		
-		TextButton restartButton = new TextButton("Restartuj", skin);
+		TextButton restartButton = new TextButton("Restartuj", whiteButton);
 		restartButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
@@ -130,7 +133,7 @@ public class Win extends MiniMenu {
 		restartButton.width(200);
 		buttonsLayout.add(restartButton);
 		
-		TextButton nextButton = new TextButton("Dalej", skin);
+		TextButton nextButton = new TextButton("Dalej", whiteButton);
 		nextButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )

@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 public class InstructionsScreen extends MenuBaseScreen {
 	
 	public InstructionsScreen(TowerDef game) {
-		super(game);
+		super(game, false);
 	}
 
 	@Override

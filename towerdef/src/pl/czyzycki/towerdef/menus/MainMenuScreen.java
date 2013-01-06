@@ -3,6 +3,7 @@ package pl.czyzycki.towerdef.menus;
 import pl.czyzycki.towerdef.TowerDef;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Align;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -12,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 public class MainMenuScreen extends MenuBaseScreen {
 	
 	public MainMenuScreen(TowerDef game) {
-		super(game);
+		super(game, true);
 	}
 	
 	@Override
@@ -24,6 +25,9 @@ public class MainMenuScreen extends MenuBaseScreen {
 		Table table = new Table(skin);
 		table.width = stage.width();
 		table.height = stage.height();
+		
+		table.align(Align.LEFT);
+		table.x = 50;
 		
 		stage.addActor(table);
 		

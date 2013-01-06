@@ -30,7 +30,7 @@ public class OptionsScreen extends MenuBaseScreen {
 	}
 	
 	public OptionsScreen(TowerDef game) {
-		super(game);
+		super(game, false);
 		
 		Preferences prefs = Gdx.app.getPreferences("options");
 		vibration	= prefs.getBoolean("vibration", true);

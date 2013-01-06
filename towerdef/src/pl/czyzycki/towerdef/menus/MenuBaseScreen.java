@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public abstract class MenuBaseScreen extends Skinable implements Screen, InputProcessor {
@@ -23,11 +24,15 @@ public abstract class MenuBaseScreen extends Skinable implements Screen, InputPr
 	Sprite backgroundSprite;
 	OrthographicCamera hudCamera;
 	
-	public MenuBaseScreen(TowerDef game) {
+	public MenuBaseScreen(TowerDef game, boolean isMenu) {
 		super(game.getAssetManager());
 		stage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
 		this.game = game;
 		hudCamera = new OrthographicCamera();
+		if(isMenu)
+			backgroundSprite = new Sprite(game.getAssetManager().get("layouts/menu-bg.png", Texture.class));
+		else
+			backgroundSprite = new Sprite(game.getAssetManager().get("layouts/menu-bg2.png", Texture.class));
 	}
 	
 	@Override
@@ -56,8 +61,6 @@ public abstract class MenuBaseScreen extends Skinable implements Screen, InputPr
 		
 		stage.setViewport(adjustedWidth, adjustedHeight, true);
 		stage.clear();
-		
-		backgroundSprite = new Sprite(game.getAssetManager().get("layouts/menu-bg.png", Texture.class));
 	}
 
 	@Override
