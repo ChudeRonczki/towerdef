@@ -12,7 +12,7 @@
 	cost : 100,
 	icon : "button-bullet-tower-ground",
 	groupIcon : "button-bullet-tower",
-	textureFileName: "button-bullet-tower-ground",
+	textureFileName: "bullet-tower-ground",
 	
 	"upgrades" :
 	[
@@ -58,7 +58,7 @@
 	cost : 100,
 	icon : "button-bullet-tower-airborne",
 	groupIcon : "button-bullet-tower",
-	textureFileName: "button-bullet-tower-airborne",
+	textureFileName: "bullet-tower-airborne",
 	
 	"upgrades" :
 	[
@@ -104,7 +104,7 @@
 	cost : 150,
 	icon : "button-bullet-tower-both",
 	groupIcon : "button-bullet-tower",
-	textureFileName: "button-bullet-tower-both",
+	textureFileName: "bullet-tower-both",
 	
 	"upgrades" :
 	[

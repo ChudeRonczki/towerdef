@@ -7,7 +7,7 @@
 	cost : 50,
 	icon : "button-area-tower-ground",
 	groupIcon : "button-area-tower",
-	textureFileName: "button-area-tower-ground",
+	textureFileName: "area-tower-ground",
 	
 	"upgrades" :
 	[
@@ -48,7 +48,7 @@
 	cost : 50,
 	icon : "button-area-tower-airborne",
 	groupIcon : "button-area-tower",
-	textureFileName: "button-area-tower-airborne",
+	textureFileName: "area-tower-airborne",
 	
 	"upgrades" :
 	[
@@ -89,7 +89,7 @@
 	cost : 75,
 	icon : "button-area-tower-both",
 	groupIcon : "button-area-tower",
-	textureFileName: "button-area-tower-both",
+	textureFileName: "area-tower-both",
 	
 	"upgrades" :
 	[
