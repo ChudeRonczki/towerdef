@@ -3,7 +3,9 @@ package pl.czyzycki.towerdef.gameplay;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgradeable;
+import pl.czyzycki.towerdef.menus.OptionsScreen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
@@ -113,7 +115,7 @@ public class GameplayUpgradeGUI {
 			
 			if(radius*radius > pos.x*pos.x + pos.y*pos.y) {
 				// tap on upgrade
-				
+				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(30);
 				if(i == 0) { // sell tower
 					screen.sellTower(selectedTower);
 					this.hide();

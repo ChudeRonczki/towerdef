@@ -25,6 +25,7 @@ import pl.czyzycki.towerdef.gameplay.entities.Tower.Targeted;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import pl.czyzycki.towerdef.gameplay.helpers.MapChecker;
 import pl.czyzycki.towerdef.menus.Lose;
+import pl.czyzycki.towerdef.menus.OptionsScreen;
 import pl.czyzycki.towerdef.menus.Pause;
 import pl.czyzycki.towerdef.menus.Win;
 
@@ -210,6 +211,7 @@ public class GameplayScreen implements Screen {
 	boolean addTower(float x, float y) {
 		if(buildingChecker.check(x,y)) return false;
 		if(gui.selectedTowerType.cost <= money) {
+			if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
 			money -= gui.selectedTowerType.cost;
 			towers.add(gui.selectedTowerType.obtainCopy((float)Math.floor(x/tileWidth)*tileWidth + tileWidth/2f,
 					(float)Math.floor(y/tileHeight)*tileHeight + tileHeight/2f));
