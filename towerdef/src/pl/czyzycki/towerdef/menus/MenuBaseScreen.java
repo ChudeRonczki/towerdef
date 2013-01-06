@@ -11,23 +11,38 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public abstract class MenuBaseScreen extends Skinable implements Screen, InputProcessor {
 	
 	Stage stage;
 	TowerDef game;
+	Sprite backgroundSprite;
+	OrthographicCamera hudCamera;
 	
 	public MenuBaseScreen(TowerDef game) {
 		super(game.getAssetManager());
 		stage = new Stage(GameplayScreen.viewportWidth, GameplayScreen.viewportHeight, true);
 		this.game = game;
+		hudCamera = new OrthographicCamera();
 	}
 	
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+	
+		hudCamera.setToOrtho(false, GameplayScreen.viewportWidth,
+				GameplayScreen.viewportHeight);
+		
+		game.getGameplayScreen().batch.setProjectionMatrix(hudCamera.combined);
+		game.getGameplayScreen().batch.begin();
+		backgroundSprite.setPosition(0, GameplayScreen.viewportHeight - backgroundSprite.getHeight());
+		backgroundSprite.draw(game.getGameplayScreen().batch);
+		game.getGameplayScreen().batch.end();
 		
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
@@ -36,11 +51,13 @@ public abstract class MenuBaseScreen extends Skinable implements Screen, InputPr
 	@Override
 	public void resize(int width, int height) {
 		float aspect = (float)width/(float)height;
-		float adjustedWidth = GameplayScreen.viewportHeight*aspect;
-		float adjustedHeight = GameplayScreen.viewportHeight;
+		float adjustedWidth = 480*aspect;
+		float adjustedHeight = 480;
 		
 		stage.setViewport(adjustedWidth, adjustedHeight, true);
 		stage.clear();
+		
+		backgroundSprite = new Sprite(game.getAssetManager().get("layouts/menu-bg.png", Texture.class));
 	}
 
 	@Override
@@ -105,7 +122,7 @@ public abstract class MenuBaseScreen extends Skinable implements Screen, InputPr
 	}
 
 	@Override
-	public boolean touchMoved(int x, int y) {
+	public boolean touchMoved(int screenX, int screenY) {
 		return false;
 	}
 

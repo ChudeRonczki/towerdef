@@ -52,6 +52,8 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/star-big.png", Texture.class);
 		assetManager.load("layouts/starslot-big.png", Texture.class);
 		assetManager.load("music/theme.ogg", Music.class);
+		assetManager.load("layouts/menu-bg.png", Texture.class);
+		assetManager.load("layouts/font.png", Texture.class);
 		assetManager.finishLoading();
 		
 		theme = assetManager.get("music/theme.ogg", Music.class);

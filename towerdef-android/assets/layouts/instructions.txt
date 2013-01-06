@@ -1,8 +1,8 @@
 debug
 * spacing:10 padding:0 align:center maxwidth: 500
-'Instrukcje do gry' align:center spacingBottom:100
+'Instrukcje do gry' align:center spacingBottom:30
 ---
-[scrollPane] height: 400 (
+[scrollPane] height: 300 (
 {
 'To można scrollowac!'
 ---
@@ -32,4 +32,4 @@ debug
 }
 )
 ---
-[backButton] width:400 height:60 spacingTop:100 align:center
+[backButton] width:400 height:60 spacingTop:30 align:center

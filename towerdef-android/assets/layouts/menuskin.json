@@ -1,25 +1,26 @@
 {
         resources: {
          		com.badlogic.gdx.graphics.g2d.TextureRegion: {
-         			    check-on: { x: 32, y: 0, width: 32, height: 32 },
-                        check-off: { x: 0, y: 0, width: 32, height: 32 }
+         			    check-on: { x: 40, y: 2, width: 115, height: 48 },
+                        check-off: { x: 40, y: 59, width: 115, height: 48 }
          		},
                 com.badlogic.gdx.graphics.g2d.NinePatch: {
                         knob: [
-                        { "x": 0, "y": 0, "width": 4, "height": 4 },
-                        { "x": 8, "y": 0, "width": 4, "height": 4 },
-                        { "x": 28, "y": 0, "width": 4, "height": 4 },
-                        { "x": 0, "y": 8, "width": 4, "height": 4 },
-                        { "x": 8, "y": 8, "width": 4, "height": 4 },
-                        { "x": 28, "y": 8, "width": 4, "height": 4 },
-                        { "x": 0, "y": 28, "width": 4, "height": 4 },
-                        { "x": 8, "y": 28, "width": 4, "height": 4 },
-                        { "x": 28, "y": 28, "width": 4, "height": 4 }
+                        { "x": 0, "y": 0, "width": 5, "height": 7 },
+                        { "x": 7, "y": 0, "width": 5, "height": 7 },
+                        { "x": 15, "y": 0, "width": 5, "height": 7 },
+                        { "x": 0, "y": 7, "width": 5, "height": 6 },
+                        { "x": 7, "y": 7, "width": 5, "height": 6 },
+                        { "x": 15, "y": 7, "width": 5, "height": 6 },
+                        { "x": 0, "y": 15, "width": 5, "height": 12 },
+                        { "x": 7, "y": 15, "width": 5, "height": 12 },
+                        { "x": 15, "y": 15, "width": 5, "height": 12 }
                         ]
 
                 },
                 com.badlogic.gdx.graphics.Color: {
-                        white: { r: 1, g: 1, b: 1, a: 1 },
+                        white: { r: 0.12941, g: 0.12941, b: 0.12941, a: 1 },
+						white2: { r: 1, g: 1, b: 1, a: 1 },
                         downFontColor: { r: 1, g: 0.1, b: 0.2, a: 1 }
                 },
                 com.badlogic.gdx.graphics.g2d.BitmapFont: {
@@ -40,7 +41,8 @@
                         }
                 },
                 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-                	default: { font: default-font, fontColor: white }
+                	default: { font: default-font, fontColor: white },
+					alternative: { font: default-font, fontColor: white2 }
                 }
         }
  }

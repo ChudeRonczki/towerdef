@@ -1,12 +1,13 @@
 package pl.czyzycki.towerdef.menus;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
+import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Skinable {
-	private Skin skin;
+	private Skin skin = null;
 	private AssetManager assetManager;
 	
 	Skinable(AssetManager assetManager) {
@@ -20,13 +21,15 @@ public class Skinable {
 		// Zostawiam takie, poniewaz nie wnosi to duzego narzutu.
 		// (jest ladowany tylko jeden plik tekstowy)
 		if(skin == null) {
-			Texture skinTexture = assetManager.get("layouts/menuskin.png", Texture.class);
-			skin = new Skin(Gdx.files.internal("layouts/menuskin.json"), skinTexture);
+			SkinLoader loader = new SkinLoader(new InternalFileHandleResolver());
+			SkinParameter parameter = new SkinParameter("layouts/menuskin.png");
+			skin = loader.loadSync(assetManager, "layouts/menuskin.json", parameter);
 		}
 		return skin;
 	}
 	
 	public void dispose() {
-		skin.dispose();
+		if(skin != null)
+			skin.dispose();
 	}
 }

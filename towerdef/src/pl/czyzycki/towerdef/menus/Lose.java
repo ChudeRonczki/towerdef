@@ -7,6 +7,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
@@ -29,8 +31,8 @@ public class Lose extends MiniMenu {
 	
 	public void resize(int width, int height) {
 		float aspect = (float)width/(float)height;
-		float adjustedWidth = GameplayScreen.viewportHeight*aspect;
-		float adjustedHeight = GameplayScreen.viewportHeight;
+		float adjustedWidth = 480*aspect;
+		float adjustedHeight = 480;
 		
 		stage.setViewport(adjustedWidth, adjustedHeight, true);
 		stage.clear();
@@ -44,6 +46,11 @@ public class Lose extends MiniMenu {
 		stage.addActor(table);
 		
 		TableLayout layout = table.getTableLayout();
+		
+		Label caption = new Label("Przegra³eœ - nie za³amuj siê!", skin);
+		LabelStyle st = skin.getStyle("default", LabelStyle.class);
+		caption.setStyle(st);
+		layout.register("windowCaption", caption);
 		
 		TextButton restartButton = new TextButton("Restart poziomu", skin);
 		restartButton.setClickListener( new ClickListener() {
