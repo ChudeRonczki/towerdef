@@ -60,6 +60,14 @@ public class OptionsScreen extends MenuBaseScreen {
 		final CheckBox vibratorButton = new CheckBox(skin);
 		layout.register("vibratorCheckBox", vibratorButton);
 		vibratorButton.setChecked(vibration);
+		vibratorButton.setClickListener( new ClickListener() {
+
+			@Override
+			public void click(Actor actor, float x, float y) {
+				if(((CheckBox)actor).isChecked()) Gdx.input.vibrate(100);
+			}
+			
+		});
 		
 		final CheckBox musicButton = new CheckBox(skin);
 		layout.register("musicCheckBox", musicButton);

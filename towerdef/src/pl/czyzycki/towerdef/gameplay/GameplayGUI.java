@@ -7,6 +7,7 @@ import pl.czyzycki.towerdef.gameplay.entities.PointTower;
 import pl.czyzycki.towerdef.gameplay.entities.SlowdownTower;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
+import pl.czyzycki.towerdef.menus.OptionsScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -28,6 +29,7 @@ class GameplayGUI {
 	Circle bombBlastZone;
 	public boolean bombDragged;
 	public boolean wasPanning;
+	final long bombPattern[] = {0, 50, 50, 50};
 	
 	Sprite pauseSprite, fasterSprite, fasterOnSprite;
 	Rectangle pauseArea = new Rectangle(),
@@ -44,18 +46,21 @@ class GameplayGUI {
 			hudCamera.unproject(hudCord);
 
 			if(pauseArea.contains(hudCord.x, hudCord.y)) {
+				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
 				screen.pauseMenu.show();
 				return true;
 			}
 			
 			if(fasterArea.contains(hudCord.x, hudCord.y)) {
+				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
 				screen.faster = !screen.faster;
 				return true;
 			}
 			
 			for (TowerButton button : towerButtons) {
-				if (button.tap(hudCord.x, hudCord.y))
+				if (button.tap(hudCord.x, hudCord.y)) {
 					return true;
+				}
 			}
 
 			if(bombSlot.tap(hudCord.x, hudCord.y)) {
@@ -66,6 +71,7 @@ class GameplayGUI {
 				if(upgradeSlot.count > 0) {
 					screen.performMaxUpgrade();
 					upgradeSlot.decrement();
+					if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
 				}
 				return true;
 			}
@@ -412,6 +418,7 @@ class GameplayGUI {
 			if(!bombSlot.tap(listener.hudCord.x, listener.hudCord.y)) {
 				screen.detonateBomb(bombBlastZone);
 				bombSlot.decrement();
+				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(bombPattern, -1);
 			}
 			bombDragged = false;
 		}

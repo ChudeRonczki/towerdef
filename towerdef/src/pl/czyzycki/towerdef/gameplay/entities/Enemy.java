@@ -3,7 +3,9 @@ package pl.czyzycki.towerdef.gameplay.entities;
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
+import pl.czyzycki.towerdef.menus.OptionsScreen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -100,6 +102,7 @@ public class Enemy {
 			alive = false;
 			base.takeHit(damage);
 			hitBase = true;
+			if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(200);
 			return true;
 		}
 		

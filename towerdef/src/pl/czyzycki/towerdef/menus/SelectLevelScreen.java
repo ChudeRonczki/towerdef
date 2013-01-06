@@ -2,6 +2,7 @@ package pl.czyzycki.towerdef.menus;
 
 import pl.czyzycki.towerdef.TowerDef;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
@@ -27,15 +28,15 @@ public class SelectLevelScreen extends MenuBaseScreen {
 	}
 	
 	void setLevelInfos() {
-		// TODO wlasciwe poziomy i gwiazdki
+		Preferences prefs = Gdx.app.getPreferences("stars");
 		levelInfos = new LevelInfo[5];
 		for(int i=0; i<5; i++)
 			levelInfos[i] = new LevelInfo();
-		levelInfos[0].stars = 1;
-		levelInfos[1].stars = 3;
-		levelInfos[2].stars = 0;
-		levelInfos[3].stars = 2;
-		levelInfos[4].stars = 1;
+		levelInfos[0].stars = prefs.getInteger("level-"+0, 0);;
+		levelInfos[1].stars = prefs.getInteger("level-"+1, 0);;
+		levelInfos[2].stars = prefs.getInteger("level-"+2, 0);;
+		levelInfos[3].stars = prefs.getInteger("level-"+3, 0);;
+		levelInfos[4].stars = prefs.getInteger("level-"+4, 0);;
 	}
 	
 	@Override

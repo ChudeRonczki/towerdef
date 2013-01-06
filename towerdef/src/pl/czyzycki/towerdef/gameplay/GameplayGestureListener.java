@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import pl.czyzycki.towerdef.gameplay.entities.Bonus;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;
+import pl.czyzycki.towerdef.menus.OptionsScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -44,6 +45,7 @@ class GameplayGestureListener extends GestureAdapter {
 					bonusTapped = true;
 					bonus.onCollected();
 					bonusIter.remove();
+					if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
 					break;
 				}
 			}
