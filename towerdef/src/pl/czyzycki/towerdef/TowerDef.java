@@ -49,6 +49,8 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/starslot.png", Texture.class);
 		assetManager.load("layouts/star-big.png", Texture.class);
 		assetManager.load("layouts/starslot-big.png", Texture.class);
+		assetManager.load("layouts/menu-bg.png", Texture.class);
+		assetManager.load("layouts/font.png", Texture.class);
 		assetManager.finishLoading();
 		
 		// Inaczej back key bedzie pauzowal apke:

@@ -85,9 +85,9 @@ public abstract class MiniMenu extends Skinable implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchMoved(int x, int y) {
+	public boolean touchMoved(int screenX, int screenY) {
 		if(!isShowed()) return false;
-		return currentStage().touchMoved(x, y)  || isShowed();
+		return currentStage().touchMoved(screenX, screenY)  || isShowed();
 	}
 
 	@Override

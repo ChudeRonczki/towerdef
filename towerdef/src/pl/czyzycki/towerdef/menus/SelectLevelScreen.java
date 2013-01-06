@@ -61,7 +61,7 @@ public class SelectLevelScreen extends MenuBaseScreen {
 		Cell<Actor> captionCell = layout.add(caption);
 		captionCell.align("center");
 		captionCell.colspan(5);
-		captionCell.spaceBottom(100);
+		captionCell.spaceBottom(30);
 
 		
 		layout.row();
@@ -113,7 +113,7 @@ public class SelectLevelScreen extends MenuBaseScreen {
 		exitButton.width(300);
 		Cell<Actor> backCell = layout.add(exitButton);
 		backCell.colspan(5);
-		backCell.spaceTop(100);
+		backCell.spaceTop(30);
 	}
 
 	@Override

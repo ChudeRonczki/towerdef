@@ -3,12 +3,12 @@ debug
 'Konfiguracja' align:center spacingBottom:100 colspan:2
 ---
 'Wibracje'
-[vibratorCheckBox] width:60 height:60 
+[vibratorCheckBox] width:115 height:48 
 ---
 'Dźwięki'
-[musicCheckBox] width:60 height:60
+[musicCheckBox] width:115 height:48
 ---
 'Efekty cząsteczkowe'
-[particleCheckBox] width:60 height:60
+[particleCheckBox] width:115 height:48
 ---
 [backButton] width:400 height:60 spacingTop:100 align:center colspan:2

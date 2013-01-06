@@ -146,8 +146,8 @@ public class Win extends MiniMenu {
 	
 	public void resize(int width, int height) {
 		float aspect = (float)width/(float)height;
-		adjustedWidth = GameplayScreen.viewportHeight*aspect;
-		adjustedHeight = GameplayScreen.viewportHeight;
+		adjustedWidth = 480*aspect;
+		adjustedHeight = 480;
 	}
 	
 	public void dispose() {

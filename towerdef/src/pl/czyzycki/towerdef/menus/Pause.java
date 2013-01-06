@@ -39,8 +39,8 @@ public class Pause extends MiniMenu {
 	
 	public void resize(int width, int height) {
 		float aspect = (float)width/(float)height;
-		float adjustedWidth = GameplayScreen.viewportHeight*aspect;
-		float adjustedHeight = GameplayScreen.viewportHeight;
+		float adjustedWidth = 480*aspect;
+		float adjustedHeight = 480;
 		
 		// G³ówny stage menu pauzy.
 		{

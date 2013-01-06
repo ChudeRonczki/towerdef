@@ -39,7 +39,7 @@ class GameplayGUI {
 		private boolean bombSelected;
 		
 		@Override
-		public boolean tap(int x, int y, int count) {
+		public boolean tap(int x, int y, int countz) {
 			hudCord.set(x, y, 1);
 			hudCamera.unproject(hudCord);
 

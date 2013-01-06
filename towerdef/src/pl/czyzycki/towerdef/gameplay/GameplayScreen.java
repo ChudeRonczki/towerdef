@@ -67,7 +67,7 @@ public class GameplayScreen implements Screen {
 	Json json;
 	
 	OrthographicCamera camera;
-	SpriteBatch batch;
+	public SpriteBatch batch;
 	public ShapeRenderer shapeRenderer;
 	
 	Pause pauseMenu;
