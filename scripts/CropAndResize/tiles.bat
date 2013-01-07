@@ -1,0 +1,1 @@
+montage "images/*.png" -tile 6x8 -geometry +0+0 -background none tiles.png
