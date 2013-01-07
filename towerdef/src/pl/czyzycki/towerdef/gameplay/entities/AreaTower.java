@@ -1,8 +1,14 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
+import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
@@ -17,6 +23,8 @@ import com.badlogic.gdx.utils.Pool;
 public class AreaTower extends Tower {
 	
 	Array<Enemy> targetedEnemies, targetedEnemies2;
+	
+	float rangeAlpha = 0;
 		
 	public AreaTower() {
 		super();
@@ -42,14 +50,22 @@ public class AreaTower extends Tower {
 	
 	@Override
 	public void update(float dt) {
+		rangeAlpha -= dt;
+		if(rangeAlpha < 0) rangeAlpha = 0;
 		if(dt >= timer) {
 			Circle range = getRange();
 			if(screen.enemyInRange(range, targeted) != null) {
 				for(Enemy enemy : targetedEnemies) {
-					if(Circle.colliding(range, enemy.hitZone)) enemy.takeHit(getDamage());
+					if(Circle.colliding(range, enemy.hitZone)) {
+						enemy.takeHit(getDamage());
+						rangeAlpha = 1;
+					}
 				}
 				for(Enemy enemy : targetedEnemies2) {
-					if(Circle.colliding(range, enemy.hitZone)) enemy.takeHit(getDamage());
+					if(Circle.colliding(range, enemy.hitZone)) {
+						enemy.takeHit(getDamage());
+						rangeAlpha = 1;
+					}
 				}
 				timer += getCooldown()-dt;
 			} else timer = 0f;
@@ -57,6 +73,23 @@ public class AreaTower extends Tower {
 	}
 
 	public static AreaTowerPool pool;
+	
+	public void draw(SpriteBatch batch) {
+		ShapeRenderer sr = TowerDef.getGame().getGameplayScreen().shapeRenderer;
+		
+		batch.end();
+		
+		Gdx.gl.glEnable(GL10.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		sr.begin(ShapeType.FilledCircle);
+		sr.setColor(1f, 0f, 0f, 0.1f*rangeAlpha);
+		getRange().draw(sr);
+		sr.end();
+		Gdx.gl.glDisable(GL10.GL_BLEND);
+		
+		batch.begin();
+		super.draw(batch);
+	}
 	
 	public AreaTower obtainCopy(float x, float y) {
 		return pool.obtain().set(this,x,y);
