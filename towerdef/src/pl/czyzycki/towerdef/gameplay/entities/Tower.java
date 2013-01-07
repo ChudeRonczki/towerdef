@@ -163,6 +163,10 @@ abstract public class Tower {
 		sprite = new Sprite(texAtlas.createSprite(textureFileName));
 	}
 	
+	public void preDraw(ShapeRenderer shapeRenderer) {
+		// Rysowanie czegoœ przed wszystkimi wie¿yczkami.
+	}
+	
 	public void draw(SpriteBatch batch) {
 		sprite.draw(batch);
 	}

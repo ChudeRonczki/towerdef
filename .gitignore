@@ -166,3 +166,4 @@ pip-log.txt
 /towerdef-android/project.properties
 
 /scripts/CropAndResize/images
+/scripts/CropAndResize/tiles.png

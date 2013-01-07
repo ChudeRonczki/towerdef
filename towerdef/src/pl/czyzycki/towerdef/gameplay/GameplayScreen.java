@@ -41,6 +41,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.tiled.TileMapRenderer;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -440,6 +441,16 @@ public class GameplayScreen implements Screen {
 		tileMapRenderer.render(camera,visibleLayers);
 		batch.setProjectionMatrix(camera.combined);
 		shapeRenderer.setProjectionMatrix(camera.combined);
+		
+		Gdx.gl.glEnable(GL10.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		shapeRenderer.begin(ShapeType.FilledCircle);
+		for(Tower tower : towers) {
+			tower.preDraw(shapeRenderer);
+		}
+		shapeRenderer.end();
+		Gdx.gl.glDisable(GL10.GL_BLEND);
+		
 		batch.begin();
 		for(Tower tower : towers) {
 			tower.draw(batch);

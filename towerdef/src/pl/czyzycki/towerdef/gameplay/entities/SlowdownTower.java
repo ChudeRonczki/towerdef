@@ -4,6 +4,7 @@ import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade.Level;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Pool;
 
@@ -19,6 +20,7 @@ public class SlowdownTower extends Tower {
 	Field modelField;
 	boolean fieldActivated;
 	float multiplier;
+	float alphaTimer = 0;
 	
 	public SlowdownTower() {
 		super();
@@ -48,6 +50,7 @@ public class SlowdownTower extends Tower {
 	
 	@Override
 	public void update(float dt) {
+		alphaTimer+=dt;
 		if(fieldActivated) {
 			if(!modelField.active) {
 				timer = getCooldown();
@@ -64,6 +67,17 @@ public class SlowdownTower extends Tower {
 				}
 			} else timer -= dt;
 		}
+	}
+	
+	public void preDraw(ShapeRenderer shapeRenderer) {
+		if(modelField.active) {
+			shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.4f+0.1f*(float)Math.sin(alphaTimer*10));
+			getRange().draw(shapeRenderer);
+		}
+	}
+	
+	public void draw(SpriteBatch batch) {
+		super.draw(batch);
 	}
 	
 	@Override

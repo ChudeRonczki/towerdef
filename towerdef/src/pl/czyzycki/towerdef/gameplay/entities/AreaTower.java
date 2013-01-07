@@ -5,11 +5,8 @@ import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
@@ -76,20 +73,17 @@ public class AreaTower extends Tower {
 
 	public static AreaTowerPool pool;
 	
-	public void draw(SpriteBatch batch) {
+	public void preDraw(ShapeRenderer shapeRenderer) {
+		if(rangeAlpha <= 0) return;
+		
 		ShapeRenderer sr = TowerDef.getGame().getGameplayScreen().shapeRenderer;
 		
-		batch.end();
-		
-		Gdx.gl.glEnable(GL10.GL_BLEND);
-		Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		sr.begin(ShapeType.FilledCircle);
 		sr.setColor(1f, 0f, 0f, 0.1f*rangeAlpha);
 		getRange().draw(sr);
-		sr.end();
-		Gdx.gl.glDisable(GL10.GL_BLEND);
-		
-		batch.begin();
+	}
+	
+	public void draw(SpriteBatch batch) {
+
 		super.draw(batch);
 	}
 	
