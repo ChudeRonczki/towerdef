@@ -164,3 +164,5 @@ pip-log.txt
 /towerdef-android/gen/pl/czyzycki/towerdef/BuildConfig.java
 /towerdef-android/gen/pl/czyzycki/towerdef/R.java
 /towerdef-android/project.properties
+
+/scripts/CropAndResize/images
