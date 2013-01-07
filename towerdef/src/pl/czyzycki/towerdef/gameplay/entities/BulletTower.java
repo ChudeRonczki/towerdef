@@ -3,6 +3,11 @@ package pl.czyzycki.towerdef.gameplay.entities;
 import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Pool;
 
 /**
@@ -15,6 +20,61 @@ public class BulletTower extends TargetTower {
 
 
 	Bullet bullet;
+	
+	public static Animation[] bulletTowerAnimation;
+	
+	float rotation = 0;
+	
+	static public void loadAnimations(AssetManager assetMgr) {
+		float animSpeed = 10;
+		bulletTowerAnimation = new Animation[3];
+		
+		{	
+			Texture texture = assetMgr.get("images/bullet-tower-airborne.png", Texture.class);
+			TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+			
+			TextureRegion[] frames = new TextureRegion[tmp.length*tmp[0].length];
+
+			for(int i=0; i<tmp.length; i++) {
+				for(int j=0; j<tmp[i].length; j++) {
+					frames[i*tmp.length+j] = tmp[i][j];
+				}
+			}
+		
+			bulletTowerAnimation[Targeted.AIRBORNE.ordinal()] = new Animation(animSpeed, frames);
+		}
+		
+		{	
+			Texture texture = assetMgr.get("images/bullet-tower-both.png", Texture.class);
+			TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+			
+			TextureRegion[] frames = new TextureRegion[tmp.length*tmp[0].length];
+
+			for(int i=0; i<tmp.length; i++) {
+				for(int j=0; j<tmp[i].length; j++) {
+					frames[i*tmp.length+j] = tmp[i][j];
+				}
+			}
+		
+			bulletTowerAnimation[Targeted.BOTH.ordinal()] = new Animation(animSpeed, frames);
+		}
+		
+		{	
+			Texture texture = assetMgr.get("images/bullet-tower-ground.png", Texture.class);
+			TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+			
+			TextureRegion[] frames = new TextureRegion[tmp.length*tmp[0].length];
+
+			for(int i=0; i<tmp.length; i++) {
+				for(int j=0; j<tmp[i].length; j++) {
+					frames[i*tmp.length+j] = tmp[i][j];
+				}
+			}
+		
+			bulletTowerAnimation[Targeted.GROUND.ordinal()] = new Animation(animSpeed, frames);
+		}
+		
+	}
 	
 	public BulletTower() {
 		super();
@@ -43,6 +103,7 @@ public class BulletTower extends TargetTower {
 	public void update(float dt) {
 		if(checkTarget()) {
 			direction.set(target.pos).sub(pos).nor();
+			rotation = 720-(direction.angle()+90);
 			if(dt >= timer) {
 				timer += getCooldown() - dt;
 				screen.addBullet(screen.getBulletPool().obtain().set(bullet, this));
@@ -50,6 +111,11 @@ public class BulletTower extends TargetTower {
 			} else timer -= dt;
 		} else if(dt >= timer) timer = 0f;
 		else timer -= dt;
+	}
+	
+	public void draw(SpriteBatch batch) {
+		TextureRegion currentFrame = bulletTowerAnimation[targeted.ordinal()].getKeyFrame(rotation, true);
+		batch.draw(currentFrame, pos.x-currentFrame.getRegionWidth()/2.0f, pos.y-currentFrame.getRegionHeight()/2.0f);
 	}
 
 	public static BulletTowerPool pool;
