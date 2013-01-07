@@ -35,6 +35,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.tiled.TileMapRenderer;
@@ -95,6 +96,8 @@ public class GameplayScreen implements Screen {
 	Array<Bullet> bullets;
 	Array<Field> fields;
 	Array<Bonus> bonuses;
+	
+	Array<PooledEffect> effects = new Array<PooledEffect>();
 	
 	BulletPool bulletPool;
 	BonusPool bonusPool;
@@ -485,6 +488,15 @@ public class GameplayScreen implements Screen {
 			}
 		}
 		
+		for (int i = effects.size - 1; i >= 0; i--) {
+	        PooledEffect effect = effects.get(i);
+	        effect.draw(batch, dt);
+	        if (effect.isComplete()) {
+	                effect.free();
+	                effects.removeIndex(i);
+	        }
+		}
+		
 		for(Bonus bonus : bonuses) {
 			bonus.draw(batch);
 		}
@@ -635,5 +647,9 @@ public class GameplayScreen implements Screen {
 			else break;
 		}
 		return stars;
+	}
+	
+	public void addEffect(PooledEffect effect) {
+		effects.add(effect);
 	}
 }

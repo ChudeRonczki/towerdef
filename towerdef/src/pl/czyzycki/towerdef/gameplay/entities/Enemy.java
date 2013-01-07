@@ -1,6 +1,8 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
 
+import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.Particle;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 import pl.czyzycki.towerdef.menus.OptionsScreen;
@@ -204,6 +206,7 @@ public class Enemy {
 		hp -= damage;
 		if(hp <= 0f) {
 			alive = false;
+			TowerDef.getGame().createParticle(Particle.ENEMY_DESTROYED, pos.x, pos.y);
 		}
 	}
 	

@@ -15,6 +15,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.tiled.TileAtlas;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
@@ -40,6 +43,10 @@ public class TowerDef extends Game {
 		SLOW_OFF
 	}
 	
+	public enum Particle {
+		ENEMY_DESTROYED
+	}
+	
 	static TowerDef game; // Po co siê mêczyæ :P Aktualnie bodaj nieu¿ywane, ale jest :)
 	
 	public BitmapFont debugFont; // Tymczasowa czcionka do wszystkiego
@@ -48,6 +55,7 @@ public class TowerDef extends Game {
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
 	public Music theme;
 	Sound sounds[] = new Sound[20];
+	ParticleEffectPool particlePool[] = new ParticleEffectPool[5];
 	
 	GameplayScreen gameplayScreen;
 	MainMenuScreen mainMenuScreen;
@@ -104,6 +112,8 @@ public class TowerDef extends Game {
 		sounds[9] = assetManager.get("sounds/slowon.wav", Sound.class);
 		sounds[10] = assetManager.get("sounds/slowoff.wav", Sound.class);
 		
+		loadParticle(Particle.ENEMY_DESTROYED.ordinal(), "particles/enemy-destroyed.txt");
+		
 		// Inaczej back key bedzie pauzowal apke:
 		Gdx.input.setCatchBackKey(true);
 		
@@ -118,6 +128,12 @@ public class TowerDef extends Game {
 		setScreen(mainMenuScreen);
 	}
 
+	public void loadParticle(int i, String filename) {
+		ParticleEffect particleEffect = new ParticleEffect();
+		particleEffect.load(Gdx.files.internal(filename), Gdx.files.internal("particles"));
+		particlePool[i] = new ParticleEffectPool(particleEffect, 1, 2);
+	}
+	
 	@Override
 	public void dispose() {
 		gameplayScreen.dispose();
@@ -161,5 +177,14 @@ public class TowerDef extends Game {
 
 	public void playSound(GameSound sound) {
 		if(OptionsScreen.musicEnabled()) sounds[sound.ordinal()].play(); 
+	}
+	
+	// TODO cos czuje ze to tutaj nie pasuje :<
+	public void createParticle(Particle particle, float x, float y) {
+		if(OptionsScreen.particleEnabled()) {
+			PooledEffect effect = particlePool[particle.ordinal()].obtain();
+			effect.setPosition(x, y);
+			gameplayScreen.addEffect(effect);
+		}
 	}
 }
