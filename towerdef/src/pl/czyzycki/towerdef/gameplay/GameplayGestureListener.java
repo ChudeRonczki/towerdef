@@ -33,25 +33,28 @@ class GameplayGestureListener extends GestureAdapter {
 	public boolean tap (int x, int y, int count) {
 		worldCord.set(x,y,0f);
 		screen.camera.unproject(worldCord);
+		
+		// Najpierw tapowanie bonusów.
+		Iterator<Bonus> bonusIter = screen.bonuses.iterator();
+		while(bonusIter.hasNext()) {
+			Bonus bonus = bonusIter.next();
+			if(bonus.getZone().contains(worldCord.x, worldCord.y)) {
+				bonus.onCollected();
+				bonusIter.remove();
+				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
+				screen.game.playSound(GameSound.BONUS);
+				return true;
+			}
+		}
+		
+		// Potem próbujemy zaznaczyæ wie¿yczkê.
 		Tower selectedTower = screen.getTower(worldCord.x, worldCord.y);
 		if(selectedTower != null) {
 			screen.upgradeGui.setSelectedTower(selectedTower);
 		} else {
+			// Na koñcu dodajemy wie¿yczkê.
 			screen.upgradeGui.hide();
-			boolean bonusTapped = false;
-			Iterator<Bonus> bonusIter = screen.bonuses.iterator();
-			while(bonusIter.hasNext()) {
-				Bonus bonus = bonusIter.next();
-				if(bonus.getZone().contains(worldCord.x, worldCord.y)) {
-					bonusTapped = true;
-					bonus.onCollected();
-					bonusIter.remove();
-					if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
-					screen.game.playSound(GameSound.BONUS);
-					break;
-				}
-			}
-			if(!bonusTapped) screen.addTower(worldCord.x, worldCord.y);
+			screen.addTower(worldCord.x, worldCord.y);
 		}
 		return true;
 	}
