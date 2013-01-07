@@ -117,14 +117,15 @@ abstract public class Tower {
 		
 		if(upgrade == null) return null;
 		
-		if(upgradeLevelIters[upgradeIndex] == 0) return null;
 		
 		if(screen.maxUpgradeIsWorking()) {
 			return upgrade.levels[upgrade.levels.length-1];
-		} else {
+		} else if(upgradeLevelIters[upgradeIndex] > 0) {
 			int levelId = upgradeLevelIters[upgradeIndex] - 1;
 		
 			return upgrade.levels[levelId];
+		} else {
+			return null;
 		}
 	}
 	

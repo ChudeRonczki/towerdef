@@ -76,10 +76,8 @@ public class AreaTower extends Tower {
 	public void preDraw(ShapeRenderer shapeRenderer) {
 		if(rangeAlpha <= 0) return;
 		
-		ShapeRenderer sr = TowerDef.getGame().getGameplayScreen().shapeRenderer;
-		
-		sr.setColor(1f, 0f, 0f, 0.1f*rangeAlpha);
-		getRange().draw(sr);
+		shapeRenderer.setColor(1f, 0f, 0f, 0.1f*rangeAlpha);
+		getRange().draw(shapeRenderer);
 	}
 	
 	public void draw(SpriteBatch batch) {
