@@ -83,6 +83,7 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/menu-bg2.png", Texture.class);
 		assetManager.load("layouts/font.png", Texture.class);
 		assetManager.load("images/enemy-anim.png", Texture.class);
+		assetManager.load("images/flying.png", Texture.class);
 		assetManager.load("images/bullet-tower-airborne.png", Texture.class);
 		assetManager.load("images/bullet-tower-both.png", Texture.class);
 		assetManager.load("images/bullet-tower-ground.png", Texture.class);

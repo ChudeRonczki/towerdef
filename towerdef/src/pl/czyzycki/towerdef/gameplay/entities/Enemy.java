@@ -58,6 +58,8 @@ public class Enemy {
 		
 		float animSpeed = 0.15f;
 		
+		// TODO jest zryte poruszanie sie góra/dó³
+		
 		TextureRegion[] upWalkFrames = new TextureRegion[4];
 		upWalkFrames[0] = tmp[0][0];
 		upWalkFrames[1] = tmp[0][1];
@@ -90,20 +92,23 @@ public class Enemy {
 		
 		downWalkingAnimation = new Animation(animSpeed, downWalkFrames);
 		
+		texture = assetMgr.get("images/flying.png", Texture.class);
+		tmp = TextureRegion.split(texture, 150, 150);
+			
 		TextureRegion[] upFlyFrames = new TextureRegion[1];
-		upFlyFrames[0] = tmp[0][3];
+		upFlyFrames[0] = tmp[0][0];
 		upFlyingAnimation = new Animation(animSpeed, upFlyFrames);
 		
 		TextureRegion[] leftFlyFrames = new TextureRegion[1];
-		leftFlyFrames[0] = tmp[1][3];
+		leftFlyFrames[0] = tmp[0][2];
 		leftFlyingAnimation = new Animation(animSpeed, leftFlyFrames);
 		
 		TextureRegion[] rightFlyFrames = new TextureRegion[1];
-		rightFlyFrames[0] = tmp[2][3];
+		rightFlyFrames[0] = tmp[1][0];
 		rightFlyingAnimation = new Animation(animSpeed, rightFlyFrames);
 		
 		TextureRegion[] downFlyFrames = new TextureRegion[1];
-		downFlyFrames[0] = tmp[3][3];
+		downFlyFrames[0] = tmp[0][1];
 		downFlyingAnimation = new Animation(animSpeed, downFlyFrames);
 	}
 	
