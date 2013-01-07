@@ -12,6 +12,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -25,7 +26,20 @@ import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
  *
  */
 public class TowerDef extends Game {
-
+	public enum GameSound {
+		CLICK,
+		DESTROYED,
+		BOMB,
+		MAXUP,
+		BONUS,
+		AREA,
+		BULLET_HIT,
+		BULLET_START,
+		POINT,
+		SLOW_ON,
+		SLOW_OFF
+	}
+	
 	static TowerDef game; // Po co siê mêczyæ :P Aktualnie bodaj nieu¿ywane, ale jest :)
 	
 	public BitmapFont debugFont; // Tymczasowa czcionka do wszystkiego
@@ -33,6 +47,7 @@ public class TowerDef extends Game {
 	AssetManager assetManager; // Manager assetów (grafika, dŸwiêki, czcionki)
 	TileAtlas tileAtlas; // Atlas tile'i. Nie jest obs³ugiwany przez AssetManager
 	public Music theme;
+	Sound sounds[] = new Sound[20];
 	
 	GameplayScreen gameplayScreen;
 	MainMenuScreen mainMenuScreen;
@@ -59,12 +74,35 @@ public class TowerDef extends Game {
 		assetManager.load("layouts/menu-bg2.png", Texture.class);
 		assetManager.load("layouts/font.png", Texture.class);
 		assetManager.load("images/enemy-anim.png", Texture.class);
+		assetManager.load("sounds/click.wav", Sound.class);
+		assetManager.load("sounds/destroyed.wav", Sound.class);
+		assetManager.load("sounds/bomb.mp3", Sound.class);
+		assetManager.load("sounds/maxup.mp3", Sound.class);
+		assetManager.load("sounds/bonus.wav", Sound.class);
+		assetManager.load("sounds/area.wav", Sound.class);
+		assetManager.load("sounds/bullethit.ogg", Sound.class);
+		assetManager.load("sounds/bulletstart.wav", Sound.class);
+		assetManager.load("sounds/point.wav", Sound.class);
+		assetManager.load("sounds/slowon.wav", Sound.class);
+		assetManager.load("sounds/slowoff.wav", Sound.class);
 		assetManager.finishLoading();
 		
 		Enemy.loadAnimations(assetManager);
 		
 		theme = assetManager.get("music/theme.ogg", Music.class);
 		theme.setLooping(true);
+		
+		sounds[0] = assetManager.get("sounds/click.wav", Sound.class);
+		sounds[1] = assetManager.get("sounds/destroyed.wav", Sound.class);
+		sounds[2] = assetManager.get("sounds/bomb.mp3", Sound.class);
+		sounds[3] = assetManager.get("sounds/maxup.mp3", Sound.class);
+		sounds[4] = assetManager.get("sounds/bonus.wav", Sound.class);
+		sounds[5] = assetManager.get("sounds/area.wav", Sound.class);
+		sounds[6] = assetManager.get("sounds/bullethit.ogg", Sound.class);
+		sounds[7] = assetManager.get("sounds/bulletstart.wav", Sound.class);
+		sounds[8] = assetManager.get("sounds/point.wav", Sound.class);
+		sounds[9] = assetManager.get("sounds/slowon.wav", Sound.class);
+		sounds[10] = assetManager.get("sounds/slowoff.wav", Sound.class);
 		
 		// Inaczej back key bedzie pauzowal apke:
 		Gdx.input.setCatchBackKey(true);
@@ -121,4 +159,7 @@ public class TowerDef extends Game {
 		return selectLevelScreen;
 	}
 
+	public void playSound(GameSound sound) {
+		if(OptionsScreen.musicEnabled()) sounds[sound.ordinal()].play(); 
+	}
 }

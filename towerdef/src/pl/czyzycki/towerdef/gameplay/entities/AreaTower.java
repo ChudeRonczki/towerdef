@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
@@ -55,6 +56,7 @@ public class AreaTower extends Tower {
 		if(dt >= timer) {
 			Circle range = getRange();
 			if(screen.enemyInRange(range, targeted) != null) {
+				screen.game.playSound(GameSound.AREA);
 				for(Enemy enemy : targetedEnemies) {
 					if(Circle.colliding(range, enemy.hitZone)) {
 						enemy.takeHit(getDamage());

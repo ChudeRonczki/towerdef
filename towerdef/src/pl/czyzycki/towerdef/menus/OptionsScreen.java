@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef.menus;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -64,6 +65,7 @@ public class OptionsScreen extends MenuBaseScreen {
 
 			@Override
 			public void click(Actor actor, float x, float y) {
+            	game.playSound(GameSound.CLICK);
 				if(((CheckBox)actor).isChecked()) Gdx.input.vibrate(100);
 			}
 			
@@ -76,7 +78,8 @@ public class OptionsScreen extends MenuBaseScreen {
 
 			@Override
 			public void click(Actor actor, float x, float y) {
-				if(((CheckBox)actor).isChecked()) game.theme.play();
+            	game.playSound(GameSound.CLICK);
+				if(music = ((CheckBox)actor).isChecked()) game.theme.play();
 				else game.theme.stop();
 			}
 			
@@ -85,12 +88,21 @@ public class OptionsScreen extends MenuBaseScreen {
 		final CheckBox particleButton = new CheckBox(skin);
 		layout.register("particleCheckBox", particleButton );
 		particleButton.setChecked(particle);
+		particleButton.setClickListener( new ClickListener() {
+
+			@Override
+			public void click(Actor actor, float x, float y) {
+            	game.playSound(GameSound.CLICK);
+			}
+			
+		});
 		
 		TextButton backButton = new TextButton("OK", skin);
 		backButton.setClickListener( new ClickListener() {
             @Override
             public void click(Actor actor, float x, float y )
             {
+            	game.playSound(GameSound.CLICK);
         		Preferences prefs = Gdx.app.getPreferences("options");
         		prefs.putBoolean("vibration",	vibration	=vibratorButton.isChecked());
         		prefs.putBoolean("music",		music		=musicButton.isChecked());

@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef.menus;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.Gdx;
@@ -71,6 +72,7 @@ public class Pause extends MiniMenu {
 				@Override
 				public void click(Actor actor, float x, float y )
 				{
+	            	game.playSound(GameSound.CLICK);
 					showed = false;
 				}
 			} );
@@ -81,6 +83,7 @@ public class Pause extends MiniMenu {
 				@Override
 				public void click(Actor actor, float x, float y )
 				{
+	            	game.playSound(GameSound.CLICK);
 					areYouSureRestarting = true;
 					areYouSureShowed = true;
 				}
@@ -92,6 +95,7 @@ public class Pause extends MiniMenu {
 				@Override
 				public void click(Actor actor, float x, float y )
 				{
+	            	game.playSound(GameSound.CLICK);
 					areYouSureRestarting = false;
 					areYouSureShowed = true;
 				}
@@ -127,6 +131,7 @@ public class Pause extends MiniMenu {
 				@Override
 				public void click(Actor actor, float x, float y )
 				{
+	            	game.playSound(GameSound.CLICK);
 					areYouSureShowed = false;
 				}
 			} );
@@ -137,6 +142,7 @@ public class Pause extends MiniMenu {
 				@Override
 				public void click(Actor actor, float x, float y )
 				{
+	            	game.playSound(GameSound.CLICK);
 					areYouSureShowed = false;
 					if(areYouSureRestarting) {
 						screen.restartMap();

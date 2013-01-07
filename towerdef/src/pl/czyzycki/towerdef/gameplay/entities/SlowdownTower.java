@@ -1,5 +1,6 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.entities.Tower.Upgrade.Level;
 
@@ -51,6 +52,7 @@ public class SlowdownTower extends Tower {
 			if(!modelField.active) {
 				timer = getCooldown();
 				fieldActivated = false;
+				screen.game.playSound(GameSound.SLOW_OFF);
 			}
 		} else {
 			if(dt >= timer) {
@@ -58,6 +60,7 @@ public class SlowdownTower extends Tower {
 				if(screen.enemyInRange(getRange(), Targeted.BOTH) != null) {
 					fieldActivated = true;
 					screen.addField(modelField.activate());
+					screen.game.playSound(GameSound.SLOW_ON);
 				}
 			} else timer -= dt;
 		}

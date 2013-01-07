@@ -1,6 +1,7 @@
 package pl.czyzycki.towerdef.gameplay;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.entities.AreaTower;
 import pl.czyzycki.towerdef.gameplay.entities.BulletTower;
 import pl.czyzycki.towerdef.gameplay.entities.PointTower;
@@ -47,12 +48,14 @@ class GameplayGUI {
 
 			if(pauseArea.contains(hudCord.x, hudCord.y)) {
 				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
+				screen.game.playSound(GameSound.CLICK);
 				screen.pauseMenu.show();
 				return true;
 			}
 			
 			if(fasterArea.contains(hudCord.x, hudCord.y)) {
 				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
+				screen.game.playSound(GameSound.CLICK);
 				screen.faster = !screen.faster;
 				return true;
 			}
@@ -72,6 +75,7 @@ class GameplayGUI {
 					screen.performMaxUpgrade();
 					upgradeSlot.decrement();
 					if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
+					screen.game.playSound(GameSound.MAXUP);
 				}
 				return true;
 			}
@@ -185,6 +189,7 @@ class GameplayGUI {
 			if (expanded && subButtons != null && subButtons.size != 0) {
 				for (TowerButton button : subButtons) {
 					if (button.tap(x, y)) {
+						screen.game.playSound(GameSound.CLICK);
 						return true;
 					}
 				}
@@ -194,6 +199,7 @@ class GameplayGUI {
 						button.setSelected(false);
 					}
 
+					screen.game.playSound(GameSound.CLICK);
 					this.setSelected(true);
 
 					if (subButtons != null) {
@@ -419,6 +425,7 @@ class GameplayGUI {
 				screen.detonateBomb(bombBlastZone);
 				bombSlot.decrement();
 				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(bombPattern, -1);
+				screen.game.playSound(GameSound.BOMB);
 			}
 			bombDragged = false;
 		}

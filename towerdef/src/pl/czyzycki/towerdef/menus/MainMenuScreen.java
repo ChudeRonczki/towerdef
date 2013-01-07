@@ -1,6 +1,8 @@
 package pl.czyzycki.towerdef.menus;
 
 import pl.czyzycki.towerdef.TowerDef;
+import pl.czyzycki.towerdef.TowerDef.GameSound;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Align;
@@ -38,6 +40,7 @@ public class MainMenuScreen extends MenuBaseScreen {
             @Override
             public void click(Actor actor, float x, float y )
             {
+            	game.playSound(GameSound.CLICK);
             	game.setScreen(game.getSelectLevelScreen());
             }
         } );
@@ -48,6 +51,7 @@ public class MainMenuScreen extends MenuBaseScreen {
             @Override
             public void click(Actor actor, float x, float y )
             {
+            	game.playSound(GameSound.CLICK);
             	game.setScreen(game.getInstructionsScreen());
             }
         } );
@@ -58,6 +62,7 @@ public class MainMenuScreen extends MenuBaseScreen {
             @Override
             public void click(Actor actor, float x, float y )
             {
+            	game.playSound(GameSound.CLICK);
             	game.setScreen(game.getOptionsButton());
             }
         } );
@@ -68,6 +73,7 @@ public class MainMenuScreen extends MenuBaseScreen {
             @Override
             public void click(Actor actor, float x, float y )
             {
+            	game.playSound(GameSound.CLICK);
                 Gdx.app.exit();
             }
         } );
