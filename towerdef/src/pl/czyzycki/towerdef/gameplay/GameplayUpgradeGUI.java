@@ -183,23 +183,36 @@ public class GameplayUpgradeGUI {
 			
 			float iconX = towerPos.x+pos.x-halfW;
 			float iconY = towerPos.y+pos.y-halfH;
+			float iconCenter = towerPos.x + pos.x;
 			
 			icon.setPosition(iconX, iconY);
 			icon.draw(screen.batch);
 			
 			if(upgrade != null)
 			{
+				float prevScale = screen.game.debugFont.getScaleX();
+				screen.game.debugFont.setScale(prevScale/2.0f);
+				
 				int upgradeLevel = selectedTower.upgradeLevelIters[i-1];
 				
-				float ydiff = 30;
+				float ydiff = 20;
 				if(screen.maxUpgradeIsWorking())
 					ydiff = 0;
-				else
-					screen.game.debugFont.draw(screen.batch, upgradeLevel+"/"+upgrade.levels.length, iconX, iconY);
-				if(upgradeLevel == upgrade.levels.length || screen.maxUpgradeIsWorking())
-					screen.game.debugFont.draw(screen.batch, "MAX", iconX, iconY-ydiff);
-				else
-					screen.game.debugFont.draw(screen.batch, "cost: "+(upgrade.levels[upgradeLevel].cost), iconX, iconY-ydiff);
+				else {
+					float sizeX = screen.game.debugFont.getBounds(upgradeLevel+"/"+upgrade.levels.length).width/2.0f;
+					screen.game.debugFont.draw(screen.batch, upgradeLevel+"/"+upgrade.levels.length, iconCenter-sizeX, iconY);
+				}
+				
+				if(upgradeLevel == upgrade.levels.length || screen.maxUpgradeIsWorking()) {
+					float sizeX = screen.game.debugFont.getBounds("MAX").width/2.0f;
+					screen.game.debugFont.draw(screen.batch, "MAX", iconCenter-sizeX, iconY-ydiff);
+				}
+				else {
+					float sizeX = screen.game.debugFont.getBounds("$"+(upgrade.levels[upgradeLevel].cost)).width/2.0f;
+					screen.game.debugFont.draw(screen.batch, "$"+(upgrade.levels[upgradeLevel].cost), iconCenter-sizeX, iconY-ydiff);
+				}
+				
+				screen.game.debugFont.setScale(prevScale);
 			}
 		}
 	}
