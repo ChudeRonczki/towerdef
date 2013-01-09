@@ -180,7 +180,8 @@ abstract public class Tower {
 	}
 	
 	public boolean collision(float x, float y) {
-		float radius = sprite.getWidth()/2.0f;
+		// TODO ten radius nizej powinien byæ wczytywany z czegos
+		float radius = 40;
 		float dx = x - pos.x;
 		float dy = y - pos.y;
 		return radius*radius > dx*dx + dy*dy;

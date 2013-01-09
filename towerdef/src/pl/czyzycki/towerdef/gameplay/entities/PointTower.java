@@ -2,7 +2,6 @@ package pl.czyzycki.towerdef.gameplay.entities;
 
 import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
-import pl.czyzycki.towerdef.gameplay.entities.Tower.Targeted;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Pool;
 
 /**
@@ -101,7 +99,7 @@ public class PointTower extends TargetTower {
 			rotation = 720-(direction.angle()+90);
 			if(dt >= timer) {
 				lineTimer = 1;
-				timer += getCooldown() - dt;
+				timer = getCooldown();
 				target.takeHit(getDamage());
 				screen.game.playSound(GameSound.POINT);
 			} else timer -= dt;
@@ -122,7 +120,7 @@ public class PointTower extends TargetTower {
 				shapeRenderer.setColor(1, 1, 0.5f, lineTimer);
 				break;
 			}
-			shapeRenderer.line(pos.x, pos.y-5, target.pos.x, target.pos.y);
+			shapeRenderer.line(pos.x, pos.y-7.5f, target.pos.x, target.pos.y);
 		}
 	}
 	

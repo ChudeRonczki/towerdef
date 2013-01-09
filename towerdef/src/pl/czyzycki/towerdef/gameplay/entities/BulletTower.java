@@ -106,7 +106,7 @@ public class BulletTower extends TargetTower {
 			direction.set(target.pos).sub(pos).nor();
 			rotation = 720-(direction.angle()+90);
 			if(dt >= timer) {
-				timer += getCooldown() - dt;
+				timer = getCooldown();
 				screen.addBullet(screen.getBulletPool().obtain().set(bullet, this));
 				screen.game.playSound(GameSound.BULLET_START);
 			} else timer -= dt;

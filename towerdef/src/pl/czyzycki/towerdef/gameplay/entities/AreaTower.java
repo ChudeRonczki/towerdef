@@ -65,7 +65,7 @@ public class AreaTower extends Tower {
 						rangeAlpha = 1;
 					}
 				}
-				timer += getCooldown()-dt;
+				timer = getCooldown();
 			} else timer = 0f;
 		} else timer -= dt;
 	}

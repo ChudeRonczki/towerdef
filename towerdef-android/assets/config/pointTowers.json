@@ -23,9 +23,9 @@
 		{
 			"levels" :
 			[
-				{ "value" : 4, "cost"  : 200 },
-				{ "value" : 3, "cost"  : 300 },
-				{ "value" : 2, "cost"  : 500 }
+				{ "value" : 0.4, "cost"  : 200 },
+				{ "value" : 0.3, "cost"  : 300 },
+				{ "value" : 0.2, "cost"  : 500 }
 			],
 			upgraded : "COOLDOWN"
 		},
@@ -64,9 +64,9 @@
 		{
 			"levels" :
 			[
-				{ "value" : 4, "cost"  : 200 },
-				{ "value" : 3, "cost"  : 300 },
-				{ "value" : 2, "cost"  : 500 }
+				{ "value" : 0.4, "cost"  : 200 },
+				{ "value" : 0.3, "cost"  : 300 },
+				{ "value" : 0.2, "cost"  : 500 }
 			],
 			upgraded : "COOLDOWN"
 		},
@@ -105,9 +105,9 @@
 		{
 			"levels" :
 			[
-				{ "value" : 4, "cost"  : 200 },
-				{ "value" : 3, "cost"  : 300 },
-				{ "value" : 2, "cost"  : 500 }
+				{ "value" : 0.4, "cost"  : 200 },
+				{ "value" : 0.3, "cost"  : 300 },
+				{ "value" : 0.2, "cost"  : 500 }
 			],
 			upgraded : "COOLDOWN"
 		},
