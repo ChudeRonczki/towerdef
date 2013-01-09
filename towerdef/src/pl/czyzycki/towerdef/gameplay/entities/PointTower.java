@@ -2,7 +2,13 @@ package pl.czyzycki.towerdef.gameplay.entities;
 
 import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
+import pl.czyzycki.towerdef.gameplay.entities.Tower.Targeted;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Pool;
 
 /**
@@ -14,8 +20,62 @@ import com.badlogic.gdx.utils.Pool;
  */
 public class PointTower extends TargetTower {
 	
+	public static Animation[] pointTowerAnimation;
+	float rotation = 0;
+	
 	public PointTower() {
 		super();
+	}
+	
+	static public void loadAnimations(AssetManager assetMgr) {
+		float animSpeed = 10;
+		pointTowerAnimation = new Animation[3];
+		
+		{	
+			Texture texture = assetMgr.get("images/point-tower-airborne.png", Texture.class);
+			TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+			
+			TextureRegion[] frames = new TextureRegion[tmp.length*tmp[0].length];
+
+			for(int i=0; i<tmp.length; i++) {
+				for(int j=0; j<tmp[i].length; j++) {
+					frames[i*tmp.length+j] = tmp[i][j];
+				}
+			}
+		
+			pointTowerAnimation[Targeted.AIRBORNE.ordinal()] = new Animation(animSpeed, frames);
+		}
+		
+		{	
+			Texture texture = assetMgr.get("images/point-tower-both.png", Texture.class);
+			TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+			
+			TextureRegion[] frames = new TextureRegion[tmp.length*tmp[0].length];
+
+			for(int i=0; i<tmp.length; i++) {
+				for(int j=0; j<tmp[i].length; j++) {
+					frames[i*tmp.length+j] = tmp[i][j];
+				}
+			}
+		
+			pointTowerAnimation[Targeted.BOTH.ordinal()] = new Animation(animSpeed, frames);
+		}
+		
+		{	
+			Texture texture = assetMgr.get("images/point-tower-ground.png", Texture.class);
+			TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+			
+			TextureRegion[] frames = new TextureRegion[tmp.length*tmp[0].length];
+
+			for(int i=0; i<tmp.length; i++) {
+				for(int j=0; j<tmp[i].length; j++) {
+					frames[i*tmp.length+j] = tmp[i][j];
+				}
+			}
+		
+			pointTowerAnimation[Targeted.GROUND.ordinal()] = new Animation(animSpeed, frames);
+		}
+		
 	}
 	
 	public PointTower init(GameplayScreen screen) {
@@ -33,6 +93,7 @@ public class PointTower extends TargetTower {
 	public void update(float dt) {
 		if(checkTarget()) {
 			direction.set(target.pos).sub(pos).nor();
+			rotation = 720-(direction.angle()+90);
 			if(dt >= timer) {
 				timer += getCooldown() - dt;
 				target.takeHit(getDamage());
@@ -42,6 +103,11 @@ public class PointTower extends TargetTower {
 		else timer -= dt;
 	}
 
+	public void draw(SpriteBatch batch) {
+		TextureRegion currentFrame = pointTowerAnimation[targeted.ordinal()].getKeyFrame(rotation, true);
+		batch.draw(currentFrame, pos.x-currentFrame.getRegionWidth()/2.0f, pos.y-currentFrame.getRegionHeight()/2.0f);
+	}
+	
 	public static PointTowerPool pool;
 	
 	public PointTower obtainCopy(float x, float y) {

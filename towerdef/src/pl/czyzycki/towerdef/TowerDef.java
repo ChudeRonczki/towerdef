@@ -4,6 +4,7 @@ import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.entities.Base;
 import pl.czyzycki.towerdef.gameplay.entities.BulletTower;
 import pl.czyzycki.towerdef.gameplay.entities.Enemy;
+import pl.czyzycki.towerdef.gameplay.entities.PointTower;
 import pl.czyzycki.towerdef.menus.InstructionsScreen;
 import pl.czyzycki.towerdef.menus.MainMenuScreen;
 import pl.czyzycki.towerdef.menus.OptionsScreen;
@@ -89,6 +90,9 @@ public class TowerDef extends Game {
 		assetManager.load("images/bullet-tower-airborne.png", Texture.class);
 		assetManager.load("images/bullet-tower-both.png", Texture.class);
 		assetManager.load("images/bullet-tower-ground.png", Texture.class);
+		assetManager.load("images/point-tower-airborne.png", Texture.class);
+		assetManager.load("images/point-tower-both.png", Texture.class);
+		assetManager.load("images/point-tower-ground.png", Texture.class);
 		assetManager.load("sounds/click.wav", Sound.class);
 		assetManager.load("sounds/destroyed.wav", Sound.class);
 		assetManager.load("sounds/bomb.mp3", Sound.class);
@@ -103,6 +107,7 @@ public class TowerDef extends Game {
 		assetManager.finishLoading();
 		
 		Enemy.loadAnimations(assetManager);
+		PointTower.loadAnimations(assetManager);
 		BulletTower.loadAnimations(assetManager);
 		Base.loadAnimations(assetManager);
 		
