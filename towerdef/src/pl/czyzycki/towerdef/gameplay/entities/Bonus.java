@@ -22,6 +22,7 @@ public class Bonus {
 	Sprite sprite;
 	BonusType type;
 	
+	float maxLifeTime;
 	float lifetime;
 	int value;
 
@@ -35,9 +36,20 @@ public class Bonus {
 		return this;
 	}
 	
+	public final float TweenBonusSize(float t) {
+		final float PI = 3.14159265f;
+        float a = 1;
+        float p = .3f;
+        if (t<=0) return 0;  if (t>=1) return 1;
+        float s=p/4;
+        return a*(float)Math.pow(2,-10*t) * (float)Math.sin( (t-s)*(2*PI)/p ) + 1;
+}
+
+	
 	public Bonus set(Bonus bonus, Vector2 pos) {
 		type = bonus.type;
 		lifetime = bonus.lifetime;
+		maxLifeTime = bonus.lifetime;
 		value = bonus.value;
 		
 		sprite.set(bonus.sprite);
@@ -49,6 +61,9 @@ public class Bonus {
 	}
 	
 	public void draw(SpriteBatch batch) {
+		sprite.setScale(TweenBonusSize(maxLifeTime-lifetime));
+		if(lifetime*4 < 1)
+			sprite.setScale(lifetime*4);
 		sprite.draw(batch);
 	}
 	

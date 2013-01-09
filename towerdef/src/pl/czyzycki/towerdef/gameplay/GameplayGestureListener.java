@@ -11,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Klasa odpowiedzialna za obs³ugê typowych gestów dotykowych.
@@ -35,12 +36,13 @@ class GameplayGestureListener extends GestureAdapter {
 		screen.camera.unproject(worldCord);
 		
 		// Najpierw tapowanie bonusów.
-		Iterator<Bonus> bonusIter = screen.bonuses.iterator();
-		while(bonusIter.hasNext()) {
-			Bonus bonus = bonusIter.next();
+		// W odwrotnej kolejnoœci przechodzê tablicê, ¿eby najpierw zbieraæ bonusy z wierzchu.
+		Array<Bonus> bonuses = screen.bonuses;
+		for(int i=bonuses.size-1; i>=0; i--) {
+			Bonus bonus = bonuses.get(i);
 			if(bonus.getZone().contains(worldCord.x, worldCord.y)) {
 				bonus.onCollected();
-				bonusIter.remove();
+				bonuses.removeIndex(i);
 				if(OptionsScreen.vibrationEnabled()) Gdx.input.vibrate(50);
 				screen.game.playSound(GameSound.BONUS);
 				return true;
