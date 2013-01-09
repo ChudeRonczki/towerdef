@@ -1,6 +1,5 @@
 package pl.czyzycki.towerdef.gameplay.entities;
 
-import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;

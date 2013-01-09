@@ -59,6 +59,7 @@ abstract public class Tower {
 	Sprite sprite;
 	float cooldown, timer; // W cooldown parametr, w timer jego licznik
 	float damage;
+	boolean rotatingTower;
 	
 	public String icon;
 	public String groupIcon;
@@ -156,12 +157,14 @@ abstract public class Tower {
 		cooldown = tower.cooldown;
 		timer = 0f;
 		cost = tower.cost;
-		sprite.set(tower.sprite);
-		sprite.setPosition(pos.x-sprite.getWidth()/2f, pos.y-sprite.getHeight()/2f);
+		if(!rotatingTower) {
+			sprite.set(tower.sprite);
+			sprite.setPosition(pos.x-sprite.getWidth()/2f, pos.y-sprite.getHeight()/2f);
+		}
 	}
 	
 	public void loadSprite(TextureAtlas texAtlas) {
-		sprite = new Sprite(texAtlas.createSprite(textureFileName));
+		if(!rotatingTower) sprite = new Sprite(texAtlas.createSprite(textureFileName));
 	}
 	
 	public void preDraw(ShapeRenderer shapeRenderer) {
