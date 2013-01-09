@@ -208,8 +208,8 @@ public class GameplayUpgradeGUI {
 					screen.game.debugFont.draw(screen.batch, "MAX", iconCenter-sizeX, iconY-ydiff);
 				}
 				else {
-					float sizeX = screen.game.debugFont.getBounds("$"+(upgrade.levels[upgradeLevel].cost)).width/2.0f;
-					screen.game.debugFont.draw(screen.batch, "$"+(upgrade.levels[upgradeLevel].cost), iconCenter-sizeX, iconY-ydiff);
+					float sizeX = screen.game.debugFont.getBounds("$"+(int)(upgrade.levels[upgradeLevel].cost)).width/2.0f;
+					screen.game.debugFont.draw(screen.batch, "$"+(int)(upgrade.levels[upgradeLevel].cost), iconCenter-sizeX, iconY-ydiff);
 				}
 				
 				screen.game.debugFont.setScale(prevScale);
