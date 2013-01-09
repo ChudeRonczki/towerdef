@@ -29,6 +29,8 @@ public class Bullet {
 	Vector2 pos,direction;
 	Sprite sprite;
 	float damage, speed;
+	float timeToEndAnim;
+	boolean exploded;
 	
 	public Bullet() {}
 	
@@ -61,6 +63,7 @@ public class Bullet {
 		sprite.setPosition(this.pos.x, this.pos.y);
 		sprite.setRotation(this.direction.angle()-90f);
 		target = tower.target;
+		exploded = false;
 		return this;
 	}
 	
@@ -68,6 +71,14 @@ public class Bullet {
 	 * @return Do usuniêcia?
 	 */
 	public boolean update(float dt) {
+		if(exploded) {
+			timeToEndAnim -= dt;
+			if(timeToEndAnim <= 0)
+				return true;
+			else
+				return false;
+		}
+		
 		direction.set(target.pos.tmp().sub(pos)).nor();
 		pos.add(direction.tmp().mul(speed*dt));
 		if(!target.alive || Circle.colliding(hitZone, target.hitZone)) {
@@ -78,15 +89,25 @@ public class Bullet {
 			for(Enemy enemy : targetedEnemies2) {
 				if(Circle.colliding(blastZone, enemy.hitZone)) enemy.takeHit(damage);
 			}
-			return true;
+			exploded = true;
+			timeToEndAnim = 1;
+			return false;
 		}
 		sprite.setPosition(pos.x, pos.y);
 		sprite.setRotation(direction.angle()-90f);
 		return false;
 	}
 	
+	public void drawExplosion(ShapeRenderer shapeRenderer) {
+		if(exploded) {
+			shapeRenderer.setColor(1f, 1f, 0.5f, 0.4f*(float)Math.sin(timeToEndAnim/Math.PI));
+			blastZone.draw(shapeRenderer);
+		}
+	}
+	
 	public void draw(SpriteBatch batch) {
-		sprite.draw(batch);
+		if(!exploded)
+			sprite.draw(batch);
 	}
 	
 	public void debugDraw(ShapeRenderer shapeRenderer) {

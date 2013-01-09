@@ -1,7 +1,5 @@
 package pl.czyzycki.towerdef.gameplay;
 
-import java.util.Iterator;
-
 import pl.czyzycki.towerdef.TowerDef.GameSound;
 import pl.czyzycki.towerdef.gameplay.entities.Bonus;
 import pl.czyzycki.towerdef.gameplay.entities.Tower;

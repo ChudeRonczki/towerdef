@@ -452,6 +452,10 @@ public class GameplayScreen implements Screen {
 			tower.preDraw(shapeRenderer);
 		}
 		
+		for(Bullet bullet : bullets) {
+			bullet.drawExplosion(shapeRenderer);
+		}
+		
 		shapeRenderer.end();
 		shapeRenderer.begin(ShapeType.Line);
 		for(Tower tower : towers) {
