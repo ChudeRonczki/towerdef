@@ -187,9 +187,6 @@ public class GameplayScreen implements Screen {
 		modelBonuses[BonusType.UPGRADE.ordinal()] = json.readValue(Bonus.class, maxUpData);
 		modelBonuses[BonusType.UPGRADE.ordinal()].setType(BonusType.UPGRADE);
 		modelBonuses[BonusType.UPGRADE.ordinal()].setSprite(texAtlas.createSprite("maxUpgrade"));
-		
-		
-		loadMap((String)jsonData.get("map"));
 	}
 	
 	public void loadMap(String name) {
@@ -218,7 +215,7 @@ public class GameplayScreen implements Screen {
 		pauseMenu.dispose();
 		loseMenu.dispose();
 		winMenu.dispose();
-		tileMapRenderer.dispose();
+		if(tileMapRenderer != null) tileMapRenderer.dispose();
 		shapeRenderer.dispose();
 		batch.dispose();
 	}

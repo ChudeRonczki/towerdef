@@ -148,8 +148,10 @@ public class Win extends MiniMenu {
             public void click(Actor actor, float x, float y )
             {
             	game.playSound(GameSound.CLICK);
-            	// TODO przejscie do nastêpnego poziomu
-            	screen.restartMap();
+            	SelectLevelScreen levelScreen = (SelectLevelScreen)screen.game.getSelectLevelScreen();
+            	levelScreen.nextLevel();
+            	screen.loadMap("lvl"+
+            	levelScreen.getSelectedLevel());
             	hide();
             }
         } );
