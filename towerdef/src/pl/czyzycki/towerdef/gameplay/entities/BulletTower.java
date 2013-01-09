@@ -78,6 +78,7 @@ public class BulletTower extends TargetTower {
 	
 	public BulletTower() {
 		super();
+		rotatingTower = true;
 	}
 	
 	public BulletTower init(GameplayScreen screen) {

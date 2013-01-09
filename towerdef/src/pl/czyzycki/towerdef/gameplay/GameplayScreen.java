@@ -149,8 +149,8 @@ public class GameplayScreen implements Screen {
 		SlowdownTower.pool = new SlowdownTowerPool(this);
 		
 		TextureAtlas texAtlas = game.getAssetManager().get("images/objects.pack", TextureAtlas.class);
-		Tower.basicSprite = texAtlas.createSprite("tower");
-		Enemy.basicSprite = texAtlas.createSprite("enemy");
+		Tower.basicSprite = texAtlas.createSprite("pause");
+		Enemy.basicSprite = texAtlas.createSprite("pause");
 		Bullet.basicSprite = texAtlas.createSprite("bullet");
 		
 		OrderedMap<String, Object> jsonData = (OrderedMap<String, Object>)new JsonReader().parse(Gdx.files.internal("config/config.json"));
@@ -187,20 +187,25 @@ public class GameplayScreen implements Screen {
 		modelBonuses[BonusType.UPGRADE.ordinal()] = json.readValue(Bonus.class, maxUpData);
 		modelBonuses[BonusType.UPGRADE.ordinal()].setType(BonusType.UPGRADE);
 		modelBonuses[BonusType.UPGRADE.ordinal()].setSprite(texAtlas.createSprite("maxUpgrade"));
-		
-		
-		loadMap((String)jsonData.get("map"));
 	}
 	
 	public void loadMap(String name) {
+		upgradeGui.setSelectedTower(null);
 		spawns.clear();
 		groundEnemies.clear();
 		airborneEnemies.clear();
-		// MEMORY LEAK!!! Wie¿e trzeba zwracaæ do w³aœciwych pooli!!! ToDo
+		for(Tower tower : towers) {
+			if(tower instanceof AreaTower) AreaTower.pool.free((AreaTower)tower);
+			else if(tower instanceof BulletTower) BulletTower.pool.free((BulletTower)tower);
+			else if(tower instanceof PointTower) PointTower.pool.free((PointTower)tower);
+			else SlowdownTower.pool.free((SlowdownTower)tower);
+		}
 		towers.clear();
 		bulletPool.free(bullets);
 		bullets.clear();
 		fields.clear();
+		bonusPool.free(bonuses);
+		bonuses.clear();
 		timeAcc = 0f;
 		loader.loadMap(name);
 	}
@@ -210,7 +215,7 @@ public class GameplayScreen implements Screen {
 		pauseMenu.dispose();
 		loseMenu.dispose();
 		winMenu.dispose();
-		tileMapRenderer.dispose();
+		if(tileMapRenderer != null) tileMapRenderer.dispose();
 		shapeRenderer.dispose();
 		batch.dispose();
 	}
@@ -354,8 +359,6 @@ public class GameplayScreen implements Screen {
 	}
 
 	public void restartMap() {
-		// TODO napisaæ to
-		upgradeGui.setSelectedTower(null);
 		loadMap("");
 	}
 	

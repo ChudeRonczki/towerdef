@@ -45,226 +45,191 @@ bomb
   orig: 80, 80
   offset: 0, 0
   index: -1
-bullet-tower-airborne
+button-area-tower-airborne
   rotate: false
   xy: 1, 145
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-bullet-tower-both
+button-area-tower-both
   rotate: false
   xy: 185, 349
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-bullet-tower-ground
+button-area-tower-ground
   rotate: false
   xy: 267, 431
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-area-tower-airborne
+button-area-tower
   rotate: false
   xy: 1, 63
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-remove-tower
+faster
   rotate: false
   xy: 1, 1
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
-button-area-tower-both
+button-bullet-tower-airborne
   rotate: false
   xy: 267, 349
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-area-tower-ground
+button-bullet-tower-both
   rotate: false
   xy: 349, 431
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-area-tower
+button-bullet-tower-ground
   rotate: false
   xy: 431, 431
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-bullet-tower-airborne
+button-bullet-tower
   rotate: false
   xy: 349, 349
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-bullet-tower-both
+button-point-tower-airborne
   rotate: false
   xy: 431, 349
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-upgrade-cooldown
+fasteron
   rotate: false
   xy: 63, 1
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
-button-bullet-tower-ground
+button-point-tower-both
   rotate: false
   xy: 103, 267
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-bullet-tower
+button-point-tower-ground
   rotate: false
   xy: 185, 267
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-point-tower-airborne
+button-point-tower
   rotate: false
   xy: 267, 267
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-point-tower-both
+button-slowdown-tower
   rotate: false
   xy: 349, 267
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-point-tower-ground
+maxUpgrade
   rotate: false
   xy: 431, 267
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-point-tower
+moneyBonus
   rotate: false
   xy: 83, 185
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-button-slowdown-tower
+point-tower-airborne
   rotate: false
   xy: 83, 103
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-enemy
+point-tower-both
   rotate: false
   xy: 165, 185
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-maxUpgrade
+point-tower-ground
   rotate: false
   xy: 165, 103
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-moneyBonus
+slowdown-tower
   rotate: false
   xy: 247, 185
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-point-tower-airborne
-  rotate: false
-  xy: 247, 103
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-point-tower-both
-  rotate: false
-  xy: 329, 185
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-point-tower-ground
-  rotate: false
-  xy: 329, 103
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-slowdown-tower
-  rotate: false
-  xy: 411, 185
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-tower
-  rotate: false
-  xy: 411, 103
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-faster
-  rotate: false
-  xy: 125, 37
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-fasteron
-  rotate: false
-  xy: 191, 37
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
 pause
   rotate: false
-  xy: 257, 37
-  size: 64, 64
-  orig: 64, 64
+  xy: 247, 123
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+remove-tower
+  rotate: false
+  xy: 329, 205
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+upgrade-cooldown
+  rotate: false
+  xy: 391, 205
+  size: 60, 60
+  orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-damage
   rotate: false
-  xy: 323, 41
+  xy: 125, 41
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-multiplier
   rotate: false
-  xy: 385, 41
+  xy: 187, 41
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-range
   rotate: false
-  xy: 447, 41
+  xy: 249, 61
   size: 60, 60
   orig: 60, 60
   offset: 0, 0

@@ -1,0 +1,101 @@
+{
+	stars : [5000, 10000, 20000],
+	base : {
+		hitZone : { radius : 60 },
+		hp : 20,
+		hpBonus : 1000
+	},
+	waves : 3,
+	money : 2800,
+	moneyBonus : {
+		odds : 50,
+		cooldown : 0.0
+	},
+	bomb : {
+		odds : 20,
+		cooldown : 10.0
+	},
+	maxUpgrade : {
+		odds : 20,
+		cooldown : 10.0
+	},
+	spawns : [
+		{
+			turns : [
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				}
+			]
+		},
+		{
+			turns : [
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				}
+			]
+		},
+		{
+			turns : [
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 1 },
+						{ name : someDude, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : someDude, timer : 1 },
+						{ name : totallyDifferentDude, timer : 2 },
+						{ name : someDude, timer : 0 }
+					]
+				}
+			]
+		}
+	]
+}
+				
+	

@@ -2,6 +2,7 @@ package pl.czyzycki.towerdef.menus;
 
 import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.TowerDef.GameSound;
+import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -81,7 +82,9 @@ public class SelectLevelScreen extends MenuBaseScreen {
 				public void click(Actor actor, float x, float y) {
 	            	game.playSound(GameSound.CLICK);
 					selectedLevel = levelId;
-					game.setScreen(game.getGameplayScreen());
+					GameplayScreen gameplayScreen = game.getGameplayScreen();
+					gameplayScreen.loadMap("lvl"+levelId);
+					game.setScreen(gameplayScreen);
 				}
 			}
 			
@@ -129,5 +132,9 @@ public class SelectLevelScreen extends MenuBaseScreen {
 	// Pierwszy level=0, drugi=1, ...
 	public int getSelectedLevel() {
 		return selectedLevel;
+	}
+
+	public void nextLevel() {
+		if(++selectedLevel >= levelInfos.length) selectedLevel = 0;
 	}
 }
