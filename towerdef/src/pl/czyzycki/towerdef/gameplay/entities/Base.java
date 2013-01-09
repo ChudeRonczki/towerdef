@@ -2,8 +2,12 @@ package pl.czyzycki.towerdef.gameplay.entities;
 
 import pl.czyzycki.towerdef.gameplay.helpers.Circle;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -14,8 +18,34 @@ public class Base {
 	Circle hitZone;
 	int hp, maxHp, hpBonus;
 	boolean destroyed;
+	float timer=0;
 	
 	StringBuilder hpText;
+	
+	static Animation baseAnimation;
+	
+	static public void loadAnimations(AssetManager assetMgr) {
+		Texture texture = assetMgr.get("images/base-anim.png", Texture.class);
+		TextureRegion[][] tmp = TextureRegion.split(texture, 80, 80);
+		
+		float animSpeed = 0.05f;
+		
+		
+		TextureRegion[] frames = new TextureRegion[63];
+
+		int k = 0;
+		boolean done = false;
+		
+		for(int i=0; i<tmp.length && !done; i++) {
+			for(int j=0; j<tmp[i].length && !done; j++) {
+				frames[k] = tmp[i][j];
+				k++;
+				if(k == frames.length) done = true;
+			}
+		}
+		
+		baseAnimation = new Animation(animSpeed, frames);
+	}
 	
 	public Base() {
 		hpText = new StringBuilder();
@@ -25,6 +55,13 @@ public class Base {
 		pos = new Vector2(x, y);
 		hitZone.pos = pos;
 		maxHp = hp;
+	}
+	
+	public void draw(SpriteBatch batch, float dt) {
+		timer += dt;
+		TextureRegion currentFrame = baseAnimation.getKeyFrame(timer, true);
+		batch.draw(currentFrame, pos.x-currentFrame.getRegionWidth()/2.0f,
+								 pos.y-currentFrame.getRegionHeight()/2.0f);
 	}
 	
 	public void takeHit(int damage) {

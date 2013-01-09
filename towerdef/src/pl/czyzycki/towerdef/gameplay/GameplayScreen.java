@@ -458,6 +458,7 @@ public class GameplayScreen implements Screen {
 		for(Bullet bullet : bullets) {
 			bullet.draw(batch);
 		}
+		base.draw(batch, dt);
 		
 		// Poni¿szy blok odpowiada za sortowanie po Y przeciwników - z³o¿onoœæ to co prawda n^2, ale who cares?
 		// I tak to nie naprawi problemu przechodzenia przez siebie jednostek :(.
