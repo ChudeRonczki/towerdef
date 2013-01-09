@@ -171,6 +171,10 @@ abstract public class Tower {
 		// Rysowanie czegoœ przed wszystkimi wie¿yczkami.
 	}
 	
+	public void preDrawLine(ShapeRenderer shapeRenderer) {
+		// Rysowanie linii przed wszystkimi wie¿yczkami.
+	}
+	
 	public void draw(SpriteBatch batch) {
 		sprite.draw(batch);
 	}

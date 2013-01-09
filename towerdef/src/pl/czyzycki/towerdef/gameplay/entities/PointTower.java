@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Pool;
 
 /**
@@ -22,7 +24,8 @@ public class PointTower extends TargetTower {
 	
 	public static Animation[] pointTowerAnimation;
 	float rotation = 0;
-	
+	float lineTimer = 0;
+
 	public PointTower() {
 		super();
 	}
@@ -91,10 +94,13 @@ public class PointTower extends TargetTower {
 	
 	@Override
 	public void update(float dt) {
+		lineTimer -= dt*4;
+		if(lineTimer < 0) lineTimer = 0;
 		if(checkTarget()) {
 			direction.set(target.pos).sub(pos).nor();
 			rotation = 720-(direction.angle()+90);
 			if(dt >= timer) {
+				lineTimer = 1;
 				timer += getCooldown() - dt;
 				target.takeHit(getDamage());
 				screen.game.playSound(GameSound.POINT);
@@ -103,6 +109,23 @@ public class PointTower extends TargetTower {
 		else timer -= dt;
 	}
 
+	public void preDrawLine(ShapeRenderer shapeRenderer) {
+		if(target != null && lineTimer > 0) {
+			switch(targeted) {
+			case AIRBORNE:
+				shapeRenderer.setColor(0.5f, 0.5f, 1, lineTimer);
+				break;
+			case GROUND:
+				shapeRenderer.setColor(0.5f, 1, 0.5f, lineTimer);
+				break;
+			default:
+				shapeRenderer.setColor(1, 1, 0.5f, lineTimer);
+				break;
+			}
+			shapeRenderer.line(pos.x, pos.y-5, target.pos.x, target.pos.y);
+		}
+	}
+	
 	public void draw(SpriteBatch batch) {
 		TextureRegion currentFrame = pointTowerAnimation[targeted.ordinal()].getKeyFrame(rotation, true);
 		batch.draw(currentFrame, pos.x-currentFrame.getRegionWidth()/2.0f, pos.y-currentFrame.getRegionHeight()/2.0f);

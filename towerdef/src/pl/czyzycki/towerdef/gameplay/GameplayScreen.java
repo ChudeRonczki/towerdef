@@ -451,6 +451,12 @@ public class GameplayScreen implements Screen {
 		for(Tower tower : towers) {
 			tower.preDraw(shapeRenderer);
 		}
+		
+		shapeRenderer.end();
+		shapeRenderer.begin(ShapeType.Line);
+		for(Tower tower : towers) {
+			tower.preDrawLine(shapeRenderer);
+		}
 		shapeRenderer.end();
 		Gdx.gl.glDisable(GL10.GL_BLEND);
 		
