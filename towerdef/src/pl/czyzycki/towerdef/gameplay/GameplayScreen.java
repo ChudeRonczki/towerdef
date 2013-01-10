@@ -480,8 +480,8 @@ public class GameplayScreen implements Screen {
 		// Poni¿szy blok odpowiada za sortowanie po Y przeciwników
 		{
 			int drawedEnemies = 0;
-			float maxY = -1000;
-			float prevMaxY = 1000;
+			float maxY = -1000000;    // -nieskoñczonoœæ
+			float prevMaxY = 1000000; // +nieskoñczonoœæ
 			
 			while(drawedEnemies != groundEnemies.size + airborneEnemies.size) {
 				
