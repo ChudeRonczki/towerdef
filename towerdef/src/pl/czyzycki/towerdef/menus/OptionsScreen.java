@@ -13,6 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
+/**
+ * Ekran opcji gry.
+ *
+ */
 public class OptionsScreen extends MenuBaseScreen {
 	private static boolean vibration	= true;
 	private static boolean music		= true;

@@ -8,6 +8,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Pool;
 
+/**
+ * Klasa bonusu do zebrania przez gracza (tego na mapce).
+ *
+ */
 public class Bonus {
 	public enum BonusType {
 		MONEY,

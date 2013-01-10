@@ -16,6 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
+/**
+ * Ekran wyœwietlany gdy gracz przegra.
+ *
+ */
 public class Lose extends MiniMenu {
 	Stage stage;
 	TowerDef game;

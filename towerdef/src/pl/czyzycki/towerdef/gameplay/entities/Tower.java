@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 /**
  * Klasa bazowa wie¿yczek
- * @author Ciziu
  *
  */
 abstract public class Tower {
@@ -203,7 +202,7 @@ abstract public class Tower {
 	}
 	
 	public void whenSelling() {
-		// tutaj mo¿e jakieœ liczenie kasy do zwrócenia za upgrady?
+		// TODO Uwzglêdnienie kosztu upgrade'ów przy sprzeda¿y
 	}
 	
 	abstract public Tower obtainCopy(float x, float y);

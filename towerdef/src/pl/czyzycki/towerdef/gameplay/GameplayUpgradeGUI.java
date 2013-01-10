@@ -13,10 +13,10 @@ import com.badlogic.gdx.input.GestureDetector.GestureAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-// nowa nazwa tej klasy:
-// towerPropsgui?
-// towergui?
-
+/**
+ * Menu upgrade'owania wie¿yczki
+ * 
+ */
 public class GameplayUpgradeGUI {
 	
 	class GameplayUpgradeGUIGestureListener extends GestureAdapter {

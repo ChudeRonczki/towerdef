@@ -17,6 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 import com.esotericsoftware.tablelayout.Cell;
 
+/**
+ * Ekran wyboru mapki rozgrywki.
+ *
+ */
 public class SelectLevelScreen extends MenuBaseScreen {
 	class LevelInfo {
 		int stars;

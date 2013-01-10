@@ -5,7 +5,6 @@ import com.badlogic.gdx.input.GestureDetector;
 
 /**
  * Klasa odpowiedzialna za obs³ugê prostych zdarzeñ inputu. Propaguje informacje do GameplayGestureListenera.
- * @author Ciziu
  *
  */
 class GameplayGestureDetector extends GestureDetector {

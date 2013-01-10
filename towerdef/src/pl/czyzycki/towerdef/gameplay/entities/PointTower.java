@@ -15,7 +15,6 @@ import com.badlogic.gdx.utils.Pool;
  * Najbardziej klasyczna wie¿yczka. Zadaje obra¿enia pojedynczemu celowi
  * znajduj¹cemu siê w zasiêgu. Z przyczyn wydajnoœciowo praktycznych,
  * pociski fizycznie nie istniej¹ :P
- * @author Ciziu
  *
  */
 public class PointTower extends TargetTower {

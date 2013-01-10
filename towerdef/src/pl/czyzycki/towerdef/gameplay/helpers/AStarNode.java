@@ -4,6 +4,11 @@ import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Wêze³ algorytmu A*
+ * Klasa pomocniczna przy wyszukiwaniu drogi.
+ *
+ */
 public class AStarNode {
 	public AStarNode parent;
 	public float x, y;

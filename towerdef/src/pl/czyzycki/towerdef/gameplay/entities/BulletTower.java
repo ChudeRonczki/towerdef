@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * Wie¿yckza strzelaj¹ca pociskami skierowanymi w konkretny cel
  * i zadaj¹cymi obra¿enia obszarowe.
- * @author Ciziu
  *
  */
 public class BulletTower extends TargetTower {

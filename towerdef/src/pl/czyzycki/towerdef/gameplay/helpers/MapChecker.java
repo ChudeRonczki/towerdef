@@ -2,6 +2,11 @@ package pl.czyzycki.towerdef.gameplay.helpers;
 
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
+/**
+ * Klasa pomocnicza do przechowywania binarnej informacji
+ * o siatce pól.
+ *
+ */
 public class MapChecker {
 	boolean[][] map;
 	int cols, rows;

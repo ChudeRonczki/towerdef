@@ -12,6 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
+/**
+ * Menu g³ówne.
+ *
+ */
 public class MainMenuScreen extends MenuBaseScreen {
 	
 	public MainMenuScreen(TowerDef game) {

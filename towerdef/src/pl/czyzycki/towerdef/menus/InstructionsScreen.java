@@ -4,7 +4,6 @@ import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.TowerDef.GameSound;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Align;
@@ -19,6 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 import com.esotericsoftware.tablelayout.Cell;
 
+/**
+ * Ekran instrukcji dla gracza.
+ *
+ */
 public class InstructionsScreen extends MenuBaseScreen {
 	
 	public InstructionsScreen(TowerDef game) {

@@ -20,6 +20,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
 
+/**
+ * Wróg zmierzaj¹cy do bazy gracza.
+ *
+ */
 public class Enemy {
 	
 	public static Sprite basicSprite;
@@ -58,7 +62,7 @@ public class Enemy {
 		
 		float animSpeed = 0.15f;
 		
-		// TODO jest zryte poruszanie sie góra/dó³
+		// TODO Poprawiæ poruszanie sie góra/dó³
 		
 		TextureRegion[] upWalkFrames = new TextureRegion[4];
 		upWalkFrames[0] = tmp[0][0];

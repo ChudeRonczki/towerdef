@@ -50,6 +50,10 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.OrderedMap;
 
+/**
+ * G³ówna klasa ekranu w³aœciwej rozgrywki.
+ *
+ */
 public class GameplayScreen implements Screen {
 	
 	enum ViewportConstraint {
@@ -473,8 +477,7 @@ public class GameplayScreen implements Screen {
 		}
 		base.draw(batch, dt);
 		
-		// Poni¿szy blok odpowiada za sortowanie po Y przeciwników - z³o¿onoœæ to co prawda n^2, ale who cares?
-		// I tak to nie naprawi problemu przechodzenia przez siebie jednostek :(.
+		// Poni¿szy blok odpowiada za sortowanie po Y przeciwników
 		{
 			int drawedEnemies = 0;
 			float maxY = -1000;

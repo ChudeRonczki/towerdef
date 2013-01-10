@@ -15,7 +15,6 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * Pocisk naprowadzany na konkretny cel, ale zadaj¹cy obra¿enia na danym obszarze.
  * Gdy cel zginie od innych obra¿eñ, pocisk wybucha.
- * @author Ciziu
  *
  */
 public class Bullet {

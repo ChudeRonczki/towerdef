@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * Klasa odpowiedzialna za obs³ugê typowych gestów dotykowych.
- * @author Ciziu
  *
  */
 class GameplayGestureListener extends GestureAdapter {

@@ -28,8 +28,7 @@ import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
 
 /**
  * Klasa g³ówna gry (nie licz¹c klas startowych backendów).
- * @author Ciziu
- *
+ * 
  */
 public class TowerDef extends Game {
 	public enum GameSound {
@@ -50,7 +49,7 @@ public class TowerDef extends Game {
 		ENEMY_DESTROYED
 	}
 	
-	static TowerDef game; // Po co siê mêczyæ :P Aktualnie bodaj nieu¿ywane, ale jest :)
+	static TowerDef game;
 	
 	public BitmapFont debugFont; // Tymczasowa czcionka do wszystkiego
 	
@@ -193,7 +192,7 @@ public class TowerDef extends Game {
 		if(OptionsScreen.musicEnabled()) sounds[sound.ordinal()].play(); 
 	}
 	
-	// TODO cos czuje ze to tutaj nie pasuje :<
+	// TODO Do przejrzenia
 	public void createParticle(Particle particle, float x, float y) {
 		if(OptionsScreen.particleEnabled()) {
 			PooledEffect effect = particlePool[particle.ordinal()].obtain();

@@ -9,7 +9,11 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-// Menu które jest rysowane na gameplayu, np. Pause, LevelSummary
+/**
+ *  Menu które jest rysowane na gameplayu, np. Pause, LevelSummary.
+ *  Klasa bazowa.
+ *
+ */
 public abstract class MiniMenu extends Skinable implements InputProcessor {
 	
 	GameplayScreen screen;

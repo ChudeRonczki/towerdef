@@ -6,6 +6,10 @@ import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+/**
+ * Bazowa klasa dla ekranów korzystaj¹cych ze skórki.
+ *
+ */
 public class Skinable {
 	private Skin skin = null;
 	private AssetManager assetManager;

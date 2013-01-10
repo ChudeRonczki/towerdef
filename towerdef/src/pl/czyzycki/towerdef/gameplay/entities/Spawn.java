@@ -13,6 +13,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
 
+/**
+ * Spawn, miejsce "produkcji" wrogów, z którego wychodz¹
+ * na mapê rozgrywki.
+ *
+ */
 public class Spawn {
 	public enum Border {
 		LEFT,RIGHT,TOP,BOTTOM

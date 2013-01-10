@@ -17,6 +17,10 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.OrderedMap;
 
+/**
+ * Klasa wczytuj¹ca dan¹ mapê
+ *
+ */
 class GameplayLoader {
 
 	final GameplayScreen screen;

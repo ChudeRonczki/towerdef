@@ -1,7 +1,5 @@
 package pl.czyzycki.towerdef.menus;
 
-// Klasa bazowa dla wszystkich ekranów menu
-
 import pl.czyzycki.towerdef.TowerDef;
 import pl.czyzycki.towerdef.gameplay.GameplayScreen;
 
@@ -16,6 +14,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+/*
+ * Klasa bazowa dla wszystkich ekranów menu.
+ * 
+ */
 public abstract class MenuBaseScreen extends Skinable implements Screen, InputProcessor {
 	
 	Stage stage;

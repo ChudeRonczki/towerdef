@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * Klasa bazowa dla wie¿yczek celuj¹cych w konkretnych wrogów.
- * @author Ciziu
  *
  */
 abstract public class TargetTower extends Tower {

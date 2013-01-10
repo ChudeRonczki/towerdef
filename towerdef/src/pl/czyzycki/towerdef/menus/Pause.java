@@ -16,6 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 
+/**
+ * Menu pauzy.
+ *
+ */
 public class Pause extends MiniMenu {
 	TowerDef game;
 	GameplayScreen screen;

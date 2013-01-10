@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
  * Pole spowalniaj¹ce utworzone przez wie¿yczkê spowalniaj¹c¹.
  * Dla ka¿dej wie¿yczki istnieje dok³adnie jedno pole, cyklicznie
  * dodawane i usuwane z listy w GameplayScreenie.
- * @author Ciziu
  *
  */
 public class Field implements Comparable<Field> {

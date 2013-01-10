@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.Pool;
  * Wie¿yczka spowalniaj¹ca. Je¿eli w zasiêgu jest jakiœ wróg,
  * tworzy obszarowe pole spowalniaj¹ce, dzia³aj¹ce przez okreœlony czas.
  * Po wygaœniêciu pola, przed stworzeniem nowego wie¿yczka ma cooldown.
- * @author Ciziu
  *
  */
 public class SlowdownTower extends Tower {

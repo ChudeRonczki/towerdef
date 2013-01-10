@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.Pool;
  * Wie¿yczka obszarowa. Zadaje obra¿enia wszystkim celom znajduj¹cym siê
  * w zasiêgu w momencie strza³u, który oddawany jest gdy w zasiêgu jest
  * przynajmniej jeden cel i nie jest aktywny cooldown.
- * @author Ciziu
  *
  */
 public class AreaTower extends Tower {

@@ -20,6 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.tablelayout.TableLayout;
 import com.esotericsoftware.tablelayout.Cell;
 
+/**
+ * Ekran zwyciêstwa.
+ *
+ */
 public class Win extends MiniMenu {
 	Stage stage;
 	TowerDef game;
