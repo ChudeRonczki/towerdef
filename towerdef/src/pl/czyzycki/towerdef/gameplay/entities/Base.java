@@ -31,7 +31,7 @@ public class Base {
 		float animSpeed = 0.05f;
 		
 		
-		TextureRegion[] frames = new TextureRegion[63];
+		TextureRegion[] frames = new TextureRegion[100];
 
 		int k = 0;
 		boolean done = false;

@@ -2,34 +2,6 @@ debug
 * spacing:10 padding:0 align:center maxwidth: 500
 'Instrukcje do gry' align:center spacingBottom:30
 ---
-[scrollPane] height: 300 (
-{
-'To można scrollowac!'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'ZAŻÓŁĆ GĘŚLĄ JAŹŃ'
----
-'zażółć gęślą jaźń'
----
-'Tu będą instrukcje'
----
-'Tu będą instrukcje'
----
-'Tu też. Koniec instrukcji'
-}
-)
+[scrollPane] height: 300
 ---
 [backButton] width:400 height:60 spacingTop:30 align:center
