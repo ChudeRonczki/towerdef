@@ -3,72 +3,149 @@ objects.png
 format: RGBA8888
 filter: MipMapLinearNearest,MipMapLinearNearest
 repeat: none
+airborne-unit
+  rotate: false
+  xy: 1, 903
+  size: 121, 113
+  orig: 121, 113
+  offset: 0, 0
+  index: -1
 bombButton
   rotate: false
-  xy: 1, 411
+  xy: 1, 801
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 maxUpgradeButton
   rotate: false
-  xy: 1, 309
+  xy: 124, 916
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 area-tower-airborne
   rotate: false
-  xy: 103, 431
+  xy: 1, 719
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 area-tower-both
   rotate: false
-  xy: 1, 227
+  xy: 226, 936
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 area-tower-ground
   rotate: false
-  xy: 103, 349
+  xy: 1, 637
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+base
+  rotate: false
+  xy: 308, 936
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 bomb
   rotate: false
-  xy: 185, 431
+  xy: 1, 555
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-airborne
   rotate: false
-  xy: 1, 145
+  xy: 390, 936
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-both
   rotate: false
-  xy: 185, 349
+  xy: 1, 473
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower-ground
   rotate: false
-  xy: 267, 431
+  xy: 472, 936
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 button-area-tower
   rotate: false
+  xy: 1, 391
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower-airborne
+  rotate: false
+  xy: 554, 936
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower-both
+  rotate: false
+  xy: 1, 309
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower-ground
+  rotate: false
+  xy: 636, 936
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-bullet-tower
+  rotate: false
+  xy: 1, 227
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-airborne
+  rotate: false
+  xy: 718, 936
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-both
+  rotate: false
+  xy: 1, 145
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower-ground
+  rotate: false
+  xy: 800, 936
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-point-tower
+  rotate: false
   xy: 1, 63
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+button-slowdown-tower
+  rotate: false
+  xy: 882, 936
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -80,163 +157,107 @@ faster
   orig: 60, 60
   offset: 0, 0
   index: -1
-button-bullet-tower-airborne
+ground-unit
   rotate: false
-  xy: 267, 349
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-bullet-tower-both
-  rotate: false
-  xy: 349, 431
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-bullet-tower-ground
-  rotate: false
-  xy: 431, 431
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-bullet-tower
-  rotate: false
-  xy: 349, 349
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower-airborne
-  rotate: false
-  xy: 431, 349
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-fasteron
-  rotate: false
-  xy: 63, 1
-  size: 60, 60
-  orig: 60, 60
-  offset: 0, 0
-  index: -1
-button-point-tower-both
-  rotate: false
-  xy: 103, 267
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower-ground
-  rotate: false
-  xy: 185, 267
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-point-tower
-  rotate: false
-  xy: 267, 267
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-button-slowdown-tower
-  rotate: false
-  xy: 349, 267
-  size: 80, 80
-  orig: 80, 80
+  xy: 103, 821
+  size: 66, 80
+  orig: 66, 80
   offset: 0, 0
   index: -1
 maxUpgrade
   rotate: false
-  xy: 431, 267
+  xy: 171, 834
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 moneyBonus
   rotate: false
-  xy: 83, 185
+  xy: 253, 854
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 point-tower-airborne
   rotate: false
-  xy: 83, 103
+  xy: 335, 854
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 point-tower-both
   rotate: false
-  xy: 165, 185
+  xy: 417, 854
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 point-tower-ground
   rotate: false
-  xy: 165, 103
+  xy: 499, 854
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 slowdown-tower
   rotate: false
-  xy: 247, 185
+  xy: 581, 854
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
+fasteron
+  rotate: false
+  xy: 663, 874
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
 pause
   rotate: false
-  xy: 247, 123
+  xy: 725, 874
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 remove-tower
   rotate: false
-  xy: 329, 205
+  xy: 787, 874
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-cooldown
   rotate: false
-  xy: 391, 205
+  xy: 849, 874
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-damage
   rotate: false
-  xy: 125, 41
+  xy: 911, 874
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-multiplier
   rotate: false
-  xy: 187, 41
+  xy: 83, 739
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 upgrade-range
   rotate: false
-  xy: 249, 61
+  xy: 83, 677
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 83, 287
+  xy: 63, 41
   size: 4, 20
   orig: 4, 20
   offset: 0, 0

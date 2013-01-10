@@ -36,7 +36,8 @@
                         downFontColor: { r: 0.5, g: 0.5, b: 0.5, a: 1 }
                 },
                 com.badlogic.gdx.graphics.g2d.BitmapFont: {
-                        default-font: { file: font.fnt }
+                        default-font: { file: font.fnt },
+						small-font: { file: small.fnt }
                 }
         },
         styles: {
@@ -58,7 +59,8 @@
                 },
                 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
                 	default: { font: default-font, fontColor: black },
-					white: { font: default-font, fontColor: white }
+					white: { font: default-font, fontColor: white },
+					small: { font: small-font, fontColor: black }
                 }
         }
  }
