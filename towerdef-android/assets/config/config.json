@@ -1,6 +1,5 @@
 {
 	spawns : {
-		waveTimeout : 2
-	},
-	map : "testa"
+		waveTimeout : 3
+	}
 }

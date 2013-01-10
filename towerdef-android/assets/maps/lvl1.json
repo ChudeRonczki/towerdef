@@ -1,22 +1,22 @@
 {
-	stars : [5000, 10000, 20000],
+	stars : [0, 10000, 20000],
 	base : {
-		hitZone : { radius : 60 },
+		hitZone : { radius : 30 },
 		hp : 20,
 		hpBonus : 1000
 	},
-	waves : 3,
-	money : 2800,
+	waves : 5,
+	money : 1000,
 	moneyBonus : {
-		odds : 50,
+		odds : 30,
 		cooldown : 0.0
 	},
 	bomb : {
-		odds : 20,
+		odds : 10,
 		cooldown : 10.0
 	},
 	maxUpgrade : {
-		odds : 20,
+		odds : 10,
 		cooldown : 10.0
 	},
 	spawns : [
@@ -24,23 +24,31 @@
 			turns : [
 				{
 					enemies : [
-						{ name : someDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 2 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 0 }
 					]
 				},
 				{
 					enemies : [
-						{ name : totallyDifferentDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 1 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 0 }
 					]
 				},
 				{
 					enemies : [
-						{ name : someDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 2 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : latajacy, timer : 1 },
+						{ name : latajacy, timer : 1 }
+					]
+				},
+				{
+					enemies : [
+						{ name : kroczacy, timer : 2 },
+						{ name : latajacy, timer : 2 },
+						{ name : kroczacy, timer : 0 }
 					]
 				}
 			]
@@ -48,24 +56,29 @@
 		{
 			turns : [
 				{
+					enemies : []
+				},
+				{
 					enemies : [
-						{ name : someDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 2 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 0 }
 					]
 				},
 				{
 					enemies : [
-						{ name : totallyDifferentDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 1 },
-						{ name : someDude, timer : 0 }
+						{ name : latajacy, timer : 1 }
 					]
 				},
 				{
 					enemies : [
-						{ name : someDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 2 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 0 }
 					]
 				}
 			]
@@ -73,24 +86,29 @@
 		{
 			turns : [
 				{
+					enemies : []
+				},
+				{
 					enemies : [
-						{ name : someDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 2 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 0 }
 					]
 				},
 				{
 					enemies : [
-						{ name : totallyDifferentDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 1 },
-						{ name : someDude, timer : 0 }
+						{ name : latajacy, timer : 1 }
 					]
 				},
 				{
 					enemies : [
-						{ name : someDude, timer : 1 },
-						{ name : totallyDifferentDude, timer : 2 },
-						{ name : someDude, timer : 0 }
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 0 }
+					]
+				},
+				{
+					enemies : [
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 1 },
+						{ name : kroczacy, timer : 0 }
 					]
 				}
 			]

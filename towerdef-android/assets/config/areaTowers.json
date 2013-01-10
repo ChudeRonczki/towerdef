@@ -2,9 +2,9 @@
 {
 	damage: 10,
 	range : { radius : 150 },
-	cooldown : 5,
+	cooldown : 2,
 	targeted : "GROUND",
-	cost : 50,
+	cost : 250,
 	icon : "button-area-tower-ground",
 	groupIcon : "button-area-tower",
 	textureFileName: "area-tower-ground",
@@ -14,27 +14,27 @@
 		{
 			"levels" :
 			[
-				{ "value" : 200, "cost"  : 200 },
-				{ "value" : 250, "cost"  : 300 },
-				{ "value" : 300, "cost"  : 500 }
+				{ "value" : 180, "cost"  : 250 },
+				{ "value" : 200, "cost"  : 400 },
+				{ "value" : 225, "cost"  : 750 }
 			],
 			upgraded : "RANGE"
 		},
 		{
 			"levels" :
 			[
-				{ "value" : 4, "cost"  : 200 },
-				{ "value" : 3, "cost"  : 300 },
-				{ "value" : 2, "cost"  : 500 }
+				{ "value" : 1.5, "cost"  : 250 },
+				{ "value" : 1.2, "cost"  : 400 },
+				{ "value" : 1.0, "cost"  : 750 }
 			],
 			upgraded : "COOLDOWN"
 		},
 		{
 			"levels" :
 			[
-				{ "value" : 15, "cost"  : 200 },
-				{ "value" : 25, "cost"  : 300 },
-				{ "value" : 40, "cost"  : 500 }
+				{ "value" : 15, "cost"  : 250 },
+				{ "value" : 19, "cost"  : 400 },
+				{ "value" : 22, "cost"  : 750 }
 			],
 			upgraded : "DAMAGE"
 		}	
@@ -43,9 +43,9 @@
 {
 	damage: 10,
 	range : { radius : 150 },
-	cooldown : 5,
+	cooldown : 2,
 	targeted : "AIRBORNE",
-	cost : 50,
+	cost : 250,
 	icon : "button-area-tower-airborne",
 	groupIcon : "button-area-tower",
 	textureFileName: "area-tower-airborne",
@@ -55,27 +55,27 @@
 		{
 			"levels" :
 			[
-				{ "value" : 200, "cost"  : 200 },
-				{ "value" : 250, "cost"  : 300 },
-				{ "value" : 300, "cost"  : 500 }
+				{ "value" : 180, "cost"  : 250 },
+				{ "value" : 200, "cost"  : 400 },
+				{ "value" : 225, "cost"  : 750 }
 			],
 			upgraded : "RANGE"
 		},
 		{
 			"levels" :
 			[
-				{ "value" : 4, "cost"  : 200 },
-				{ "value" : 3, "cost"  : 300 },
-				{ "value" : 2, "cost"  : 500 }
+				{ "value" : 1.5, "cost"  : 250 },
+				{ "value" : 1.2, "cost"  : 400 },
+				{ "value" : 1.0, "cost"  : 750 }
 			],
 			upgraded : "COOLDOWN"
 		},
 		{
 			"levels" :
 			[
-				{ "value" : 15, "cost"  : 200 },
-				{ "value" : 25, "cost"  : 300 },
-				{ "value" : 40, "cost"  : 500 }
+				{ "value" : 15, "cost"  : 250 },
+				{ "value" : 19, "cost"  : 400 },
+				{ "value" : 22, "cost"  : 750 }
 			],
 			upgraded : "DAMAGE"
 		}	
@@ -84,9 +84,9 @@
 {
 	damage: 10,
 	range : { radius : 150 },
-	cooldown : 5,
+	cooldown : 2,
 	targeted : "BOTH",
-	cost : 75,
+	cost : 350,
 	icon : "button-area-tower-both",
 	groupIcon : "button-area-tower",
 	textureFileName: "area-tower-both",
@@ -96,27 +96,27 @@
 		{
 			"levels" :
 			[
-				{ "value" : 200, "cost"  : 200 },
-				{ "value" : 250, "cost"  : 300 },
-				{ "value" : 300, "cost"  : 500 }
+				{ "value" : 180, "cost"  : 400 },
+				{ "value" : 200, "cost"  : 550 },
+				{ "value" : 225, "cost"  : 900 }
 			],
 			upgraded : "RANGE"
 		},
 		{
 			"levels" :
 			[
-				{ "value" : 4, "cost"  : 200 },
-				{ "value" : 3, "cost"  : 300 },
-				{ "value" : 2, "cost"  : 500 }
+				{ "value" : 1.5, "cost"  : 400 },
+				{ "value" : 1.2, "cost"  : 550 },
+				{ "value" : 1.0, "cost"  : 900 }
 			],
 			upgraded : "COOLDOWN"
 		},
 		{
 			"levels" :
 			[
-				{ "value" : 15, "cost"  : 200 },
-				{ "value" : 25, "cost"  : 300 },
-				{ "value" : 40, "cost"  : 500 }
+				{ "value" : 15, "cost"  : 400 },
+				{ "value" : 19, "cost"  : 550 },
+				{ "value" : 22, "cost"  : 900 }
 			],
 			upgraded : "DAMAGE"
 		}	

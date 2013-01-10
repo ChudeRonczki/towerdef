@@ -137,9 +137,11 @@ public class Spawn {
 		if(!waveFinished) {
 			if(timer <= dt) {
 				Enemy enemy = spawnList.peek().poll();
-				timer += enemy.timer;
 				if(spawnList.peek().isEmpty()) waveFinished = true;
-				screen.addEnemy(enemy, enemy.flying);
+				if(enemy != null) {
+					timer += enemy.timer;
+					screen.addEnemy(enemy, enemy.flying);
+				}
 			}
 			timer -= dt;
 		}

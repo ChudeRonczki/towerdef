@@ -5,24 +5,24 @@
  <tileset firstgid="1" name="tilestest" tileheight="80" tilewidth="80">
   <image height="720" source="tilestest.png" width="1280"/>
  </tileset>
- <layer height="11" name="Tile Layer 1" width="16">
+ <layer height="11" name="Background" width="16">
   <data compression="zlib" encoding="base64">
-   eJxTZ2BgMAZiQyCOgtK4MEzeDIjVkbAzlfT7AbE3EPtCaR8c+sOAWBWKVYA4GE0enUbXT8h9MBrmHhj2x+I2ZPlcNDoWzXw/JDFCbsFlPyn60dVgs98DC/aEymVh8R+639SxYGMGwm7LgoYhufpBOB6IAaGTKeU=
+   eJxTZ2BgUIfidCA2BeIQIDYE4hgojQ+rI2EQ3xVJzg+IvZGwDxHmeSGpz0GTI8Y9UXjMzCXCDej6QXpj8bjBGw2D7MhGwv5QMWR5YsIBn5+JCYfBoj8LGg55UH4+Unhkk2AOLgwABCMpTQ==
   </data>
  </layer>
- <layer height="11" name="Tile Layer 2" width="16">
+ <layer height="11" name="Objects1" width="16">
   <data compression="zlib" encoding="base64">
-   eJxjYICAECBOYsAP8MmnUKgfJo+OSdWPjaZEPz5MrBoGNLXobikF4jIkGl09LnthoBWI25BodP8Qsh8XIMVvpAJqmGEOxAAXYBpM
+   eJxjYEAAZyA2AWJTKMYFzIBYHYqRAUi/Cx59MBAGxGpQ/apIOBiIQ4jQbwo1QxWLO1OI0O/KgPCjKxHqcZlBrl4YANnvgYY9SdSvjoadh5B+Biz6wxkwwwQfBgC4Dg9S
   </data>
  </layer>
- <layer height="11" name="Tile Layer 3" width="16">
+ <layer height="11" name="Objects2" width="16">
   <data compression="zlib" encoding="base64">
-   eJxjYBgFo2DoAgACwAAB
+   eJxjYKAuSEXC5IBSJEwrkIrGJtXNpUjqS/BgQmbg8mMIEfrxgRQK9A41AAA+XgsJ
   </data>
  </layer>
- <layer height="11" name="Tile Layer 4" width="16">
+ <layer height="11" name="Markup" width="16">
   <data compression="zlib" encoding="base64">
-   eJydkQEKACAMAq0ftP8/tgYFQ5asDmSBaUUGwLZaWGdSvjOgOb7Ks17z2eR8xBI/TiWnFfaA+vgtN1RnNV85/+U/+B4qrzgdv3mnL00aAgbZ
+   eJwTYmBgEMKBGfHI4cMwIIgFMxDQi009snnY9GNTgy6GjEnRj+4OdDcw4vAnDDPhEMfmD1L8M5T0I/sZmU9u+kLGAMcJCEs=
   </data>
  </layer>
 </map>

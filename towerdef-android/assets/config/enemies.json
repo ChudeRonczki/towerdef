@@ -1,20 +1,20 @@
 {
-	someDude : {
+	kroczacy : {
 		hitZone : { radius : 40 },
-		speed : 70,
-		hp : 10,
-		damage : 2,
-		flying : false,
-		points : 100,
-		money : 100
-	},
-	totallyDifferentDude : {
-		hitZone : { radius : 45 },
-		speed : 50,
+		speed : 40,
 		hp : 30,
 		damage : 1,
+		flying : false,
+		points : 100,
+		money : 75
+	},
+	latajacy : {
+		hitZone : { radius : 45 },
+		speed : 60,
+		hp : 25,
+		damage : 1,
 		flying : true,
-		points : 500,
-		money : 200
+		points : 150,
+		money : 100
 	}
 }
